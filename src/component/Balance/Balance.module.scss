@@ -1,0 +1,13 @@
+.balance {
+  &__title {
+    margin-bottom: 6px;
+    color: rgba(82, 85, 95, 0.7);
+    font-size: 12px;
+    line-height: calc(14 / 12);
+    letter-spacing: 0.02em;
+  }
+
+  &__input {
+    padding: 15px 23px;
+  }
+}
