@@ -1,11 +1,5 @@
-import Balance from "./component/Balance/Balance";
-
 const App = () => {
-  return (
-    <div>
-      <Balance />
-    </div>
-  );
+  return <div></div>;
 };
 
 export default App;

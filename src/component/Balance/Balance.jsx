@@ -7,8 +7,9 @@ const Balance = () => {
       <form className={s.balance__form}>
         <input
           className={s.balance__input}
-          type="text"
-          placeholder="00.00 UA"
+          type="number"
+          step=".01"
+          placeholder="00.00 UAH"
         />
         <button className={s.balance__btn}>Подтвердить</button>
       </form>
