@@ -2,7 +2,7 @@ import s from "./Summary.module.scss";
 
 const Summary = () => {
   return (
-    <div className={s.summary}>
+      <div className={s.summary}>
       <h3 className={s.summary__title}>Сводка</h3>
       <ul className={s.summary__list}>
         <li className={s.summary__item}>
