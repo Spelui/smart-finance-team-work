@@ -1,11 +1,9 @@
-
-
 import ReportPage from "./pages/ReportPage/ReportPage";
 
 const App = () => {
   return (
     <div>
-        <ReportPage />
+      <ReportPage />
     </div>
   );
 };
