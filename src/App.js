@@ -1,9 +1,9 @@
-import { Header } from "./component/Header/Header";
+import ReportPage from "./pages/ReportPage/ReportPage";
 
 const App = () => {
   return (
     <div>
-      <Header />
+      <ReportPage />
     </div>
   );
 };
