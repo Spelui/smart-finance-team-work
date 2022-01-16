@@ -1,0 +1,52 @@
+.CostIncomeTitle {
+  display: none;
+  @media screen and (min-width: 768px) {
+    height: 40px;
+    display: flex;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 12px;
+    line-height: 14px;
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+
+    color: #000000;
+    justify-content: center;
+    @media screen and (min-width: 768px) {
+      justify-content: normal;
+    }
+
+    &Date {
+      margin-left: 20px;
+      width: 66px;
+      @media screen and (min-width: 1280px) {
+        width: 84px;
+      }
+    }
+    &Description {
+      margin-left: 37px;
+      width: 99px;
+      @media screen and (min-width: 1280px) {
+        margin-left: 20px;
+        width: 124px;
+      }
+    }
+    &Category {
+      margin-left: 69px;
+      @media screen and (min-width: 1280px) {
+        margin-left: 80px;
+        width: 172px;
+      }
+    }
+    &Sum {
+      margin-left: 69px;
+      @media screen and (min-width: 1280px) {
+        margin-left: 20px;
+        width: 104px;
+      }
+    }
+  }
+}

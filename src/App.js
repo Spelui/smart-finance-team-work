@@ -1,5 +1,11 @@
+import CostIncome from "./component/CostIncome/CostIncome";
+
 const App = () => {
-  return <div></div>;
+  return (
+    <div>
+      <CostIncome />
+    </div>
+  );
 };
 
 export default App;
