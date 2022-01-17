@@ -22,7 +22,7 @@ const App = () => {
         <>
           <Header />
           <AuthPage />
-          {/* <ReportPage /> */}
+          <ReportPage />
         </>
       )}
       <CostIncome />
@@ -31,4 +31,3 @@ const App = () => {
 };
 
 export default App;
-

@@ -1,8 +1,10 @@
 // import { NavLink } from 'react-router-dom';
-import CategoryList from '../../component/CategoryList';
-import sprite from '../../images/sprite.svg';
+import CategoryList from "../../component/CategoryList";
+import Balance from "../../component/Balance";
+import BackspaceBtn from "../../component/BackspaceBtn";
+import sprite from "../../images/sprite.svg";
 
-import s from './ReportPage.module.scss';
+import s from "./ReportPage.module.scss";
 
 const ReportPage = () => {
   return (
@@ -33,20 +35,17 @@ const ReportPage = () => {
                   </button>
                 </div>
               </div>
+              {/* <Balance /> */}
               <div className={s.reportBalance_wrap}>
                 <span className={s.balanceText}>Баланс:</span>
                 <span className={s.balanceNumber}>50 000.00 uah</span>
               </div>
-              <button className={s.btn_backspace} type="button">
-                <svg viewBox="0 0 28.3 28.3" className={s.s}>
-                  <use href={`${sprite}#backspace`} />
-                </svg>
-              </button>
+              <BackspaceBtn />
             </div>
 
             <div className={s.reportInfo_wrap}>
               <div className={s.costIncomes_report}>
-                <div className={s.report_item + ' ' + s.line}>
+                <div className={s.report_item + " " + s.line}>
                   <p>Расходы:</p>
                   <span className={s.numberCosts}>- 50 000.00 грн.</span>
                 </div>
