@@ -1,11 +1,11 @@
-import React from 'react';
-import s from './CategoryList.module.scss';
-import { categories } from './categoriesIcons';
+import React from "react";
+import s from "./CategoryList.module.scss";
+import { categories } from "./categoriesIcons";
 const CategoryList = () => {
   return (
     <ul className={s.list}>
       {categories.map(({ name, svg }) => (
-        <li className={s.item}>
+        <li key={name} className={s.item}>
           <span>5000.00</span>
           <div className={s.link}>
             <svg viewBox="0 0 32 32" className={s.img}>

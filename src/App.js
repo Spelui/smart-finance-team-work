@@ -8,6 +8,8 @@ import { AuthPage } from "./pages/AuthPage/AuthPage.jsx";
 import ReportPage from "./pages/ReportPage/ReportPage";
 import CostIncome from "./component/CostIncome/CostIncome";
 
+//import OnLoader from "./component/OnLoader";
+
 const App = () => {
   const dispatch = useDispatch();
   const isFetchingCurrentUser = useSelector(authSelectors.getIsFetchingCurrent);
@@ -20,6 +22,7 @@ const App = () => {
     <div>
       {!isFetchingCurrentUser && (
         <>
+          {/*<OnLoader />*/}
           <Header />
           <AuthPage />
           <ReportPage />
