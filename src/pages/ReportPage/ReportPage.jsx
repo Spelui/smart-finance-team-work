@@ -1,14 +1,14 @@
 // import { NavLink } from 'react-router-dom';
-import CategoryList from '../../component/CategoryList';
-import sprite from '../../images/sprite.svg';
+import CategoryList from "../../component/CategoryList";
+import sprite from "../../images/sprite.svg";
 
-import s from './ReportPage.module.scss';
+import s from "./ReportPage.module.scss";
 
 const ReportPage = () => {
   return (
     <>
       <div className={s.wrap}>
-        <section className={s.reportInfo_section}>
+        <section className={`${s.reportInfo_section} background`}>
           <div className={s.backgroundTest}>
             <div className={s.report_head_wrap}>
               <div className={s.current_period}>
@@ -46,7 +46,7 @@ const ReportPage = () => {
 
             <div className={s.reportInfo_wrap}>
               <div className={s.costIncomes_report}>
-                <div className={s.report_item + ' ' + s.line}>
+                <div className={s.report_item + " " + s.line}>
                   <p>Расходы:</p>
                   <span className={s.numberCosts}>- 50 000.00 грн.</span>
                 </div>
