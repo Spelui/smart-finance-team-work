@@ -18,6 +18,7 @@
 
 .reportInfo_section {
   position: relative;
+  overflow: hidden;
   &::after {
     content: "";
     position: absolute;
