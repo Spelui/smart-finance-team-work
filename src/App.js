@@ -1,24 +1,37 @@
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+
+import { authOperations, authSelectors } from "./redux/auth";
+
+import { Header } from "./component/Header/Header.jsx";
+import { AuthPage } from "./pages/AuthPage/AuthPage.jsx";
 import ReportPage from "./pages/ReportPage/ReportPage";
-import OnLoader from "./component/OnLoader";
+import CostIncome from "./component/CostIncome/CostIncome";
+
+//import OnLoader from "./component/OnLoader";
 import HomePageView from "./pages/HomePageView/HomePageView";
 
-
-
-
-
-
-
-
-
-
-
 const App = () => {
+  const dispatch = useDispatch();
+  const isFetchingCurrentUser = useSelector(authSelectors.getIsFetchingCurrent);
+
+  useEffect(() => {
+    dispatch(authOperations.fetchCurrentUser());
+  }, [dispatch]);
+
   return (
-    <div>
-        {/*<OnLoader />*/}
-        <HomePageView />
-        <ReportPage />
-    </div>
+      <div>
+        {!isFetchingCurrentUser && (
+            <>
+              {/*<OnLoader />*/}
+              <HomePageView />
+              <Header />
+              <AuthPage />
+              {/* <ReportPage /> */}
+            </>
+        )}
+        <CostIncome />
+      </div>
   );
 };
 

@@ -1,0 +1,63 @@
+.CostIncomeConteiner {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 14px;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  @media screen and (min-width: 768px) {
+    margin: 0 51px;
+    padding: 30px;
+    width: 665px;
+  }
+}
+.CostIncomeContent {
+  display: grid;
+  justify-content: center;
+  @media screen and (min-width: 768px) {
+    justify-content: normal;
+  }
+}
+.CostIncomeBtmMob {
+  display: flex;
+  justify-content: center;
+  @media screen and (min-width: 768px) {
+    justify-content: normal;
+  }
+}
+.CostIncomeContentBorder {
+  border: 1px solid #f5f6fb;
+  margin-top: 10px;
+  @media screen and (min-width: 768px) {
+    display: none;
+  }
+}
+.CostIncomeForm {
+  @media screen and (min-width: 768px) {
+    display: flex;
+    // justify-content: center;
+  }
+}
+
+.AddNewProductBtm {
+  display: flex;
+  align-items: center;
+  text-align: center;
+
+  color: #52555f;
+  justify-content: center;
+}
+.CostIncomeBtm {
+  display: none;
+  @media screen and (min-width: 768px) {
+    display: flex;
+    margin-top: 30px;
+  }
+}
+
+.AddNewProduc {
+  @media screen and (min-width: 1280px) {
+    display: flex;
+  }
+}

@@ -1,0 +1,57 @@
+.form {
+  display: none;
+  @media screen and (min-width: 768px) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 33px;
+  }
+  @media screen and (min-width: 1280px) {
+    margin-right: 27px;
+  }
+}
+
+.formInput {
+  margin-right: 37px;
+
+  font-size: 12px;
+  line-height: 14px;
+
+  letter-spacing: 0.02em;
+
+  color: #c7ccdc;
+  @media screen and (min-width: 1280px) {
+    width: 218px;
+  }
+}
+
+.formSelect {
+  margin-right: 27px;
+
+  font-size: 12px;
+  line-height: 14px;
+
+  letter-spacing: 0.02em;
+
+  color: #c7ccdc;
+  @media screen and (min-width: 1280px) {
+    width: 158px;
+  }
+}
+
+.formSpan {
+  margin-right: 10px;
+
+  font-size: 12px;
+  line-height: 14px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  letter-spacing: 0.02em;
+
+  color: #c7ccdc;
+}
+
+// .formCalculator {
+
+// }
