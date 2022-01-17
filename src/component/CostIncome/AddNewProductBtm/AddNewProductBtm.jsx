@@ -1,4 +1,6 @@
 import styles from './AddNewProductBtm.module.scss';
+import PropTypes from 'prop-types';
+
 
 const AddNewProductBtm = ({ textBtm }) => {
   return (
@@ -9,6 +11,10 @@ const AddNewProductBtm = ({ textBtm }) => {
       <button type="button">Доход</button> */}
     </>
   );
+};
+
+AddNewProductBtm.propTypes = {
+  textBtm: PropTypes.string.isRequired,
 };
 
 export default AddNewProductBtm;
