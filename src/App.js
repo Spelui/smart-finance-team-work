@@ -25,7 +25,7 @@ const App = () => {
           {/*<OnLoader />*/}
           <Header />
           <AuthPage />
-          {/* <ReportPage /> */}
+          <ReportPage />
         </>
       )}
       <CostIncome />
