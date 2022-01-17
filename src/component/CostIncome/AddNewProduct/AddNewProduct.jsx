@@ -2,13 +2,18 @@ import Calculator from "./calculator.svg";
 import styles from "./AddNewProduct.module.scss";
 
 const AddNewProduct = () => {
+
+  const handelSubmit = (e) => {
+    e.preventDefault();
+ 
+  };
   return (
     <form className={styles.form}>
       <input
         className={styles.formInput}
         type="text"
         value=""
-        onChange={"0"}
+        onChange={handelSubmit}
         placeholder="Описание товара"
       />
       <select className={styles.formSelect}>

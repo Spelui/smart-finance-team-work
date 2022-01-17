@@ -1,4 +1,5 @@
 import styles from './CostIncomeBtm.module.scss';
+import PropTypes from 'prop-types';
 
 const CostIncomeBtm = ({ textBtm }) => {
   return (
@@ -8,4 +9,7 @@ const CostIncomeBtm = ({ textBtm }) => {
   );
 };
 
+CostIncomeBtm.propTypes = {
+  textBtm: PropTypes.string.isRequired,
+};
 export default CostIncomeBtm;
