@@ -1,0 +1,246 @@
+.authSectionWrapper {
+  @media screen and (min-width: 1280px) {
+    display: flex;
+  }
+}
+
+.authSection {
+  padding: 76px 0;
+  background: #f5f6fb;
+
+  @media screen and (min-width: 768px) {
+    padding: 90px 0 190px 0;
+  }
+
+  @media screen and (min-width: 1280px) {
+    padding: 120px 0 150px 0;
+  }
+
+  //   @media screen and (min-width: 320px) and (max-width: 767) {
+  //     background-image: url(../../images/sprite.svg#cabbage);
+  //   }
+}
+
+.heroTitleWrapper {
+  margin-bottom: 50px;
+  margin-left: 25px;
+
+  @media screen and (min-width: 768px) {
+    margin-left: 145px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    margin: auto 137px auto 205px;
+  }
+}
+
+.heroTitle {
+  font-size: 64px;
+  font-weight: 700;
+  line-height: calc(19 / 16);
+  letter-spacing: 0.01em;
+
+  @media screen and (min-width: 768px) {
+    font-size: 80px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    font-size: 90px;
+  }
+}
+
+.heroText {
+  margin-top: 4px;
+  margin-left: 7px;
+
+  font-weight: 700;
+  font-size: 13px;
+  line-height: calc(15 / 13);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+
+  color: #52555f;
+
+  @media screen and (min-width: 768px) {
+    margin-left: 50px;
+    font-size: 16px;
+    line-height: calc(19 / 16);
+    letter-spacing: 0.18em;
+  }
+}
+
+.authBox {
+  margin: 0 auto;
+  padding: 40px 9px;
+  width: 282px;
+  height: 525px;
+
+  background: #ffffff;
+
+  box-shadow: 5px 10px 20px rgba(170, 178, 197, 0.4);
+  border-radius: 30px;
+
+  @media screen and (min-width: 768px) {
+    width: 436px;
+    height: 535px;
+
+    padding: 50px 85px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    margin: 0;
+  }
+}
+
+.googleAuthText {
+  margin: 0 auto 24px auto;
+  width: 200px;
+
+  font-size: 10px;
+  line-height: calc(12 / 10);
+  text-align: center;
+  letter-spacing: 0.04em;
+
+  color: #52555f;
+
+  @media screen and (min-width: 768px) {
+    margin-bottom: 20px;
+    width: 222px;
+
+    text-align: start;
+    font-size: 12px;
+    letter-spacing: 0.04em;
+  }
+}
+
+.googleBtn {
+  margin: 0 auto 30px auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 122px;
+  height: 40px;
+
+  background: #f6f7fb;
+  border-radius: 26px;
+
+  transition: background 250ms linear, box-shadow 250ms linear;
+
+  &:hover,
+  &:focus {
+    background: #fcfdff;
+    box-shadow: 1px 1px 5px rgba(170, 178, 197, 0.4);
+    transition: background 250ms linear, box-shadow 250ms linear;
+  }
+}
+
+.googleIcon {
+  margin-right: 9px;
+}
+
+.googleText {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: calc(16 / 14);
+  letter-spacing: 0.02em;
+
+  color: #000000;
+}
+
+.authText {
+  width: 220px;
+  margin-left: 13px;
+  margin-bottom: 24px;
+
+  font-size: 10px;
+  line-height: calc(12 / 10);
+  letter-spacing: 0.04em;
+  text-align: start;
+
+  color: #52555f;
+
+  @media screen and (min-width: 768px) {
+    margin-bottom: 20px;
+
+    font-size: 12px;
+    letter-spacing: 0.04em;
+  }
+}
+
+.authForm {
+  margin: 0 auto;
+}
+
+.authLabel {
+  display: block;
+  margin-left: 13px;
+  font-size: 10px;
+  line-height: calc(12 / 10);
+
+  letter-spacing: 0.04em;
+
+  color: #000000;
+
+  @media screen and (min-width: 768px) {
+    font-size: 12px;
+    letter-spacing: 0.04em;
+  }
+}
+
+.authInput {
+  margin-bottom: 30px;
+  margin-top: 12px;
+  padding: 17px 20px;
+  width: 253px;
+  height: 52px;
+
+  background: #f6f7fb;
+  border-radius: 30px;
+
+  &::placeholder {
+    font-size: 14px;
+    line-height: calc(16 / 14);
+    letter-spacing: 0.04em;
+  }
+}
+
+.btnWrapper {
+  display: flex;
+}
+
+.btn {
+  margin-top: 10px;
+  display: inline-block;
+  width: 125px;
+  height: 44px;
+
+  background: #f5f6fb;
+  border-radius: 16px;
+
+  font-weight: bold;
+  font-size: 12px;
+  line-height: calc(14 / 12);
+  text-align: center;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+
+  color: #52555f;
+
+  filter: drop-shadow(1px 3px 5px rgba(82, 85, 95, 0.15));
+
+  transition: background 250ms linear, color 250ms linear, filter 250ms linear;
+
+  &:hover,
+  &:focus {
+    background: #ff751d;
+    color: white;
+    filter: drop-shadow(1px 3px 5px rgba(255, 107, 8, 0.35));
+
+    transition: background 250ms linear, color 250ms linear, filter 250ms linear;
+  }
+
+  &:first-child {
+    margin-right: 15px;
+  }
+}

@@ -1,0 +1,36 @@
+.summary {
+  &__title {
+    padding: 14px 0;
+    margin-bottom: 2px;
+    background-color: #f5f6fb;
+    border: 2px solid #ffffff;
+    border-radius: 20px 20px 0 0;
+    width: 230px;
+    font-weight: 700;
+    text-align: center;
+    font-size: 12px;
+    line-height: calc(14 / 12);
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
+
+  &__item {
+    width: 230px;
+    padding: 14px 22px;
+    background-color: #f5f6fb;
+    border: 2px solid #ffffff;
+
+    &:not(:last-child) {
+      margin-bottom: 2px;
+    }
+
+    &:last-child {
+      border-radius: 0 0 20px 0;
+    }
+  }
+
+  &__text {
+    display: flex;
+    justify-content: space-between;
+  }
+}
