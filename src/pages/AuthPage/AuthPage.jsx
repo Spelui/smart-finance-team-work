@@ -1,8 +1,42 @@
 import React from 'react'
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { authOperations } from '../../redux/auth';
+
 import s from './AuthPage.module.scss'
 import sprite from '../../images/sprite.svg'
 
 export const AuthPage = () => {
+
+  const dispatch = useDispatch();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleChange = ({ target: { name, value } }) => {
+    switch (name) {
+      case 'email':
+        return setEmail(value);
+      case 'password':
+        return setPassword(value);
+      default:
+        return;
+    }
+  };
+
+    const handleRegister = e => {
+        e.preventDefault();
+        dispatch(authOperations.register({ email, password }));
+        setEmail('');
+        setPassword('');
+    };
+    
+    const handleLogin = e => {
+        e.preventDefault();
+        dispatch(authOperations.loginIn({ email, password }));
+        setEmail('');
+        setPassword('');
+    };
+
     return (
         <section className={s.authSection}>
             <div class="container">
@@ -32,18 +66,32 @@ export const AuthPage = () => {
                         <p className={s.googleText} >Google</p>
                     </button>
                     <p className={s.authText}>Или зайти с помощью e-mail и пароля, предварительно зарегистрировавшись:</p>
-                    <form className={s.authForm}>
+                    <form onSubmit={handleRegister} autoComplete='off' className={s.authForm}>
                         <label htmlFor="user-email" className={s.authLabel}>
                             Электронная почта:
                         </label>
-                        <input id="user-email" type="text" className={s.authInput} placeholder='your@email.com' />
+                            <input
+                                id="user-email"
+                                type="text"
+                                className={s.authInput}
+                                placeholder='your@email.com'
+                                name="email"
+                                value={email}
+                                onChange={handleChange}/>
                         <label htmlFor="user-password" className={s.authLabel}>
                             Пароль:
                         </label>
-                        <input id="user-password" type="password" className={s.authInput} placeholder='Пароль'/>
+                            <input
+                                id="user-password"
+                                type="password"
+                                className={s.authInput}
+                                placeholder='Пароль'
+                                name="password"
+                                value={password}
+                                onChange={handleChange}/>
                         <div className={s.btnWrapper}>
-                            <button className={s.btn}>Войти</button>
-                            <button className={s.btn}>Регистрация</button>
+                            <button onClick={handleLogin} type='button' className={s.btn}>Войти</button>
+                            <button type='submit' className={s.btn}>Регистрация</button>
                         </div>
                     </form>
                 </div>

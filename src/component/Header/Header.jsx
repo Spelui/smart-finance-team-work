@@ -1,8 +1,18 @@
 import React from 'react'
+
+import { useDispatch, useSelector } from 'react-redux';
+import { authSelectors, authOperations } from '../../redux/auth';
+
 import sprite from '../../images/svg/symbol-defs.svg'
 import s from './Header.module.scss'
 
 export const Header = () => {
+
+    const dispatch = useDispatch();
+    const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
+    const email = useSelector(authSelectors.getUserEmail);
+    const avatarText = email.slice(0, 1).toUpperCase();
+
     return (
         <header className={s.header}>
             <div className="container">
@@ -12,18 +22,18 @@ export const Header = () => {
                             <use  href={`${sprite}#logo`}></use>
                         </svg>
                     </a>
-                    <div className={s.userMenu}>
+                    {isLoggedIn && <div className={s.userMenu}>
                         <div className={s.userAvatar}>
-                            <p className={s.avatarText}>U</p>
+                            <p className={s.avatarText}>{avatarText}</p>
                         </div>
-                        <p className={s.userName}>{'User Name'}</p>
+                        <p className={s.userName}>{email}</p>
                         <button type='button' className={s.btn}>
                             <svg width='16px' height='16px' className={s.logoutIcon}>
                                 <use  href={`${sprite}#logout`}></use>
                             </svg> 
-                            <p className={s.logoutText}>Выйти</p>
+                            <p onClick={() => dispatch(authOperations.loginOut())} className={s.logoutText}>Выйти</p>
                         </button>
-                    </div>
+                    </div>}
                 </div>
             </div>
         </header>
