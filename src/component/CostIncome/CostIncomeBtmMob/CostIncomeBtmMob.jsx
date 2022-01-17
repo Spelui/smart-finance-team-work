@@ -1,4 +1,5 @@
 import styles from './CostIncomeBtmMob.module.scss';
+import PropTypes from 'prop-types';
 
 const CostIncomeBtmMob = ({ textBtm }) => {
   return (
@@ -8,6 +9,10 @@ const CostIncomeBtmMob = ({ textBtm }) => {
       <button type="button">Доход</button> */}
     </>
   );
+};
+
+CostIncomeBtmMob.propTypes = {
+  textBtm: PropTypes.string.isRequired,
 };
 
 export default CostIncomeBtmMob;
