@@ -6,6 +6,7 @@ import { authOperations, authSelectors } from "./redux/auth";
 import { Header } from "./component/Header/Header.jsx";
 import { AuthPage } from "./pages/AuthPage/AuthPage.jsx";
 import ReportPage from "./pages/ReportPage/ReportPage";
+import CostIncome from "./component/CostIncome/CostIncome";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -24,8 +25,10 @@ const App = () => {
           {/* <ReportPage /> */}
         </>
       )}
+      <CostIncome />
     </div>
   );
 };
 
 export default App;
+
