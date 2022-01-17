@@ -9,7 +9,6 @@ import ReportPage from "./pages/ReportPage/ReportPage";
 import CostIncome from "./component/CostIncome/CostIncome";
 
 //import OnLoader from "./component/OnLoader";
-import HomePageView from "./pages/HomePageView/HomePageView";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -20,18 +19,17 @@ const App = () => {
   }, [dispatch]);
 
   return (
-      <div>
-        {!isFetchingCurrentUser && (
-            <>
-              {/*<OnLoader />*/}
-              <HomePageView />
-              <Header />
-              <AuthPage />
-              {/* <ReportPage /> */}
-            </>
-        )}
-        <CostIncome />
-      </div>
+    <div>
+      {!isFetchingCurrentUser && (
+        <>
+          {/*<OnLoader />*/}
+          <Header />
+          <AuthPage />
+          {/* <ReportPage /> */}
+        </>
+      )}
+      <CostIncome />
+    </div>
   );
 };
 
