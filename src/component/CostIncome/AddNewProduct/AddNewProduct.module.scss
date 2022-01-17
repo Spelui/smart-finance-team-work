@@ -52,6 +52,33 @@
   color: #c7ccdc;
 }
 
-// .formCalculator {
+.AddNewProductBtmDiv {
+  display: flex;
+  align-items: center;
+  text-align: center;
 
-// }
+  color: #52555f;
+  justify-content: center;
+}
+
+.AddNewProductBtm {
+  display: none;
+  @media screen and (min-width: 768px) {
+    display: flex;
+    justify-content: center;
+    padding: 12px 34px;
+    border: 2px solid #f6f7fc;
+    box-sizing: border-box;
+    border-radius: 16px;
+    &:hover {
+      background: #ff751d;
+      color: #ffffff;
+    }
+    @media screen and (min-width: 1280px) {
+      width: 125px;
+      &:last-child {
+        margin-left: 15px;
+      }
+    }
+  }
+}

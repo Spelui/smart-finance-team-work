@@ -3,7 +3,7 @@ import styles from './CostIncome.module.scss';
 import CostIncomeItem from './CostIncomeItem/CostIncomeItem'
 import Calendar from './Calendar/Calendar'
 import AddNewProduct from "./AddNewProduct/AddNewProduct";
-import AddNewProductBtm from "./AddNewProductBtm/AddNewProductBtm";
+// import AddNewProductBtm from "./AddNewProductBtm/AddNewProductBtm";
 import CostIncomeTitle from './CostIncomeTitle/CostIncomeTitle'
 import CostIncomeBtm from './CostIncomeBtm/CostIncomeBtm'
 
@@ -20,10 +20,10 @@ const CostIncome = () => {
           <Calendar />
           <AddNewProduct />
         </div>
-        <div className={styles.AddNewProductBtm}>
+        {/* <div className={styles.AddNewProductBtm}>
           <AddNewProductBtm textBtm='ВВОД'/>
           <AddNewProductBtm textBtm='ОЧИСТИТЬ' />
-        </div> 
+        </div>  */}
       </div>
       <CostIncomeTitle/>
     <div className={styles.CostIncomeContent}>
