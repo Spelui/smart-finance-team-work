@@ -2,11 +2,72 @@
   @media screen and (min-width: 1280px) {
     display: flex;
   }
+  &::before {
+    content: "";
+
+    @media screen and (min-width: 768px) {
+      position: absolute;
+      z-index: -1;
+      width: 183px;
+      height: 142px;
+      top: 76%;
+      left: 13%;
+      background-image: url("../../images/svg/bground/bcgImageBottom.svg");
+      top: 770px;
+      left: 20%;
+    }
+
+    @media screen and (min-width: 1280px) {
+      top: 600px;
+    }
+  }
+
+  &::after {
+    content: "";
+
+    @media screen and (max-width: 767px) {
+      position: absolute;
+      width: 83px;
+      height: 89px;
+      top: 705px;
+      left: 20%;
+
+      z-index: -1;
+      background-image: url("../../images/svg/bground/Vector.svg");
+    }
+  }
 }
 
 .authSection {
   padding: 76px 0;
-  background: #f5f6fb;
+  overflow: hidden;
+
+  &::after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    background-image: url("../../images/svg/bground/bcgImage.svg");
+    width: 90px;
+    height: 232px;
+    top: 28px;
+    left: 85%;
+
+    background-repeat: no-repeat;
+
+    @media screen and (min-width: 768px) {
+      width: 1240px;
+      height: 232px;
+      top: 28px;
+      left: 2%;
+    }
+
+    @media screen and (min-width: 1280px) {
+      width: 1240px;
+      height: 232px;
+      top: 28px;
+      left: 10%;
+    }
+  }
 
   @media screen and (min-width: 768px) {
     padding: 90px 0 190px 0;
@@ -42,16 +103,20 @@
 
   @media screen and (min-width: 768px) {
     font-size: 80px;
+    width: 306px;
+    height: 77px;
   }
 
   @media screen and (min-width: 1280px) {
     font-size: 90px;
+    width: 377px;
+    height: 120px;
   }
 }
 
 .heroText {
   margin-top: 4px;
-  margin-left: 7px;
+  margin-left: 15px;
 
   font-weight: 700;
   font-size: 13px;
@@ -62,7 +127,7 @@
   color: #52555f;
 
   @media screen and (min-width: 768px) {
-    margin-left: 50px;
+    margin-left: 70px;
     font-size: 16px;
     line-height: calc(19 / 16);
     letter-spacing: 0.18em;

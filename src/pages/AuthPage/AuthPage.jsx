@@ -22,9 +22,10 @@ export const AuthPage = () => {
     }
   };
 
-  const handleRegister = (e) => {
+  const handleRegister = async (e) => {
     e.preventDefault();
-    dispatch(authOperations.register({ email, password }));
+    await dispatch(authOperations.register({ email, password }));
+    dispatch(authOperations.loginIn({ email, password }));
     setEmail("");
     setPassword("");
   };
@@ -37,23 +38,14 @@ export const AuthPage = () => {
   };
 
   return (
-    <section className={s.authSection}>
+    <section className={`${s.authSection} background`}>
       <div className="container">
         <div className={s.authSectionWrapper}>
           <div className={s.heroTitleWrapper}>
-            {/* <svg width='183px' height='46px' className={s.heroTitle}>
-                        <use  href={`${sprite}#mobile-title`}></use>
-                    </svg> */}
-            {/* <picture>
-                        <source srcSet={`${sprite}#desktop-title`} media="(min-width: 1280px)" />
-
-                        <source srcSet={`${sprite}#tablet-title`} media="(min-width: 768px)" />
-
-                        <source srcSet={`${sprite}#mobile-title`} media="(min-width: 320px)" />
-
-                        <img src={`${sprite}#mobile-title`}>
-                    </picture> */}
-            <h1 className={s.heroTitle}>Kapu$ta</h1>
+            <svg width='183px' height='46px' className={s.heroTitle}>
+              <use  href={`${sprite}#mobile-title`}></use>
+            </svg>
+            <h1 className="visually-hidden">Kapusta</h1>
             <p className={s.heroText}>Smart Finance</p>
           </div>
           <div className={s.authBox}>
