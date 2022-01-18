@@ -1,5 +1,6 @@
 import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
 import authReduser from "./auth/authSlice";
+import balanceReducer from "./balance/balanceSlice";
 import {
   persistStore,
   persistReducer,
@@ -29,6 +30,7 @@ const authPersistConfig = {
 export const store = configureStore({
   reducer: {
     auth: persistReducer(authPersistConfig, authReduser),
+    balance: balanceReducer,
   },
   middleware,
   devTools: process.env.NODE_ENV === "development",
