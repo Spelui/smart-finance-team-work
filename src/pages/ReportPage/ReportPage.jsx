@@ -1,35 +1,21 @@
 // import { NavLink } from 'react-router-dom';
 import CategoryList from "../../component/CategoryList";
-import Balance from "../../component/Balance";
-import BackspaceBtn from "../../component/BackspaceBtn";
+import { useNavigate } from "react-router-dom";
 import sprite from "../../images/sprite.svg";
 
 import s from "./ReportPage.module.scss";
-import { useDispatch } from "react-redux";
-import { useState } from "react";
-import { getUserData } from "../../redux/user/user-operations";
 
 const ReportPage = () => {
-  const dispatch = useDispatch();
-  const [inputDate, setInputDate] = useState("");
+  const navigate = useNavigate();
+  console.dir(navigate);
+
+  const clickBackBtn = () => {
+    navigate("/transaction");
+  };
   return (
     <>
-      <div className={s.wrap}>
-        <section className={s.reportInfo_section}>
-          <input
-            style={{ color: "red", marginLeft: "40px" }}
-            type="text"
-            name="data"
-            value={inputDate}
-            onChange={({ target }) => setInputDate(target.value)}
-          />
-          <button
-            type="button"
-            onClick={() => dispatch(getUserData(inputDate))}
-          >
-            GetPeriod
-          </button>
-
+      <section className={`${s.reportInfo_section} background`}>
+        <div className={s.wrap}>
           <div className={s.backgroundTest}>
             <div className={s.report_head_wrap}>
               <div className={s.current_period}>
@@ -59,7 +45,15 @@ const ReportPage = () => {
                 <span className={s.balanceText}>Баланс:</span>
                 <span className={s.balanceNumber}>50 000.00 uah</span>
               </div>
-              <BackspaceBtn />
+              <button
+                className={s.btn_backspace}
+                type="button"
+                onClick={clickBackBtn}
+              >
+                <svg viewBox="0 0 28.3 28.3" className={s.s}>
+                  <use href={`${sprite}#backspace`} />
+                </svg>
+              </button>
             </div>
 
             <div className={s.reportInfo_wrap}>
@@ -95,8 +89,8 @@ const ReportPage = () => {
             </div>
           </div>
           <div className={s.graph_dependency_wrap}></div>
-        </section>
-      </div>
+        </div>
+      </section>
     </>
   );
 };

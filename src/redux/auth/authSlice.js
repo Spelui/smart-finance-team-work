@@ -15,7 +15,8 @@ const authSlice = createSlice({
 
   extraReducers: (builder) => {
     builder
-      .addCase(authOperations.register.fulfilled, () => {
+      .addCase(authOperations.register.fulfilled, (state) => {
+        state.isLoggedIn = true;
         alert("Успешно зарегистрирован");
       })
       .addCase(authOperations.register.rejected, () => {
@@ -27,7 +28,7 @@ const authSlice = createSlice({
         state.refreshToken = action.payload.refreshToken;
         state.isLoggedIn = true;
       })
-      .addCase(authOperations.loginOut.fulfilled, (state, action) => {
+      .addCase(authOperations.loginOut.fulfilled, (state) => {
         state.user.email = "";
         state.token = null;
         state.refreshToken = null;
@@ -38,7 +39,6 @@ const authSlice = createSlice({
       })
       .addCase(authOperations.fetchCurrentUser.fulfilled, (state, action) => {
         state.user = action.payload;
-        console.log(action.payload);
         state.isLoggedIn = true;
         state.isFetchingCurrentUser = false;
       })
