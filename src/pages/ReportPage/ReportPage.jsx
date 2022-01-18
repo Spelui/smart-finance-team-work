@@ -5,12 +5,31 @@ import BackspaceBtn from "../../component/BackspaceBtn";
 import sprite from "../../images/sprite.svg";
 
 import s from "./ReportPage.module.scss";
+import { useDispatch } from "react-redux";
+import { useState } from "react";
+import { getUserData } from "../../redux/user/user-operations";
 
 const ReportPage = () => {
+  const dispatch = useDispatch();
+  const [inputDate, setInputDate] = useState("");
   return (
     <>
       <div className={s.wrap}>
         <section className={s.reportInfo_section}>
+          <input
+            style={{ color: "red", marginLeft: "40px" }}
+            type="text"
+            name="data"
+            value={inputDate}
+            onChange={({ target }) => setInputDate(target.value)}
+          />
+          <button
+            type="button"
+            onClick={() => dispatch(getUserData(inputDate))}
+          >
+            GetPeriod
+          </button>
+
           <div className={s.backgroundTest}>
             <div className={s.report_head_wrap}>
               <div className={s.current_period}>

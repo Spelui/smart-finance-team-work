@@ -18,6 +18,8 @@ export const getUserData = createAsyncThunk(
       );
       //   console.log("data :>> ", data);
       return data;
-    } catch (error) {}
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
   }
 );
