@@ -1,0 +1,29 @@
+.cost_incomes_wrap {
+  margin: 0 auto;
+  display: flex;
+  max-width: 134px;
+  @media screen and (min-width: 768px) {
+    margin-top: 20px;
+  }
+  // @media screen and (min-width: 1280px) {
+  //   // margin-right: 21px;
+  // }
+  .btn {
+    background-color: inherit;
+    cursor: pointer;
+  }
+}
+.cost_incomes {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 1.14;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+
+  margin: 0 10px;
+}
+.arrows {
+  // width: 4px;
+  height: 10px;
+}

@@ -11,7 +11,9 @@ const Balance = () => {
           step=".01"
           placeholder="00.00 UAH"
         />
-        <button className={s.balance__btn}>Подтвердить</button>
+        <button type="submit" className={s.balance__btn}>
+          Подтвердить
+        </button>
       </form>
     </div>
   );
