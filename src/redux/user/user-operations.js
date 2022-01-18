@@ -35,7 +35,6 @@ const getIncomeCategories = createAsyncThunk(
     // token.set(persistedToken);
     try {
       const { data } = await axios.get(`transaction/income-categories`);
-      console.log("data :>> ", data);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -54,7 +53,6 @@ const getExpenseCategories = createAsyncThunk(
     // token.set(persistedToken);
     try {
       const { data } = await axios.get(`transaction/expense-categories`);
-      console.log("data :>> ", data);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
