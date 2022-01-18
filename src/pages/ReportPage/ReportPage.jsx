@@ -7,8 +7,8 @@ import s from "./ReportPage.module.scss";
 const ReportPage = () => {
   return (
     <>
-      <div className={s.wrap}>
-        <section className={`${s.reportInfo_section} background`}>
+      <section className={`${s.reportInfo_section} background`}>
+        <div className={s.wrap}>
           <div className={s.backgroundTest}>
             <div className={s.report_head_wrap}>
               <div className={s.current_period}>
@@ -77,8 +77,8 @@ const ReportPage = () => {
             </div>
           </div>
           <div className={s.graph_dependency_wrap}></div>
-        </section>
-      </div>
+        </div>
+      </section>
     </>
   );
 };
