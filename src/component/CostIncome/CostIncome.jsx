@@ -11,6 +11,7 @@ const CostIncome = () => {
   return (
     <section className="background">
       <div className={`${styles.CostIncomeConteiner} container`}>
+        <a href="/">Перейти к отчетам</a>
         <div className={styles.CostIncomeBtm}>
           <CostIncomeBtm textBtm="РАСХОД" />
           <CostIncomeBtm textBtm="ДОХОД" />
