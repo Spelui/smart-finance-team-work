@@ -1,29 +1,29 @@
 // import PropTypes from 'prop-types';
-import styles from './CostIncomeItem.module.scss';
+import styles from './ExpenseItem.module.scss';
 import Delete from './delete.svg';
 import { useDispatch, useSelector } from "react-redux";
-import { deleteIncom } from '../../../redux/transactions/transactionsOperation';
 import { useState, useEffect } from 'react';
-import { getIncome, addIncome, getCategories } from '../../../redux/transactions/transactionsOperation.js';
+import { getExpense, addExpense,deleteExpense, getCategoriesExpense } from '../../../redux/transactions/transactionsOperation.js';
 
   
 
 
 
-const CostIncomeItem = () => {
+const ExpenseItem = () => {
   const dispatch = useDispatch()
-  const incomes = useSelector(state => state.transactions.items)
+  const expenses = useSelector(state => state.transactions.itemsExpense)
+  console.log("ExpenseItem ~ expenses", expenses)
 
   useEffect(() => {
-    dispatch(getIncome());
+    dispatch(getExpense());
   }, [dispatch])
   
   const onDelete = (id) => () => {
-  dispatch(deleteIncom(id));
+  dispatch(deleteExpense(id));
   };
   return (
   <>
-      {incomes?.map(({ _id, category,date, amount, description}) =>   
+      {expenses?.map(({ _id, category,date, amount, description}) =>   
     <div key={_id} className={styles.item}>
       <div  className={styles.itemTransaction}>
         <p className={styles.productCategoryItemMob}>{category}</p>
@@ -33,7 +33,7 @@ const CostIncomeItem = () => {
           <p className={styles.productCategory}>{category}</p>
         </div>
       </div>
-      <p className={styles.productSum}>{amount} грн.</p>
+      <p className={styles.productSum}>-{amount} грн.</p>
       <img src={Delete} alt='' width='18' onClick={onDelete(_id)}/>
     </div>
       )}
@@ -41,8 +41,8 @@ const CostIncomeItem = () => {
   );
 };
 
-CostIncomeItem.propTypes = {
+ExpenseItem.propTypes = {
   
 };
 
-export default CostIncomeItem;
+export default ExpenseItem;
