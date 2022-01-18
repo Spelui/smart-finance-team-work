@@ -10,9 +10,8 @@ import { PrivateRoute } from "./component/PrivateRoute";
 import { Header } from "./component/Header/Header.jsx";
 import { AuthPage } from "./pages/AuthPage/AuthPage.jsx";
 import ReportPage from "./pages/ReportPage/ReportPage";
-import CostIncome from "./component/CostIncome/CostIncome";
-import Expense from "./component/Expense/Expense";
 //import OnLoader from "./component/OnLoader";
+import TransactionPage from "./pages/TransactionPage/TransactionPage";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -39,16 +38,14 @@ const App = () => {
                 </PublickRoute>
               }
             />
-
             <Route
-              path="/transaction"
+              path="/transaction/*"
               element={
                 <PrivateRoute>
-                  <CostIncome />
+                  <TransactionPage />
                 </PrivateRoute>
               }
             />
-
             <Route
               path="/report"
               element={
@@ -60,8 +57,6 @@ const App = () => {
           </Routes>
         </>
       )}
-      <CostIncome />
-      <Expense />
     </div>
   );
 };

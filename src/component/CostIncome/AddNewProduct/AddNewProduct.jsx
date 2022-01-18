@@ -42,7 +42,8 @@ const AddNewProduct = () => {
   };
 
 
-  const handleSubmit = e => {
+  const handleSubmit =  e => {
+
     e.preventDefault();
     
     const newOperation = {
@@ -54,10 +55,10 @@ const AddNewProduct = () => {
     };
 
     dispatch(addIncome(newOperation))
-
     setAmount('');
-
+    
   };
+
   const handleChange = event => {
     setCategory(event.target.value);
   };

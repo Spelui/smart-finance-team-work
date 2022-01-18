@@ -10,12 +10,12 @@ import ExpenseBtm from './ExpenseBtm/ExpenseBtm'
 const Expense = () => {
   return (
     <section className="background">
-      <div className={`container  `}>
+      {/* <div className={`container`}> */}
         <div className={styles.ExpenseConteiner} >
-        <div className={styles.ExpenseBtm}>
+        {/* <div className={styles.ExpenseBtm}>
           <ExpenseBtm textBtm="РАСХОД" />
           <ExpenseBtm textBtm="ДОХОД" />
-        </div>
+        </div> */}
         <div className={styles.AddNewProduc}>
           <div className={styles.ExpenseForm}>
             <AddNewProduct />
@@ -32,7 +32,7 @@ const Expense = () => {
         <ExpenseBtmMob textBtm='Доход'/>
         <ExpenseBtmMob textBtm='Расход' />
       </div> 
-      </div>
+      {/* </div> */}
     </section>
   );
 };

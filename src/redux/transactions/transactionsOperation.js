@@ -39,7 +39,7 @@ const deleteIncom = createAsyncThunk(
   async (id) => {
     try {
       await axios.delete(`/transaction/${id}`);
-      return id;
+      return id; // + newBalance
     } catch (error) {
       // toast.error(`${"Error, please repeat the request"}`);
     }
@@ -76,7 +76,7 @@ const getExpense = createAsyncThunk(
     }
     try {
       const { data } = await axios.get("/transaction/expense");
-      console.log("data", data.expense);
+      console.log("data", data.expenses);
       return data;
     } catch (error) {
       // toast.error(`${"Error, please repeat the request"}`);

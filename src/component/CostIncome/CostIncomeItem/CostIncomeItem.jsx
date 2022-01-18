@@ -12,7 +12,7 @@ import { getIncome, addIncome, getCategories } from '../../../redux/transactions
 
 const CostIncomeItem = () => {
   const dispatch = useDispatch()
-  const incomes = useSelector(state => state.transactions.items.incomes)
+  const incomes = useSelector(state => state.transactions.items)
 
   useEffect(() => {
     dispatch(getIncome());
