@@ -68,11 +68,26 @@ const fetchCurrentUser = createAsyncThunk(
   }
 );
 
+const setBalance = createAsyncThunk(
+  "auth/setBalance",
+  async (balance, { rejectWithValue }) => {
+    try {
+      const data = await axios.patch("/user/balance", balance);
+      return data.newBalance;
+    } catch (error) {
+      console.log(error);
+      console.dir(error);
+      return rejectWithValue("error");
+    }
+  }
+);
+
 const authOperations = {
   register,
   loginIn,
   loginOut,
   fetchCurrentUser,
+  setBalance,
 };
 
 export default authOperations;

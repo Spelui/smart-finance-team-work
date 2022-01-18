@@ -44,6 +44,9 @@ const authSlice = createSlice({
       })
       .addCase(authOperations.fetchCurrentUser.rejected, (state) => {
         state.isFetchingCurrentUser = false;
+      })
+      .addCase(authOperations.setBalance.fulfilled, (state, action) => {
+        state.user.balance = action.payload;
       });
   },
 });
