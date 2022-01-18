@@ -1,8 +1,9 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Routes, Route, Navigate } from "react-router-dom";
 
 import { authOperations, authSelectors } from "./redux/auth";
+import { ThemeContext, themes } from "./context/themeContext";
 
 import { PublickRoute } from "./component/PublickRoutes";
 import { PrivateRoute } from "./component/PrivateRoute";
@@ -14,6 +15,8 @@ import ReportPage from "./pages/ReportPage/ReportPage";
 import TransactionPage from "./pages/TransactionPage/TransactionPage";
 
 const App = () => {
+  const [theme, setTheme] = useState(themes.light);
+
   const dispatch = useDispatch();
   const isFetchingCurrentUser = useSelector(authSelectors.getIsFetchingCurrent);
   // const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
@@ -22,41 +25,48 @@ const App = () => {
     dispatch(authOperations.fetchCurrentUser());
   }, [dispatch]);
 
+  const toggleTheme = () =>
+    setTheme((prevTheme) =>
+      prevTheme === themes.light ? themes.dark : themes.light
+    );
+
   return (
-    <div>
-      <Header />
-      {!isFetchingCurrentUser && (
-        <>
-          {/*<OnLoader />*/}
-          <Routes>
-            <Route
-              path="/"
-              element={
-                <PublickRoute restricted redirectTo="/transaction">
-                  <AuthPage />
-                </PublickRoute>
-              }
-            />
-            <Route
-              path="/transaction/*"
-              element={
-                <PrivateRoute>
-                  <TransactionPage />
-                </PrivateRoute>
-              }
-            />
-            <Route
-              path="/report"
-              element={
-                <PrivateRoute>
-                  <ReportPage />
-                </PrivateRoute>
-              }
-            />
-          </Routes>
-        </>
-      )}
-    </div>
+    <ThemeContext.Provider value={{ theme, toggleTheme }}>
+      <div>
+        <Header />
+        {!isFetchingCurrentUser && (
+          <>
+            {/*<OnLoader />*/}
+            <Routes>
+              <Route
+                path="/"
+                element={
+                  <PublickRoute restricted redirectTo="/transaction">
+                    <AuthPage />
+                  </PublickRoute>
+                }
+              />
+              <Route
+                path="/transaction/*"
+                element={
+                  <PrivateRoute>
+                    <TransactionPage />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path="/report"
+                element={
+                  <PrivateRoute>
+                    <ReportPage />
+                  </PrivateRoute>
+                }
+              />
+            </Routes>
+          </>
+        )}
+      </div>
+    </ThemeContext.Provider>
   );
 };
 
