@@ -1,47 +1,57 @@
-import sprite from '../../images/sprite.svg';
+import sprite from "../../images/sprite.svg";
 export const categories = [
   {
-    name: 'продукты',
+    name: "продукты",
     svg: `${sprite}#products`,
   },
   {
-    name: 'алкоголь',
+    name: "алкоголь",
     svg: `${sprite}#cocktail`,
   },
   {
-    name: 'развлечения',
+    name: "развлечения",
     svg: `${sprite}#entertainment`,
   },
   {
-    name: 'здоровье',
+    name: "здоровье",
     svg: `${sprite}#health`,
   },
   {
-    name: 'транспорт',
+    name: "транспорт",
     svg: `${sprite}#car`,
   },
   {
-    name: 'все для дома',
+    name: "все для дома",
     svg: `${sprite}#home`,
   },
   {
-    name: 'техника',
+    name: "техника",
     svg: `${sprite}#tools`,
   },
   {
-    name: 'комуналка, связь',
+    name: "комуналка, связь",
     svg: `${sprite}#bills`,
   },
   {
-    name: 'спорт, хобби',
+    name: "спорт, хобби",
     svg: `${sprite}#hobby`,
   },
   {
-    name: 'образование',
+    name: "образование",
     svg: `${sprite}#education`,
   },
   {
-    name: 'прочее',
+    name: "прочее",
     svg: `${sprite}#other`,
+  },
+];
+export const incomes = [
+  {
+    name: "зарплата",
+    svg: `${sprite}#salary`,
+  },
+  {
+    name: "доп. доход",
+    svg: `${sprite}#incomes`,
   },
 ];

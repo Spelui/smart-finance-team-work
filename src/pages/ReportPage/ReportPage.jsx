@@ -1,4 +1,4 @@
-import sprite from "../../images/sprite.svg";
+// import sprite from "../../images/sprite.svg";
 import CategoryList from "../../component/CategoryList";
 import BackspaceBtn from "../../component/BackspaceBtn";
 import ReportSwitcher from "../../component/ReportSwitcher/ReportSwitcher";
@@ -6,6 +6,7 @@ import ReportInfo from "../../component/ReportInfo/ReportInfo";
 import CurrentPeriod from "../../component/CurrentPeriod/CurrentPeriod";
 
 import s from "./ReportPage.module.scss";
+//
 
 const ReportPage = () => {
   return (
