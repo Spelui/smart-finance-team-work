@@ -18,6 +18,7 @@ const App = () => {
   const dispatch = useDispatch();
   const isFetchingCurrentUser = useSelector(authSelectors.getIsFetchingCurrent);
   const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
+  console.log("~ isLoggedIn", isLoggedIn);
 
   useEffect(() => {
     dispatch(authOperations.fetchCurrentUser());
@@ -30,11 +31,32 @@ const App = () => {
         <>
           {/*<OnLoader />*/}
           <Routes>
-            <Route path="/" element={<AuthPage />} />
+            <Route
+              path="/"
+              element={
+                <PublickRoute restricted redirectTo="/transaction">
+                  <AuthPage />
+                </PublickRoute>
+              }
+            />
 
-            <Route path="/transaction" element={<CostIncome />} />
+            <Route
+              path="/transaction"
+              element={
+                <PrivateRoute>
+                  <CostIncome />
+                </PrivateRoute>
+              }
+            />
 
-            <Route path="/report" element={<ReportPage />} />
+            <Route
+              path="/report"
+              element={
+                <PrivateRoute>
+                  <ReportPage />
+                </PrivateRoute>
+              }
+            />
           </Routes>
         </>
       )}

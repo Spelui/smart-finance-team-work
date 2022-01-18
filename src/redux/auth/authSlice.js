@@ -15,7 +15,8 @@ const authSlice = createSlice({
 
   extraReducers: (builder) => {
     builder
-      .addCase(authOperations.register.fulfilled, () => {
+      .addCase(authOperations.register.fulfilled, (state) => {
+        state.isLoggedIn = true;
         alert("Успешно зарегистрирован");
       })
       .addCase(authOperations.register.rejected, () => {
