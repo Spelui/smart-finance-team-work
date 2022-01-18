@@ -7,7 +7,7 @@ import { Header } from "./component/Header/Header.jsx";
 import { AuthPage } from "./pages/AuthPage/AuthPage.jsx";
 import ReportPage from "./pages/ReportPage/ReportPage";
 import CostIncome from "./component/CostIncome/CostIncome";
-
+import Expense from "./component/Expense/Expense";
 //import OnLoader from "./component/OnLoader";
 
 const App = () => {
@@ -29,6 +29,7 @@ const App = () => {
         </>
       )}
       <CostIncome />
+      <Expense />
     </div>
   );
 };

@@ -5,11 +5,17 @@ import {
   addIncome,
   deleteIncom,
   getCategories,
+  getExpense,
+  addExpense,
+  deleteExpense,
+  getCategoriesExpense,
 } from "./transactionsOperation";
 
 const initialState = {
   items: [],
+  itemsExpense: [],
   categories: [],
+  categoriesExpense: [],
 
   // filter: "",
 };
@@ -33,8 +39,25 @@ const transactionSlice = createSlice({
         categories: [...action.payload.data],
       }))
       .addCase(deleteIncom.fulfilled, (state, { payload }) => {
-        const idx = state.items.findIndex((contact) => contact.id === payload); ///payload.id не видаляє останній
+        const idx = state.items.findIndex((contact) => contact.id === payload);
         state.items.splice(idx, 1);
+      })
+      //////////////////////////////////////////////////////////////
+      .addCase(getExpense.fulfilled, (state, { payload }) => {
+        state.itemsExpense = payload;
+      })
+      .addCase(addExpense.fulfilled, (state, action) => ({
+        ...state,
+        itemsExpense: [action.payload, ...state.itemsExpense],
+      }))
+
+      .addCase(getCategoriesExpense.fulfilled, (state, action) => ({
+        ...state,
+        categoriesExpense: [...action.payload.data],
+      }))
+      .addCase(deleteExpense.fulfilled, (state, { payload }) => {
+        const idx = state.items.findIndex((contact) => contact.id === payload);
+        state.itemsExpense.splice(idx, 1);
       });
   },
 });
