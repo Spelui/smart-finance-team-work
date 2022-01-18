@@ -6,11 +6,13 @@ import AddNewProduct from "./AddNewProduct/AddNewProduct";
 import AddNewProductBtm from "./AddNewProductBtm/AddNewProductBtm";
 import CostIncomeTitle from "./CostIncomeTitle/CostIncomeTitle";
 import CostIncomeBtm from "./CostIncomeBtm/CostIncomeBtm";
+import { Link } from "react-router-dom";
 
 const CostIncome = () => {
   return (
     <section className="background">
       <div className={`${styles.CostIncomeConteiner} container`}>
+        <Link to="/report">Перейти к отчетам</Link>
         <div className={styles.CostIncomeBtm}>
           <CostIncomeBtm textBtm="РАСХОД" />
           <CostIncomeBtm textBtm="ДОХОД" />

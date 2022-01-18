@@ -1,14 +1,21 @@
 // import { NavLink } from 'react-router-dom';
 import CategoryList from "../../component/CategoryList";
+import { useNavigate } from "react-router-dom";
 import sprite from "../../images/sprite.svg";
 
 import s from "./ReportPage.module.scss";
 
 const ReportPage = () => {
+  const navigate = useNavigate();
+  console.dir(navigate);
+
+  const clickBackBtn = () => {
+    navigate("/transaction");
+  };
   return (
     <>
-      <div className={s.wrap}>
-        <section className={`${s.reportInfo_section} background`}>
+      <section className={`${s.reportInfo_section} background`}>
+        <div className={s.wrap}>
           <div className={s.backgroundTest}>
             <div className={s.report_head_wrap}>
               <div className={s.current_period}>
@@ -37,7 +44,11 @@ const ReportPage = () => {
                 <span className={s.balanceText}>Баланс:</span>
                 <span className={s.balanceNumber}>50 000.00 uah</span>
               </div>
-              <button className={s.btn_backspace} type="button">
+              <button
+                className={s.btn_backspace}
+                type="button"
+                onClick={clickBackBtn}
+              >
                 <svg viewBox="0 0 28.3 28.3" className={s.s}>
                   <use href={`${sprite}#backspace`} />
                 </svg>
@@ -77,8 +88,8 @@ const ReportPage = () => {
             </div>
           </div>
           <div className={s.graph_dependency_wrap}></div>
-        </section>
-      </div>
+        </div>
+      </section>
     </>
   );
 };
