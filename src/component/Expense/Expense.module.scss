@@ -1,4 +1,4 @@
-.CostIncomeConteiner {
+.ExpenseConteiner {
   font-weight: bold;
   font-size: 12px;
   line-height: 14px;
@@ -15,28 +15,28 @@
     margin-left: auto;
   }
 }
-.CostIncomeContent {
+.ExpenseContent {
   display: grid;
   justify-content: center;
   @media screen and (min-width: 768px) {
     justify-content: normal;
   }
 }
-.CostIncomeBtmMob {
+.ExpenseBtmMob {
   display: flex;
   justify-content: center;
   @media screen and (min-width: 768px) {
     justify-content: normal;
   }
 }
-.CostIncomeContentBorder {
+.ExpenseContentBorder {
   border: 1px solid #f5f6fb;
   margin-top: 10px;
   @media screen and (min-width: 768px) {
     display: none;
   }
 }
-.CostIncomeForm {
+.ExpenseForm {
   @media screen and (min-width: 768px) {
     display: flex;
     // justify-content: center;
@@ -51,7 +51,7 @@
 //   color: #52555f;
 //   justify-content: center;
 // }
-.CostIncomeBtm {
+.ExpenseBtm {
   display: none;
   @media screen and (min-width: 768px) {
     display: flex;
