@@ -68,7 +68,7 @@ const AddNewProduct = () => {
           value={description}
           name="product"
           onChange={handleInputChange}
-          placeholder="Описание товара"
+          placeholder="Описание дохода"
         />
         <select
           className={styles.formSelect}
@@ -76,7 +76,7 @@ const AddNewProduct = () => {
           label="Category"
           onChange={handleChange}
         >
-          <option value="hide">Категория товара</option>
+          <option value="hide">Категория дохода</option>
           {categories.map((categorie) => (
             <option key={categorie} value={categorie}>
               {categorie}
