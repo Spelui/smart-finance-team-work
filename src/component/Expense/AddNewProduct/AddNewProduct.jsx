@@ -2,9 +2,10 @@ import Calculator from "./calculator.svg";
 import styles from "./AddNewProduct.module.scss";
 import { useState, useEffect } from "react";
 import {
-  getIncome,
-  addIncome,
-  getCategories,
+  getExpense,
+  addExpense,
+  deleteExpense,
+  getCategoriesExpense,
 } from "../../../redux/transactions/transactionsOperation.js";
 import { useDispatch, useSelector } from "react-redux";
 import Calendar from "../Calendar/Calendar";
@@ -14,11 +15,13 @@ const AddNewProduct = () => {
   const [amount, setAmount] = useState("");
   const [category, setCategory] = useState("");
   const dispatch = useDispatch();
-  const categories = useSelector((state) => state.transactions.categories);
+  const categoriesExpense = useSelector(
+    (state) => state.transactions.categoriesExpense
+  );
 
   useEffect(() => {
-    dispatch(getCategories());
-    dispatch(getIncome());
+    dispatch(getCategoriesExpense());
+    dispatch(getExpense());
   }, [dispatch]);
 
   const handelSubmit = (e) => {
@@ -51,10 +54,10 @@ const AddNewProduct = () => {
       date: "2020-12-31",
     };
 
-    dispatch(addIncome(newOperation));
+    dispatch(addExpense(newOperation));
+
     setAmount("");
   };
-
   const handleChange = (event) => {
     setCategory(event.target.value);
   };
@@ -77,7 +80,7 @@ const AddNewProduct = () => {
           onChange={handleChange}
         >
           <option value="hide">Категория товара</option>
-          {categories.map((categorie) => (
+          {categoriesExpense?.map((categorie) => (
             <option key={categorie} value={categorie}>
               {categorie}
             </option>

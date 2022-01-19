@@ -1,93 +1,64 @@
-// import { NavLink } from 'react-router-dom';
+// import sprite from "../../images/sprite.svg";
 import CategoryList from "../../component/CategoryList";
-import { useNavigate } from "react-router-dom";
-import sprite from "../../images/sprite.svg";
+import BackspaceBtn from "../../component/BackspaceBtn";
+import ReportSwitcher from "../../component/ReportSwitcher/ReportSwitcher";
+import ReportInfo from "../../component/ReportInfo/ReportInfo";
+import CurrentPeriod from "../../component/CurrentPeriod/CurrentPeriod";
+import GraphicComponent from "../../component/GraphicComponent";
 
 import s from "./ReportPage.module.scss";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import { getPeriodData } from "../../redux/user/user-operations";
+//
 
 const ReportPage = () => {
-  const navigate = useNavigate();
-  console.dir(navigate);
+  const [reportTitle, setReportTitle] = useState("расходы");
+  const [reportGraphObj, setReportGraphObj] = useState({});
 
-  const clickBackBtn = () => {
-    navigate("/transaction");
+  const balance = useSelector((state) => state.auth?.user?.balance);
+
+  const getGraphObj = (obj) => {
+    setReportGraphObj(obj);
   };
+
+  const reportTitleChange = () => {
+    setReportTitle(reportTitle === "расходы" ? "доходы" : "расходы");
+  };
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getPeriodData("2020-12"));
+  }, [dispatch]);
   return (
     <>
       <section className={`${s.reportInfo_section} background`}>
         <div className={s.wrap}>
           <div className={s.backgroundTest}>
             <div className={s.report_head_wrap}>
-              <div className={s.current_period}>
-                <span className="text">Текущий период:</span>
-                <div className={s.current_period_wrap}>
-                  <button type="button" className={s.current_period_btn}>
-                    <svg
-                      viewBox="0 0 28.3 28.3"
-                      className={s.current_period_arrow}
-                    >
-                      <use href={`${sprite}#arrow_left`} />
-                    </svg>
-                  </button>
-                  <span className={s.cost_incomes}>ноябрь 2019</span>
-                  <button type="button" className={s.current_period_btn}>
-                    <svg
-                      viewBox="0 0 28.3 28.3"
-                      className={s.current_period_arrow}
-                    >
-                      <use href={`${sprite}#arrow_rigth`} />
-                    </svg>
-                  </button>
-                </div>
-              </div>
+              <CurrentPeriod />
               <div className={s.reportBalance_wrap}>
                 <span className={s.balanceText}>Баланс:</span>
-                <span className={s.balanceNumber}>50 000.00 uah</span>
+                <span className={s.balanceNumber}>{`${balance}.00`} uah</span>
               </div>
-              <button
-                className={s.btn_backspace}
-                type="button"
-                onClick={clickBackBtn}
-              >
-                <svg viewBox="0 0 28.3 28.3" className={s.s}>
-                  <use href={`${sprite}#backspace`} />
-                </svg>
-              </button>
+              <BackspaceBtn />
             </div>
-
-            <div className={s.reportInfo_wrap}>
-              <div className={s.costIncomes_report}>
-                <div className={s.report_item + " " + s.line}>
-                  <p>Расходы:</p>
-                  <span className={s.numberCosts}>- 50 000.00 грн.</span>
-                </div>
-                <div className={s.report_item}>
-                  <p>Доходы:</p>
-                  <span className={s.numberIncomes}>+ 50 000.00 грн.</span>
-                </div>
-              </div>
-            </div>
-
+            <ReportInfo />
             <div className={s.section_categories}>
               <div className={s.report_switch_wrap}>
-                <div className={s.cost_incomes_wrap}>
-                  <button type="button" className={s.btn}>
-                    <svg viewBox="0 0 28.3 28.3" className={s.arrows}>
-                      <use href={`${sprite}#arrow_left`} />
-                    </svg>
-                  </button>
-                  <span className={s.cost_incomes}>Расходы</span>
-                  <button type="button" className={s.btn}>
-                    <svg viewBox="0 0 28.3 28.3" className={s.arrows}>
-                      <use href={`${sprite}#arrow_rigth`} />
-                    </svg>
-                  </button>
-                </div>
-                <CategoryList />
+                <ReportSwitcher
+                  reportTitle={reportTitle}
+                  change={reportTitleChange}
+                />
+                <CategoryList
+                  reportTitle={reportTitle}
+                  setGraphObj={getGraphObj}
+                />
               </div>
             </div>
           </div>
-          <div className={s.graph_dependency_wrap}></div>
+          <div className={s.graph_dependency_wrap}>
+            <GraphicComponent obj={reportGraphObj} />
+          </div>
         </div>
       </section>
     </>

@@ -8,7 +8,6 @@ const Calendar = () => {
   const day = padNum(date.getDate());
   const month = padNum(date.getMonth() + 1);
   const year = padNum(date.getFullYear());
-
   return (
     <div className={styles.calendar}>
       <img className={styles.calendarImg} src={CalendarSvg} alt="" width="20" />
