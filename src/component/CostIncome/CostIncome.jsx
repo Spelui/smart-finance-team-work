@@ -8,10 +8,16 @@ import CostIncomeTitle from "./CostIncomeTitle/CostIncomeTitle";
 import Summary from "../Summary/Summary";
 import CostIncomeBtm from "./CostIncomeBtm/CostIncomeBtm";
 import { Link,NavLink } from "react-router-dom";
+import Balance from "../Balance";
 
 const CostIncome = () => {
   return (
     <section className="background">
+      <Balance />
+      <div className={styles.CostIncomeBtmMob}>
+        <CostIncomeBtmMob textBtm='Доход'/>
+        <CostIncomeBtmMob textBtm='Расход' />
+      </div>
       {/* <div className={"container"} ></div> */}
       <div className={styles.CostIncomeConteiner}>
         <div className={styles.AddNewProduc}>
@@ -42,10 +48,7 @@ const CostIncome = () => {
 
       </div>
     
-      <div className={styles.CostIncomeBtmMob}>
-        <CostIncomeBtmMob textBtm='Доход'/>
-        <CostIncomeBtmMob textBtm='Расход' />
-      </div> 
+
         </section>
   );
 };
