@@ -21,10 +21,6 @@ const AddNewProduct = () => {
     dispatch(getIncome());
   }, [dispatch]);
 
-  const handelSubmit = (e) => {
-    e.preventDefault();
-  };
-
   const handleBtnClear = (e) => {
     setAmount("");
     setDescription("");
@@ -48,7 +44,7 @@ const AddNewProduct = () => {
       category,
       description,
       amount: Number(amount),
-      date: "2020-12-31",
+      date: "2022-01-20",
     };
 
     dispatch(addIncome(newOperation));
