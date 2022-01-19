@@ -1,4 +1,13 @@
 .summary {
+ @media screen and (min-width: 320px) {
+   display: none;
+ }
+  @media screen and (min-width: 768px) {
+    display: block;
+  }
+  @media screen and (min-width: 1280px) {
+    display: block;
+  }
   &__title {
     padding: 14px 0;
     margin-bottom: 2px;
@@ -12,7 +21,11 @@
     line-height: calc(14 / 12);
     letter-spacing: 0.02em;
     text-transform: uppercase;
+
   }
+
+
+
 
   &__item {
     width: 230px;

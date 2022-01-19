@@ -5,6 +5,7 @@ import AddNewProduct from "./AddNewProduct/AddNewProduct";
 import AddNewProductBtm from "./AddNewProductBtm/AddNewProductBtm";
 import ExpenseTitle from './ExpenseTitle/ExpenseTitle'
 import ExpenseBtm from './ExpenseBtm/ExpenseBtm'
+import Summary from "../Summary/Summary";
 
 
 const Expense = () => {
@@ -21,13 +22,20 @@ const Expense = () => {
             <AddNewProduct />
           </div>
         </div>
+
+            <div className={styles.ExpenseWrapper}>
+                <div className={styles.Exp}>
         <ExpenseTitle />
         <div className={styles.ExpenseContent}>
           <ExpenseItem />
           <div className={styles.ExpenseContentBorder}></div>
         </div>
       </div>
-    
+            <div className={styles.SummaryWrapper}>
+                <Summary />
+            </div>
+        </div>
+        </div>
       <div className={styles.ExpenseBtmMob}>
         <ExpenseBtmMob textBtm='Доход'/>
         <ExpenseBtmMob textBtm='Расход' />
