@@ -7,7 +7,7 @@ const BackspaceBtn = () => {
   const navigate = useNavigate();
 
   const clickBackBtn = () => {
-    navigate("/transaction");
+    navigate("/transaction/expense");
   };
   return (
     <div className={s.btnBackspace_wrap}>
