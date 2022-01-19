@@ -5,8 +5,10 @@ const initialState = {
   user: { email: "" },
   token: null,
   refreshToken: null,
+  sid: null,
   isLoggedIn: false,
   isFetchingCurrentUser: false,
+  isFirstLogin: true,
 };
 
 const authSlice = createSlice({
@@ -17,6 +19,8 @@ const authSlice = createSlice({
     builder
       .addCase(authOperations.register.fulfilled, (state) => {
         state.isLoggedIn = true;
+        state.isFirstLogin = true;
+
         alert("Успешно зарегистрирован");
       })
       .addCase(authOperations.register.rejected, () => {
@@ -26,6 +30,7 @@ const authSlice = createSlice({
         state.user = action.payload.userData;
         state.token = action.payload.accessToken;
         state.refreshToken = action.payload.refreshToken;
+        state.sid = action.payload.sid;
         state.isLoggedIn = true;
       })
       .addCase(authOperations.loginOut.fulfilled, (state) => {
@@ -47,6 +52,13 @@ const authSlice = createSlice({
       })
       .addCase(authOperations.setBalance.fulfilled, (state, action) => {
         state.user.balance = action.payload;
+        state.isFirstLogin = false;
+      })
+      .addCase(authOperations.refreshTokens.fulfilled, (state, action) => {
+        console.log(action.payload);
+        state.token = action.payload.newAccessToken;
+        state.refreshToken = action.payload.newRefreshToken;
+        state.sid = action.payload.newSid;
       });
   },
 });

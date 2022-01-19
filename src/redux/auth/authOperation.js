@@ -75,10 +75,23 @@ const setBalance = createAsyncThunk(
       const data = await axios.patch("/user/balance", balance);
       return data.newBalance;
     } catch (error) {
-      console.log(error);
-      console.dir(error);
       return rejectWithValue("error");
     }
+  }
+);
+
+const refreshTokens = createAsyncThunk(
+  "auth/refreshTokens",
+  async (sid, thunkAPI) => {
+    const state = thunkAPI.getState();
+    const oldRefreshToken = state.auth.refreshToken;
+
+    axios.defaults.headers.common.Authorization = `Bearer ${oldRefreshToken}`;
+    try {
+      const { data } = await axios.post("/auth/refresh", sid);
+      axios.defaults.headers.common.Authorization = `Bearer ${data.newAccessToken}`;
+      return data;
+    } catch (error) {}
   }
 );
 
@@ -88,6 +101,7 @@ const authOperations = {
   loginOut,
   fetchCurrentUser,
   setBalance,
+  refreshTokens,
 };
 
 export default authOperations;
