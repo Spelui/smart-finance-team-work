@@ -4,15 +4,27 @@ import BackspaceBtn from "../../component/BackspaceBtn";
 import ReportSwitcher from "../../component/ReportSwitcher/ReportSwitcher";
 import ReportInfo from "../../component/ReportInfo/ReportInfo";
 import CurrentPeriod from "../../component/CurrentPeriod/CurrentPeriod";
+import GraphicComponent from "../../component/GraphicComponent";
 
 import s from "./ReportPage.module.scss";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { getPeriodData } from "../../redux/user/user-operations";
 //
 
 const ReportPage = () => {
+  const [reportTitle, setReportTitle] = useState("расходы");
+  const [reportGraphObj, setReportGraphObj] = useState({});
+
   const balance = useSelector((state) => state.auth?.user?.balance);
+
+  const getGraphObj = (obj) => {
+    setReportGraphObj(obj);
+  };
+
+  const reportTitleChange = () => {
+    setReportTitle(reportTitle === "расходы" ? "доходы" : "расходы");
+  };
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getPeriodData("2020-12"));
@@ -33,12 +45,20 @@ const ReportPage = () => {
             <ReportInfo />
             <div className={s.section_categories}>
               <div className={s.report_switch_wrap}>
-                <ReportSwitcher />
-                <CategoryList />
+                <ReportSwitcher
+                  reportTitle={reportTitle}
+                  change={reportTitleChange}
+                />
+                <CategoryList
+                  reportTitle={reportTitle}
+                  setGraphObj={getGraphObj}
+                />
               </div>
             </div>
           </div>
-          <div className={s.graph_dependency_wrap}></div>
+          <div className={s.graph_dependency_wrap}>
+            <GraphicComponent obj={reportGraphObj} />
+          </div>
         </div>
       </section>
     </>

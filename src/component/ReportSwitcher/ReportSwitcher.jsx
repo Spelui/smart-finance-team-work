@@ -1,21 +1,14 @@
-import { useState } from "react";
+// import { useState } from "react";
 import sprite from "../../images/sprite.svg";
 import s from "./ReportSwitcher.module.scss";
 
-const ReportSwitcher = () => {
-  const incomes = "доходы";
-  const expenses = "расходы";
-  const [title, setTitle] = useState(incomes);
-
-  const switchIncomesExpenses = () => {
-    setTitle(title === incomes ? expenses : incomes);
-  };
+const ReportSwitcher = ({ change, reportTitle }) => {
   return (
     <div className={s.cost_incomes_wrap}>
       <button
         type="button"
         onClick={() => {
-          switchIncomesExpenses();
+          change();
         }}
         className={s.btn}
       >
@@ -23,11 +16,11 @@ const ReportSwitcher = () => {
           <use href={`${sprite}#arrow_left`} />
         </svg>
       </button>
-      <span className={s.cost_incomes}>{title}</span>
+      <span className={s.cost_incomes}>{reportTitle}</span>
       <button
         type="button"
         onClick={() => {
-          switchIncomesExpenses();
+          change();
         }}
         className={s.btn}
       >
