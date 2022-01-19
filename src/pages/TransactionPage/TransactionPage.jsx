@@ -23,9 +23,13 @@ const TransactionPage = () => {
 
         <div>
           <Routes>
+
+
             <Route path="/income" element={<CostIncome />} />
             <Route path="/expense" element={<Expense />} />
             <Route path="/summary" element={<Summary />}/>
+
+
           </Routes>
         </div>
       </div>
