@@ -1,7 +1,8 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useDispatch } from "react-redux";
 import { authOperations } from "../../redux/auth";
+import { ThemeContext, themes } from "../../context/themeContext";
 
 import s from "./AuthPage.module.scss";
 import sprite from "../../images/sprite.svg";
@@ -10,6 +11,7 @@ export const AuthPage = () => {
   const dispatch = useDispatch();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const { theme } = useContext(ThemeContext);
 
   const handleChange = ({ target: { name, value } }) => {
     switch (name) {
@@ -38,12 +40,16 @@ export const AuthPage = () => {
   };
 
   return (
-    <section className={`${s.authSection} background`}>
+    <section
+      className={`${s.authSection} background ${
+        theme === themes.light ? s.lightTheme : s.darkTheme
+      }`}
+    >
       <div className="container">
         <div className={s.authSectionWrapper}>
           <div className={s.heroTitleWrapper}>
-            <svg width='183px' height='46px' className={s.heroTitle}>
-              <use  href={`${sprite}#mobile-title`}></use>
+            <svg width="183px" height="46px" className={s.heroTitle}>
+              <use href={`${sprite}#mobile-title`}></use>
             </svg>
             <h1 className="visually-hidden">Kapusta</h1>
             <p className={s.heroText}>Smart Finance</p>
