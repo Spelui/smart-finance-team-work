@@ -16,11 +16,21 @@ import TransactionPage from "./pages/TransactionPage/TransactionPage";
 const App = () => {
   const dispatch = useDispatch();
   const isFetchingCurrentUser = useSelector(authSelectors.getIsFetchingCurrent);
-  // const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
+  const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
+  const sid = useSelector(authSelectors.getUserSid);
 
   useEffect(() => {
     dispatch(authOperations.fetchCurrentUser());
-  }, [dispatch]);
+    if (isLoggedIn) {
+      let firstTimerId = setTimeout(() => {
+        clearTimeout(firstTimerId);
+        let secondTimerId = setInterval(() => {
+          clearTimeout(secondTimerId);
+          dispatch(authOperations.refreshTokens({ sid }));
+        }, 900000);
+      }, 900000);
+    }
+  }, [dispatch, isLoggedIn, sid]);
 
   return (
     <div>
