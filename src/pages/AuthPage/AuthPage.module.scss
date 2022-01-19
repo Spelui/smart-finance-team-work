@@ -1,12 +1,3 @@
-.lightTheme {
-  background-color: #f5f6fb;
-}
-
-.darkTheme {
-  background-color: #6f7283;
-  color: #eee;
-}
-
 .authSectionWrapper {
   @media screen and (min-width: 1280px) {
     display: flex;
@@ -109,6 +100,7 @@
   font-weight: 700;
   line-height: calc(19 / 16);
   letter-spacing: 0.01em;
+  fill: #000000;
 
   @media screen and (min-width: 768px) {
     font-size: 80px;
@@ -316,5 +308,30 @@
 
   &:first-child {
     margin-right: 15px;
+  }
+}
+
+.lightTheme {
+  background-color: #f5f6fb;
+}
+
+.darkTheme {
+  background-color: #3c3d42;
+  color: #eee;
+
+  .heroTitle {
+    fill: #757781;
+  }
+
+  .heroText {
+    color: #757781;
+  }
+
+  .authBox {
+    background: #252529;
+  }
+
+  .AuthPage_googleAuthText {
+    color: #ffffff;
   }
 }
