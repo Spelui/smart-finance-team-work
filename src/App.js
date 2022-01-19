@@ -17,9 +17,15 @@ const App = () => {
   const dispatch = useDispatch();
   const isFetchingCurrentUser = useSelector(authSelectors.getIsFetchingCurrent);
   const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
+  const isRefreshing = useSelector(authSelectors.getIsRefreshing);
+
+  console.log("FetchingCurrentUser ", isFetchingCurrentUser);
+  console.log("LoggedIn ", isLoggedIn);
+  console.log("Refreshing ", isRefreshing);
 
   useEffect(() => {
     dispatch(authOperations.fetchCurrentUser());
+
     let secondTimerId = null;
     if (isLoggedIn) {
       dispatch(authOperations.refreshTokens());
@@ -49,14 +55,16 @@ const App = () => {
                 </PublickRoute>
               }
             />
-            <Route
-              path="/transaction/*"
-              element={
-                <PrivateRoute>
-                  <TransactionPage />
-                </PrivateRoute>
-              }
-            />
+            {!isRefreshing && (
+              <Route
+                path="/transaction/*"
+                element={
+                  <PrivateRoute>
+                    <TransactionPage />
+                  </PrivateRoute>
+                }
+              />
+            )}
             <Route
               path="/report"
               element={
