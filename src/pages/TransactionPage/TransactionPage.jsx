@@ -21,8 +21,8 @@ const TransactionPage = () => {
 
         <div>
           <Routes>
-            <Route path="/income" element={<CostIncome />} />
-            <Route path="/expense" element={<Expense />} />
+            <Route path="income" element={<CostIncome />} />
+            <Route path="expense" element={<Expense />} />
           </Routes>
         </div>
       </div>
