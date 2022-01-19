@@ -5,7 +5,6 @@ import s from "./BackspaceBtn.module.scss";
 
 const BackspaceBtn = () => {
   const navigate = useNavigate();
-  // console.dir(navigate);
 
   const clickBackBtn = () => {
     navigate("/transaction");

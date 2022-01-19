@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import {
   getExpense,
   addExpense,
+  deleteExpense,
   getCategoriesExpense,
 } from "../../../redux/transactions/transactionsOperation.js";
 import { useDispatch, useSelector } from "react-redux";
@@ -17,8 +18,6 @@ const AddNewProduct = () => {
   const categoriesExpense = useSelector(
     (state) => state.transactions.categoriesExpense
   );
-
-  // console.log("AddNewProduct ~ categories", categoriesExpense)
 
   useEffect(() => {
     dispatch(getCategoriesExpense());
@@ -42,8 +41,6 @@ const AddNewProduct = () => {
         return setDescription(value);
       case "price":
         return setAmount(value);
-      default:
-        return;
     }
   };
 

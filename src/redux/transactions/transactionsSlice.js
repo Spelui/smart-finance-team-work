@@ -40,7 +40,6 @@ const transactionSlice = createSlice({
       }))
       .addCase(deleteIncom.fulfilled, (state, { payload }) => {
         const idx = state.items.findIndex((contact) => contact._id === payload);
-        console.log(".addCase ~ idx", idx);
 
         state.items.splice(idx, 1);
       })

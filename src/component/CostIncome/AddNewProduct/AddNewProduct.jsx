@@ -16,8 +16,6 @@ const AddNewProduct = () => {
   const dispatch = useDispatch();
   const categories = useSelector((state) => state.transactions.categories);
 
-  // console.log("AddNewProduct ~ categories", categories)
-
   useEffect(() => {
     dispatch(getCategories());
     dispatch(getIncome());
@@ -40,8 +38,6 @@ const AddNewProduct = () => {
         return setDescription(value);
       case "price":
         return setAmount(value);
-      default:
-        return;
     }
   };
 

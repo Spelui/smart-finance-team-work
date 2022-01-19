@@ -16,8 +16,7 @@ import TransactionPage from "./pages/TransactionPage/TransactionPage";
 const App = () => {
   const dispatch = useDispatch();
   const isFetchingCurrentUser = useSelector(authSelectors.getIsFetchingCurrent);
-  const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
-  console.log("~ isLoggedIn", isLoggedIn);
+  // const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
 
   useEffect(() => {
     dispatch(authOperations.fetchCurrentUser());

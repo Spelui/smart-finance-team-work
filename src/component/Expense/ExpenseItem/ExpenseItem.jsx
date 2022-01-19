@@ -13,7 +13,6 @@ import {
 const ExpenseItem = () => {
   const dispatch = useDispatch();
   const expenses = useSelector((state) => state.transactions.itemsExpense);
-  // console.log("ExpenseItem ~ expenses", expenses)
 
   useEffect(() => {
     dispatch(getExpense());
