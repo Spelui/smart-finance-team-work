@@ -22,9 +22,6 @@ const Balance = () => {
     await dispatch(authOperations.setBalance({ newBalance }));
   };
 
-  console.log(mustBeShown);
-  
-
   return (
     <div className={s.balance}>
       <p className={s.balance__title}>Баланс:</p>
