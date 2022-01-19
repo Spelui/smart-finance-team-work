@@ -1,27 +1,11 @@
-import { useCallback, useEffect, useState } from "react";
+import { useState } from "react";
 import sprite from "../../images/sprite.svg";
 import s from "./ReportSwitcher.module.scss";
-import {
-  getIncomeCategories,
-  getExpenseCategories,
-} from "../../redux/user/user-operations";
-import { useDispatch } from "react-redux";
 
 const ReportSwitcher = () => {
   const incomes = "доходы";
   const expenses = "расходы";
   const [title, setTitle] = useState(incomes);
-  const dispatch = useDispatch();
-  const requestCategories = useCallback(() => {
-    title !== incomes
-      ? dispatch(getIncomeCategories())
-      : dispatch(getExpenseCategories());
-  }, [dispatch, title]);
-
-  useEffect(() => {
-    console.log("useEffect :>> ");
-    requestCategories();
-  }, [requestCategories]);
 
   const switchIncomesExpenses = () => {
     setTitle(title === incomes ? expenses : incomes);
@@ -31,7 +15,6 @@ const ReportSwitcher = () => {
       <button
         type="button"
         onClick={() => {
-          requestCategories();
           switchIncomesExpenses();
         }}
         className={s.btn}
@@ -44,7 +27,6 @@ const ReportSwitcher = () => {
       <button
         type="button"
         onClick={() => {
-          requestCategories();
           switchIncomesExpenses();
         }}
         className={s.btn}

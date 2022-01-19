@@ -6,9 +6,17 @@ import ReportInfo from "../../component/ReportInfo/ReportInfo";
 import CurrentPeriod from "../../component/CurrentPeriod/CurrentPeriod";
 
 import s from "./ReportPage.module.scss";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { getPeriodData } from "../../redux/user/user-operations";
 //
 
 const ReportPage = () => {
+  const balance = useSelector((state) => state.auth?.user?.balance);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getPeriodData("2020-12"));
+  }, [dispatch]);
   return (
     <>
       <section className={`${s.reportInfo_section} background`}>
@@ -16,10 +24,9 @@ const ReportPage = () => {
           <div className={s.backgroundTest}>
             <div className={s.report_head_wrap}>
               <CurrentPeriod />
-              {/* <Balance /> */}
               <div className={s.reportBalance_wrap}>
                 <span className={s.balanceText}>Баланс:</span>
-                <span className={s.balanceNumber}>50 000.00 uah</span>
+                <span className={s.balanceNumber}>{`${balance}.00`} uah</span>
               </div>
               <BackspaceBtn />
             </div>

@@ -13,7 +13,7 @@ const getIncome = createAsyncThunk(
     }
     try {
       const { data } = await axios.get("/transaction/income");
-      console.log("data", data.incomes);
+      // console.log("data", data.incomes);
       return data;
     } catch (error) {
       // toast.error(`${"Error, please repeat the request"}`);
@@ -26,7 +26,7 @@ const addIncome = createAsyncThunk(
   async (transaction) => {
     try {
       const { data } = await axios.post("/transaction/income", transaction);
-      console.log("data", data);
+      // console.log("data", data);
       return data;
     } catch (error) {
       // toast.error(`${"Error, please repeat the request"}`);
@@ -55,7 +55,7 @@ const getCategories = createAsyncThunk(
     try {
       const data = await axios.get("/transaction/income-categories");
 
-      console.log("data", data);
+      // console.log("data", data);
 
       return data;
     } catch (error) {
@@ -76,7 +76,7 @@ const getExpense = createAsyncThunk(
     }
     try {
       const { data } = await axios.get("/transaction/expense");
-      console.log("data", data.expenses);
+      // console.log("data", data.expenses);
       return data;
     } catch (error) {
       // toast.error(`${"Error, please repeat the request"}`);
@@ -89,7 +89,7 @@ const addExpense = createAsyncThunk(
   async (transaction) => {
     try {
       const { data } = await axios.post("/transaction/expense", transaction);
-      console.log("data", data);
+      // console.log("data", data);
       return data;
     } catch (error) {
       // toast.error(`${"Error, please repeat the request"}`);
@@ -118,7 +118,7 @@ const getCategoriesExpense = createAsyncThunk(
     try {
       const data = await axios.get("/transaction/expense-categories");
 
-      console.log("data", data);
+      // console.log("data", data);
 
       return data;
     } catch (error) {
