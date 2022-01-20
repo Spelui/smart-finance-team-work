@@ -19,10 +19,6 @@ const App = () => {
   const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
   const isRefreshing = useSelector(authSelectors.getIsRefreshing);
 
-  console.log("FetchingCurrentUser ", isFetchingCurrentUser);
-  console.log("LoggedIn ", isLoggedIn);
-  console.log("Refreshing ", isRefreshing);
-
   useEffect(() => {
     dispatch(authOperations.fetchCurrentUser());
 
