@@ -53,7 +53,7 @@ const AddNewProduct = () => {
       date: "2022-01-20",
     };
 
-    dispatch(addIncome(newOperation));
+    dispatch(addIncome(newOperation)).then(() => dispatch(getIncome()));
     handleBtnClear();
   };
 
