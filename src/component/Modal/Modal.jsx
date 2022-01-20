@@ -40,9 +40,9 @@ console.log("Modal ~ onDelete", onDelete)
           <button
             type="button"
             className={styles.btn}
-            // onClick={() => onDelete(deleteId)}
-            onClick={() => console.log(onDelete)}
-            
+            onClick={onDelete(deleteId)}
+            //onClick={() => onDelete(deleteId)}
+            //onClick={() => console.log(onDelete)}
           >
             ДА
           </button>
