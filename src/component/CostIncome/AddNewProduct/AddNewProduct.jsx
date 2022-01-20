@@ -21,9 +21,6 @@ const AddNewProduct = () => {
     dispatch(getIncome());
   }, [dispatch]);
 
-  const handelSubmit = (e) => {
-    e.preventDefault();
-  };
 
   const handleBtnClear = (e) => {
     setAmount("");
@@ -41,8 +38,13 @@ const AddNewProduct = () => {
     }
   };
 
+    const handleChange = (e) => {
+    setCategory(e.target.value);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
+    if(description ===''|| amount === '' || category === 'Категория товара') return
 
     const newOperation = {
       category,
@@ -52,12 +54,10 @@ const AddNewProduct = () => {
     };
 
     dispatch(addIncome(newOperation));
-    setAmount("");
+    handleBtnClear()
   };
 
-  const handleChange = (event) => {
-    setCategory(event.target.value);
-  };
+
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
       <div className={styles.imputForm}>
@@ -69,6 +69,10 @@ const AddNewProduct = () => {
           name="product"
           onChange={handleInputChange}
           placeholder="Описание товара"
+          maxlength="20"
+          minlength="3"
+          size="20"
+          required
         />
         <select
           className={styles.formSelect}
@@ -85,6 +89,7 @@ const AddNewProduct = () => {
         </select>
         <input
           type="number"
+          required
           min="1"
           className={styles.formSpan}
           name="price"
@@ -95,6 +100,9 @@ const AddNewProduct = () => {
           value={amount}
           placeholder="0.00"
         />
+
+
+
         <img
           className={styles.formCalculator}
           src={Calculator}
