@@ -54,8 +54,8 @@ const AddNewProduct = () => {
       date: "2022-01-20",
     };
 
-    dispatch(addExpense(newOperation));
-    handleBtnClear()
+    dispatch(addExpense(newOperation)).then(() => dispatch(getExpense()));
+    handleBtnClear();
   };
   const handleChange = (event) => {
     setCategory(event.target.value);
@@ -74,14 +74,14 @@ const AddNewProduct = () => {
           maxlength="20"
           minlength="3"
           size="20"
-          required 
+          required
         />
         <select
           className={styles.formSelect}
           value={category}
           label="Category"
           onChange={handleChange}
-          required 
+          required
         >
           <option value="hide">Категория товара</option>
           {categoriesExpense?.map((categorie) => (
@@ -92,7 +92,7 @@ const AddNewProduct = () => {
         </select>
         <input
           type="number"
-          required 
+          required
           min="1"
           className={styles.formSpan}
           name="price"
