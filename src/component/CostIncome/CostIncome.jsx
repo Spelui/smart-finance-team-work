@@ -1,7 +1,7 @@
 import CostIncomeBtmMob from "./CostIncomeBtmMob/CostIncomeBtmMob";
 import styles from "./CostIncome.module.scss";
 import CostIncomeItem from "./CostIncomeItem/CostIncomeItem";
-import Calendar from "./Calendar/Calendar";
+import Calendar from "../Calendar/Calendar";
 import AddNewProduct from "./AddNewProduct/AddNewProduct";
 import AddNewProductBtm from "./AddNewProductBtm/AddNewProductBtm";
 import CostIncomeTitle from "./CostIncomeTitle/CostIncomeTitle";
@@ -17,7 +17,6 @@ const CostIncome = () => {
         <CostIncomeBtmMob textBtm="Доход" />
         <CostIncomeBtmMob textBtm="Расход" />
       </div>
-      {/* <div className={"container"} ></div> */}
       <div className={styles.CostIncomeConteiner}>
         <div className={styles.AddNewProduc}>
           <div className={styles.CostIncomeForm}>
