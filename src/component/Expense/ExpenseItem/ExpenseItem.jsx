@@ -15,8 +15,10 @@ const ExpenseItem = () => {
   const dispatch = useDispatch();
   const expenses = useSelector((state) => state.transactions.itemsExpense);
   const [isOpenedModal, setisOpenedModal] = useState(false);
-  const [deleteId , setDeleteId ] = useState('');
-  console.log("ExpenseItem ~ deleteId", deleteId)
+  const [deleteId, setDeleteId] = useState('');
+  const selectedDate = useSelector(
+    (state) => state.transactions.date
+  );
 
   useEffect(() => {
     dispatch(getExpense());
@@ -36,10 +38,13 @@ const ExpenseItem = () => {
     setDeleteId(id)
   };
 
-
+  const filterForDate = () => 
+  expenses?.filter(({ _id, category, date, amount, description }) =>date === selectedDate)
+  
+  
   return (
     <>
-      {expenses?.map(({ _id, category, date, amount, description }) => (
+      {filterForDate().map(({ _id, category, date, amount, description }) => (
         <div key={_id} className={styles.item}>
           <div className={styles.itemTransaction}>
             <p className={styles.productCategoryItemMob}>{category}</p>

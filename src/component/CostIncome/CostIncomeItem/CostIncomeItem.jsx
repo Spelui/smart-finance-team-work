@@ -12,6 +12,9 @@ const CostIncomeItem = () => {
   const incomes = useSelector((state) => state.transactions.items);
   const [isOpenedModal, setisOpenedModal] = useState(false);
   const [deleteId, setDeleteId] = useState('');
+    const selectedDate = useSelector(
+    (state) => state.transactions.date
+  );
   
   useEffect(() => {
     dispatch(getIncome());
@@ -31,9 +34,12 @@ const CostIncomeItem = () => {
     setDeleteId(id)
   };
 
+  const filterForDate = () => 
+  incomes?.filter(({ _id, category, date, amount, description }) =>date === selectedDate)
+
   return (
     <>
-      {incomes?.map(({ _id, category, date, amount, description }) => (
+      {filterForDate().map(({ _id, category, date, amount, description }) => (
         <div key={_id} className={styles.item}>
           <div className={styles.itemTransaction}>
             <p className={styles.productCategoryItemMob}>{category}</p>
