@@ -2,12 +2,10 @@
 import styles from "./ExpenseItem.module.scss";
 import Delete from "./delete.svg";
 import { useDispatch, useSelector } from "react-redux";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import {
   getExpense,
-  addExpense,
   deleteExpense,
-  getCategoriesExpense,
 } from "../../../redux/transactions/transactionsOperation.js";
 
 const ExpenseItem = () => {
@@ -19,7 +17,7 @@ const ExpenseItem = () => {
   }, [dispatch]);
 
   const onDelete = (id) => () => {
-    dispatch(deleteExpense(id));
+    dispatch(deleteExpense(id)).then(() => dispatch(getExpense()));
   };
   return (
     <>
