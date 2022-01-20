@@ -175,3 +175,17 @@ h6 {
   border: 0;
   clip: rect(0 0 0 0);
 }
+
+div div.react-calendar.react-calendar-style {
+  position: absolute;
+
+  top: 0px;
+  left: 0px;
+}
+
+.react-calendar {
+  position: absolute;
+
+  top: 0px;
+  left: 0px;
+}

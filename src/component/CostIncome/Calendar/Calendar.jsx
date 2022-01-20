@@ -13,17 +13,20 @@ const CalendarNew = () => {
   const day = padNum(date.getDate());
   const month = padNum(date.getMonth() + 1);
   const year = padNum(date.getFullYear());
+
    function clickHandle (){
      return setShow(!show)
-   }
+  }
+  
   return (
     <div className={styles.calendar}>
       <img className={styles.calendarImg} onClick={clickHandle} src={CalendarSvg} alt="" width="20" />
-      <p className={styles.calendarDate}>{`${day}.${month}.${year}`}</p>
+      <p className={styles.calendarDate} onClick={clickHandle}>{`${day}.${month}.${year}`}</p>
       {show && <Calendar
         onChange={onChange}
         value={value}
         maxDate={new Date()}
+        className="react-calendar-style"
       />}
     </div>
   );
