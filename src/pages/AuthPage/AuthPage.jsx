@@ -42,7 +42,7 @@ export const AuthPage = () => {
   return (
     <section
       className={`${s.authSection} background ${
-        theme === themes.light ? s.lightTheme : s.darkTheme
+        theme === themes.light ? s.authSection : s.darkTheme
       }`}
     >
       <div className="container">
