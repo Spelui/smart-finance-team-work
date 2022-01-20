@@ -3,20 +3,34 @@ import styles from "./CostIncomeItem.module.scss";
 import Delete from "./delete.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteIncom } from "../../../redux/transactions/transactionsOperation";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import { getIncome } from "../../../redux/transactions/transactionsOperation.js";
+import Modal from '../../Modal/Modal'
 
 const CostIncomeItem = () => {
   const dispatch = useDispatch();
   const incomes = useSelector((state) => state.transactions.items);
-
+  const [isOpenedModal, setisOpenedModal] = useState(false);
+  const [deleteId, setDeleteId] = useState('');
+  
   useEffect(() => {
     dispatch(getIncome());
   }, [dispatch]);
 
   const onDelete = (id) => () => {
     dispatch(deleteIncom(id)).then(() => dispatch(getIncome()));
+    closeModal();
   };
+
+  const closeModal = () => {
+    setisOpenedModal(false)
+    setDeleteId("")
+  };
+  const openModal = (id) => {
+    setisOpenedModal(true)
+    setDeleteId(id)
+  };
+
   return (
     <>
       {incomes?.map(({ _id, category, date, amount, description }) => (
@@ -30,9 +44,17 @@ const CostIncomeItem = () => {
             </div>
           </div>
           <p className={styles.productSum}>{amount} грн.</p>
-          <img src={Delete} alt="" width="18" onClick={onDelete(_id)} />
+          <img src={Delete} alt="" width="18" onClick={() => openModal(_id)} />
         </div>
       ))}
+      {isOpenedModal &&(
+        <Modal
+          title="Вы уверены?"
+          onClose={closeModal}
+          onDelete={onDelete}
+          deleteId ={deleteId}
+        />
+        )}
     </>
   );
 };
