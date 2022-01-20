@@ -17,20 +17,28 @@ const App = () => {
   const dispatch = useDispatch();
   const isFetchingCurrentUser = useSelector(authSelectors.getIsFetchingCurrent);
   const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
-  const sid = useSelector(authSelectors.getUserSid);
+  const isRefreshing = useSelector(authSelectors.getIsRefreshing);
+
+  console.log("FetchingCurrentUser ", isFetchingCurrentUser);
+  console.log("LoggedIn ", isLoggedIn);
+  console.log("Refreshing ", isRefreshing);
 
   useEffect(() => {
     dispatch(authOperations.fetchCurrentUser());
+
+    let secondTimerId = null;
     if (isLoggedIn) {
-      let firstTimerId = setTimeout(() => {
-        clearTimeout(firstTimerId);
-        let secondTimerId = setInterval(() => {
-          clearTimeout(secondTimerId);
-          dispatch(authOperations.refreshTokens({ sid }));
-        }, 900000);
+      dispatch(authOperations.refreshTokens());
+
+      secondTimerId = setInterval(() => {
+        dispatch(authOperations.refreshTokens());
       }, 900000);
     }
-  }, [dispatch, isLoggedIn, sid]);
+
+    return () => {
+      clearInterval(secondTimerId);
+    };
+  }, [dispatch, isLoggedIn]);
 
   return (
     <div>
@@ -47,14 +55,16 @@ const App = () => {
                 </PublickRoute>
               }
             />
-            <Route
-              path="/transaction/*"
-              element={
-                <PrivateRoute>
-                  <TransactionPage />
-                </PrivateRoute>
-              }
-            />
+            {!isRefreshing && (
+              <Route
+                path="/transaction/*"
+                element={
+                  <PrivateRoute>
+                    <TransactionPage />
+                  </PrivateRoute>
+                }
+              />
+            )}
             <Route
               path="/report"
               element={
