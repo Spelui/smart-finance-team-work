@@ -19,11 +19,25 @@ const App = () => {
 
   const dispatch = useDispatch();
   const isFetchingCurrentUser = useSelector(authSelectors.getIsFetchingCurrent);
-  // const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
+  const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
+  const isRefreshing = useSelector(authSelectors.getIsRefreshing);
 
   useEffect(() => {
     dispatch(authOperations.fetchCurrentUser());
-  }, [dispatch]);
+
+    let secondTimerId = null;
+    if (isLoggedIn) {
+      dispatch(authOperations.refreshTokens());
+
+      secondTimerId = setInterval(() => {
+        dispatch(authOperations.refreshTokens());
+      }, 900000);
+    }
+
+    return () => {
+      clearInterval(secondTimerId);
+    };
+  }, [dispatch, isLoggedIn]);
 
   const toggleTheme = () =>
     setTheme((prevTheme) =>

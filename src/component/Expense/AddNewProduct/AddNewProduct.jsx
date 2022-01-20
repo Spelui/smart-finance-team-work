@@ -51,12 +51,11 @@ const AddNewProduct = () => {
       category,
       description,
       amount: Number(amount),
-      date: "2020-12-31",
+      date: "2022-01-20",
     };
 
     dispatch(addExpense(newOperation));
-
-    setAmount("");
+    handleBtnClear()
   };
   const handleChange = (event) => {
     setCategory(event.target.value);
@@ -72,12 +71,17 @@ const AddNewProduct = () => {
           name="product"
           onChange={handleInputChange}
           placeholder="Описание товара"
+          maxlength="20"
+          minlength="3"
+          size="20"
+          required 
         />
         <select
           className={styles.formSelect}
           value={category}
           label="Category"
           onChange={handleChange}
+          required 
         >
           <option value="hide">Категория товара</option>
           {categoriesExpense?.map((categorie) => (
@@ -88,6 +92,7 @@ const AddNewProduct = () => {
         </select>
         <input
           type="number"
+          required 
           min="1"
           className={styles.formSpan}
           name="price"

@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
 import { authSelectors, authOperations } from "../../redux/auth";
 
 import ThemeSwitcher from "../ThemeSwitcher/ThemeSwitcher";
+import { ThemeContext, themes } from "../../context/themeContext";
 
 import sprite from "../../images/svg/symbol-defs.svg";
 import s from "./Header.module.scss";
@@ -13,9 +14,14 @@ export const Header = () => {
   const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
   const email = useSelector(authSelectors.getUserEmail);
   const avatarText = email.slice(0, 1).toUpperCase();
+  const { theme } = useContext(ThemeContext);
 
   return (
-    <header className={s.header}>
+    <header
+      className={`${s.header} ${
+        theme === themes.light ? s.lightTheme : s.darkTheme
+      }`}
+    >
       <div className="container">
         <div className={s.headerWrapper}>
           <a href="./" className={s.headerLink}>

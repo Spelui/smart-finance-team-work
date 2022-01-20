@@ -9,6 +9,10 @@
   justify-content: space-between;
 }
 
+.logo {
+  fill: #000000;
+}
+
 .userMenu {
   display: flex;
   align-items: center;
@@ -84,4 +88,16 @@
 .btn {
   height: 16px;
   background: white;
+}
+
+.lightTheme {
+  background-color: white;
+}
+
+.darkTheme {
+  background-color: #252529;
+
+  .logo {
+    fill: #757781;
+  }
 }

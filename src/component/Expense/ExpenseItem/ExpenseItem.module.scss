@@ -1,13 +1,26 @@
 .dateType {
   display: flex;
   margin-top: 3px;
+  margin-left: 21px;
   @media screen and (min-width: 768px) {
-    margin-left: 21px;
+    //margin-left: 21px;
   }
 }
 .item {
   display: flex;
   align-items: center;
+
+  height: 38px;
+  padding: 0 8px;
+  background: #ffffff;
+  color: #e7192e;
+  border-bottom: 2px solid #f4f6fb;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 14px;
+  letter-spacing: 0.04em;
 }
 
 .productDate {
@@ -59,11 +72,13 @@
     display: flex;
     align-items: center;
     letter-spacing: 0.04em;
+    margin-right: 0;
 
     color: #52555f;
     width: 138px;
-    @media screen and (min-width: 768px) {
+    @media screen and (min-width: 1280px) {
       width: 128px;
+
       margin-right: 44px;
     }
   }

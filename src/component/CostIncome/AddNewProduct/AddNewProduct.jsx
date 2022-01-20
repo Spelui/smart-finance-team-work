@@ -21,10 +21,6 @@ const AddNewProduct = () => {
     dispatch(getIncome());
   }, [dispatch]);
 
-  const handelSubmit = (e) => {
-    e.preventDefault();
-  };
-
   const handleBtnClear = (e) => {
     setAmount("");
     setDescription("");
@@ -41,23 +37,26 @@ const AddNewProduct = () => {
     }
   };
 
+  const handleChange = (e) => {
+    setCategory(e.target.value);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (description === "" || amount === "" || category === "Категория товара")
+      return;
 
     const newOperation = {
       category,
       description,
       amount: Number(amount),
-      date: "2020-12-31",
+      date: "2022-01-20",
     };
 
     dispatch(addIncome(newOperation));
-    setAmount("");
+    handleBtnClear();
   };
 
-  const handleChange = (event) => {
-    setCategory(event.target.value);
-  };
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
       <div className={styles.imputForm}>
@@ -69,6 +68,10 @@ const AddNewProduct = () => {
           name="product"
           onChange={handleInputChange}
           placeholder="Описание товара"
+          maxlength="20"
+          minlength="3"
+          size="20"
+          required
         />
         <select
           className={styles.formSelect}
@@ -76,7 +79,7 @@ const AddNewProduct = () => {
           label="Category"
           onChange={handleChange}
         >
-          <option value="hide">Категория товара</option>
+          <option value="hide">Категория дохода</option>
           {categories.map((categorie) => (
             <option key={categorie} value={categorie}>
               {categorie}
@@ -85,6 +88,7 @@ const AddNewProduct = () => {
         </select>
         <input
           type="number"
+          required
           min="1"
           className={styles.formSpan}
           name="price"
@@ -95,6 +99,7 @@ const AddNewProduct = () => {
           value={amount}
           placeholder="0.00"
         />
+
         <img
           className={styles.formCalculator}
           src={Calculator}
