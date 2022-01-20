@@ -176,16 +176,37 @@ h6 {
   clip: rect(0 0 0 0);
 }
 
-div div.react-calendar.react-calendar-style {
+/* .react-calendar-style {
   position: absolute;
 
   top: 0px;
   left: 0px;
-}
+} */
 
 .react-calendar {
   position: absolute;
+  width: 300px;
 
-  top: 0px;
-  left: 0px;
+  top: 220px;
+  left: 185px;
+
+  cursor: pointer;
+}
+
+.react-calendar__tile--active {
+  background: #ff751d;
+}
+
+.react-calendar__tile--now:enabled:hover,
+.react-calendar__tile--now:enabled:focus {
+  background: #ffd6a0;
+}
+
+.react-calendar__tile--now {
+  background: #ffd6a0;
+}
+
+.react-calendar__tile--active:enabled:hover,
+.react-calendar__tile--active:enabled:focus {
+  background: #ff751d;
 }

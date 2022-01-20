@@ -7,7 +7,7 @@ import {
   getCategories,
 } from "../../../redux/transactions/transactionsOperation.js";
 import { useDispatch, useSelector } from "react-redux";
-import Calendar from "../Calendar/Calendar";
+import Calendar from "../../Calendar/Calendar";
 
 const AddNewProduct = () => {
   const [description, setDescription] = useState("");
@@ -15,6 +15,9 @@ const AddNewProduct = () => {
   const [category, setCategory] = useState("");
   const dispatch = useDispatch();
   const categories = useSelector((state) => state.transactions.categories);
+   const date = useSelector(
+    (state) => state.transactions.date
+  );
 
   useEffect(() => {
     dispatch(getCategories());
@@ -50,7 +53,7 @@ const AddNewProduct = () => {
       category,
       description,
       amount: Number(amount),
-      date: "2022-01-20",
+      date,
     };
 
     dispatch(addIncome(newOperation)).then(() => dispatch(getIncome()));

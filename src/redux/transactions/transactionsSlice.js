@@ -17,6 +17,7 @@ const initialState = {
   categories: [],
   categoriesExpense: [],
   month: {},
+  date: null,
 
   // filter: "",
 };
@@ -24,6 +25,9 @@ const initialState = {
 const transactionSlice = createSlice({
   name: "transactions",
   initialState,
+  reducers: {
+    setDate: (state, action) => ({ ...state, date: action.payload }),
+  },
 
   extraReducers: (builder) => {
     builder
@@ -67,5 +71,7 @@ const transactionSlice = createSlice({
       });
   },
 });
+
+export const { setDate } = transactionSlice.actions;
 
 export default transactionSlice.reducer;
