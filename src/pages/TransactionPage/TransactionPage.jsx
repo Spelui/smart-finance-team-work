@@ -11,6 +11,7 @@ const TransactionPage = () => {
   return (
     <section className="background">
       <div className={`container  `}>
+        <Balance />
         <div className={styles.GotoReports}>
           <Link to="/report">Перейти к отчетам</Link>
         </div>

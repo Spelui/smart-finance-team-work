@@ -12,7 +12,7 @@ import Balance from "../Balance";
 
 const CostIncome = () => {
   return (
-    <section className="background">
+    <div>
       <div className={styles.CostIncomeBtmMob}>
         <CostIncomeBtmMob textBtm="Доход" />
         <CostIncomeBtmMob textBtm="Расход" />
@@ -44,7 +44,7 @@ const CostIncome = () => {
           </div>
         </div>
       </div>
-    </section>
+    </div>
   );
 };
 

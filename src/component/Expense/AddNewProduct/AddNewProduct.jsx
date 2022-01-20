@@ -51,7 +51,7 @@ const AddNewProduct = () => {
       category,
       description,
       amount: Number(amount),
-      date: "2020-12-31",
+      date: "2022-01-20",
     };
 
     dispatch(addExpense(newOperation));

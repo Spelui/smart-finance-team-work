@@ -21,7 +21,6 @@ const AddNewProduct = () => {
     dispatch(getIncome());
   }, [dispatch]);
 
-
   const handleBtnClear = (e) => {
     setAmount("");
     setDescription("");
@@ -38,25 +37,25 @@ const AddNewProduct = () => {
     }
   };
 
-    const handleChange = (e) => {
+  const handleChange = (e) => {
     setCategory(e.target.value);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if(description ===''|| amount === '' || category === 'Категория товара') return
+    if (description === "" || amount === "" || category === "Категория товара")
+      return;
 
     const newOperation = {
       category,
       description,
       amount: Number(amount),
-      date: "2020-12-31",
+      date: "2022-01-20",
     };
 
     dispatch(addIncome(newOperation));
-    handleBtnClear()
+    handleBtnClear();
   };
-
 
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
@@ -100,8 +99,6 @@ const AddNewProduct = () => {
           value={amount}
           placeholder="0.00"
         />
-
-
 
         <img
           className={styles.formCalculator}

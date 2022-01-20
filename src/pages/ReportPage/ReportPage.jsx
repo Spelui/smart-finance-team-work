@@ -27,7 +27,7 @@ const ReportPage = () => {
   };
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getPeriodData("2020-12"));
+    dispatch(getPeriodData("2022-01"));
   }, [dispatch]);
   return (
     <>
