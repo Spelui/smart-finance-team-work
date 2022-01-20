@@ -71,10 +71,12 @@ const AddNewProduct = () => {
           name="product"
           onChange={handleInputChange}
           placeholder="Описание товара"
-          maxlength="20"
-          minlength="3"
+          maxLength="20"
+          minLength="3"
           size="20"
           required
+                    pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+
         />
         <select
           className={styles.formSelect}
