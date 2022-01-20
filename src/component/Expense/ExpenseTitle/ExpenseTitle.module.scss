@@ -12,12 +12,14 @@
     align-items: center;
     letter-spacing: 0.02em;
     text-transform: uppercase;
+    background-color: #F5F6FB;
+    border-radius: 20px 20px 0 0;
 
     color: #000000;
     justify-content: center;
     @media screen and (min-width: 768px) {
       justify-content: normal;
-      margin-left: 51px;
+      //margin-left: 51px;
     }
     @media screen and (min-width: 1280px) {
       margin-top: 60px;

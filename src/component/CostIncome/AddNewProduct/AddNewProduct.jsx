@@ -80,7 +80,7 @@ const AddNewProduct = () => {
           label="Category"
           onChange={handleChange}
         >
-          <option value="hide">Категория товара</option>
+          <option value="hide">Категория дохода</option>
           {categories.map((categorie) => (
             <option key={categorie} value={categorie}>
               {categorie}

@@ -38,6 +38,7 @@ export const AuthPage = () => {
   };
 
   return (
+    
     <section className={`${s.authSection} background`}>
       <div className="container">
         <div className={s.authSectionWrapper}>
