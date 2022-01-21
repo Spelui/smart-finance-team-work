@@ -12,6 +12,7 @@ import { AuthPage } from "./pages/AuthPage/AuthPage.jsx";
 import ReportPage from "./pages/ReportPage/ReportPage";
 //import OnLoader from "./component/OnLoader";
 import TransactionPage from "./pages/TransactionPage/TransactionPage";
+import { HomePage } from "./pages/HomePage/HomePage";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -46,17 +47,17 @@ const App = () => {
             <Route
               path="/"
               element={
-                <PublickRoute restricted redirectTo="/transaction/expense">
+                <PublickRoute restricted redirectTo="/homepage/expense">
                   <AuthPage />
                 </PublickRoute>
               }
             />
             {!isRefreshing && (
               <Route
-                path="/transaction/*"
+                path="/homepage/*"
                 element={
                   <PrivateRoute>
-                    <TransactionPage />
+                    <HomePage />
                   </PrivateRoute>
                 }
               />
