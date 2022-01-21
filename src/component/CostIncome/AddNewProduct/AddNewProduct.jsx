@@ -37,6 +37,8 @@ const AddNewProduct = () => {
         return setDescription(value);
       case "price":
         return setAmount(value);
+      
+      default: break;
     }
   };
 

@@ -17,10 +17,10 @@ const ReportPage = () => {
   const [reportGraphObj, setReportGraphObj] = useState({});
 
   const balance = useSelector((state) => state.auth?.user?.balance);
+  
   const date = useSelector(
     (state) => state.transactions.date
   );
-  
   const normalizedDate = (date.slice(0, 7));
 
   const getGraphObj = (obj) => {

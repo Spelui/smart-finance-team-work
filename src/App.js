@@ -13,6 +13,7 @@ import ReportPage from "./pages/ReportPage/ReportPage";
 //import OnLoader from "./component/OnLoader";
 import TransactionPage from "./pages/TransactionPage/TransactionPage";
 import { HomePage } from "./pages/HomePage/HomePage";
+import { MobileForm } from "./pages/HomePage/MobileForm/MobileForm";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -29,7 +30,7 @@ const App = () => {
 
       secondTimerId = setInterval(() => {
         dispatch(authOperations.refreshTokens());
-      }, 900000);
+      }, 600000);
     }
 
     return () => {
@@ -47,7 +48,7 @@ const App = () => {
             <Route
               path="/"
               element={
-                <PublickRoute restricted redirectTo="/homepage/expense">
+                <PublickRoute restricted redirectTo="/homepage">
                   <AuthPage />
                 </PublickRoute>
               }
@@ -67,6 +68,22 @@ const App = () => {
               element={
                 <PrivateRoute>
                   <ReportPage />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/add-expense"
+              element={
+                <PrivateRoute>
+                  <MobileForm transaction="expense" />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/add-income"
+              element={
+                <PrivateRoute>
+                  <MobileForm transaction="income" />
                 </PrivateRoute>
               }
             />
