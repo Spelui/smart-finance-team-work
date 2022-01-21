@@ -1,26 +1,44 @@
 .CostIncomeButton {
+  //@media screen and (min-width: 320px) {
+  //  width: 138px;
+  //  height: 40px;
+  //  font-weight: bold;
+  //  font-size: 12px;
+  //  line-height: 14px;
+  //  border-radius: 20px 20px 0 0;
+  //  background-color: #e71717;
+  //  border: none;
+  //  letter-spacing: 0.02em;
+  //  cursor: pointer;
+  //}
+
   @media screen and (min-width: 768px) {
-    font-family: Roboto;
-    font-style: normal;
+    width: 138px;
+    height: 40px;
     font-weight: bold;
     font-size: 12px;
     line-height: 14px;
-    display: flex;
-    align-items: center;
-    text-align: center;
+    border-radius: 20px 20px 0 0;
+    background-color: #fefefe;
+    border: none;
     letter-spacing: 0.02em;
-    text-transform: uppercase;
-    justify-content: center;
-    height: 40px;
-    width: 98px;
-    background: #fafbfd;
-    border-radius: 20px;
-    width: 98px;
-    color: #000000;
-    padding: 0 20px;
+    cursor: pointer;
 
-    &:hover {
-      color: #ff751d;
-    }
+  }
+
+  &:hover {
+    color: #ee4a2c;
+    filter: drop-shadow(1px 3px 5px rgba(255, 107, 8, 0.35));
+    transition: 0.5s linear;
+  }
+
+
+
+
+
+
+
+  .CostIncomeButtonActive {
+    color: #ff751d;
   }
 }

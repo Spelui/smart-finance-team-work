@@ -1,11 +1,13 @@
-import { useEffect } from "react";
+import { useEffect, useContext } from "react";
 import { useDispatch } from "react-redux";
 import sprite from "../../images/sprite.svg";
 import s from "./CurrentPeriod.module.scss";
 import { getPeriodData } from "../../redux/user/user-operations";
+import { ThemeContext, themes } from "../../context/themeContext";
 
 const CurrentPeriod = () => {
   const dispatch = useDispatch();
+  const { theme } = useContext(ThemeContext);
   // useEffect(() => {
   //   dispatch(getPeriodData("2020-12"));
   // }, [dispatch]);
@@ -14,8 +16,12 @@ const CurrentPeriod = () => {
     dispatch(getPeriodData("2020-12"));
   };
   return (
-    <div className={s.current_period}>
-      <span className="text">Текущий период:</span>
+    <div
+      className={`${s.current_period} ${
+        theme === themes.light ? "lightTheme" : s.darkTheme
+      }`}
+    >
+      <span className={s.text}>Текущий период:</span>
       <div className={s.current_period_wrap}>
         <button
           type="button"

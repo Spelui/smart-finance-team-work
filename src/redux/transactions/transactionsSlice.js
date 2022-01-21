@@ -16,6 +16,8 @@ const initialState = {
   itemsExpense: [],
   categories: [],
   categoriesExpense: [],
+  month: {},
+  date: null,
 
   // filter: "",
 };
@@ -23,10 +25,14 @@ const initialState = {
 const transactionSlice = createSlice({
   name: "transactions",
   initialState,
+  reducers: {
+    setDate: (state, action) => ({ ...state, date: action.payload }),
+  },
 
   extraReducers: (builder) => {
     builder
       .addCase(getIncome.fulfilled, (state, { payload }) => {
+        state.month = { ...payload.monthsStats };
         state.items = payload.incomes;
       })
       .addCase(addIncome.fulfilled, (state, action) => ({
@@ -45,6 +51,7 @@ const transactionSlice = createSlice({
       })
       //////////////////////////////////////////////////////////////
       .addCase(getExpense.fulfilled, (state, { payload }) => {
+        state.month = { ...payload.monthsStats };
         state.itemsExpense = payload.expenses;
       })
       .addCase(addExpense.fulfilled, (state, action) => ({
@@ -64,5 +71,7 @@ const transactionSlice = createSlice({
       });
   },
 });
+
+export const { setDate } = transactionSlice.actions;
 
 export default transactionSlice.reducer;

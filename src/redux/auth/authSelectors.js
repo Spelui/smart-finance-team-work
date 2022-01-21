@@ -5,6 +5,7 @@ const isFirstLogin = (state) => state.auth.isFirstLogin;
 const getBalance = (state) => state.auth.user.balance;
 const getRefreshToken = (state) => state.refreshToken;
 const getUserSid = (state) => state.auth.sid;
+const getIsRefreshing = (state) => state.auth.isRefreshing;
 
 const authSelectors = {
   getUserEmail,
@@ -14,5 +15,6 @@ const authSelectors = {
   getBalance,
   getRefreshToken,
   getUserSid,
+  getIsRefreshing,
 };
 export default authSelectors;

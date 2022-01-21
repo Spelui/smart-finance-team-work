@@ -9,6 +9,12 @@
 }
 .calendarImg {
   margin-right: 10px;
+
+  cursor: pointer;
+
+  &:hover {
+    // fill: red;
+  }
 }
 .calendarDate {
   height: 40px;
@@ -22,9 +28,25 @@
   letter-spacing: 0.04em;
   text-transform: uppercase;
 
+  cursor: pointer;
+
   color: #52555f;
   @media screen and (min-width: 768px) {
     width: 74px;
     margin-right: 33px;
   }
+}
+
+div div.react-calendar.react-calendar-style {
+  position: absolute;
+
+  top: 0px;
+  left: 0px;
+}
+
+.react-calendar {
+  position: absolute;
+
+  top: 0px;
+  left: 0px;
 }

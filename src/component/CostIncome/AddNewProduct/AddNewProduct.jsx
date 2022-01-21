@@ -7,7 +7,7 @@ import {
   getCategories,
 } from "../../../redux/transactions/transactionsOperation.js";
 import { useDispatch, useSelector } from "react-redux";
-import Calendar from "../Calendar/Calendar";
+import Calendar from "../../Calendar/Calendar";
 
 const AddNewProduct = () => {
   const [description, setDescription] = useState("");
@@ -15,15 +15,14 @@ const AddNewProduct = () => {
   const [category, setCategory] = useState("");
   const dispatch = useDispatch();
   const categories = useSelector((state) => state.transactions.categories);
+   const date = useSelector(
+    (state) => state.transactions.date
+  );
 
   useEffect(() => {
     dispatch(getCategories());
     dispatch(getIncome());
   }, [dispatch]);
-
-  const handelSubmit = (e) => {
-    e.preventDefault();
-  };
 
   const handleBtnClear = (e) => {
     setAmount("");
@@ -41,23 +40,26 @@ const AddNewProduct = () => {
     }
   };
 
+  const handleChange = (e) => {
+    setCategory(e.target.value);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (description === "" || amount === "" || category === "Категория товара")
+      return;
 
     const newOperation = {
       category,
       description,
       amount: Number(amount),
-      date: "2020-12-31",
+      date,
     };
 
-    dispatch(addIncome(newOperation));
-    setAmount("");
+    dispatch(addIncome(newOperation)).then(() => dispatch(getIncome()));
+    handleBtnClear();
   };
 
-  const handleChange = (event) => {
-    setCategory(event.target.value);
-  };
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
       <div className={styles.imputForm}>
@@ -69,6 +71,12 @@ const AddNewProduct = () => {
           name="product"
           onChange={handleInputChange}
           placeholder="Описание товара"
+          maxLength="20"
+          minLength="3"
+          size="20"
+          required
+          pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+
         />
         <select
           className={styles.formSelect}
@@ -76,7 +84,7 @@ const AddNewProduct = () => {
           label="Category"
           onChange={handleChange}
         >
-          <option value="hide">Категория товара</option>
+          <option value="hide">Категория дохода</option>
           {categories.map((categorie) => (
             <option key={categorie} value={categorie}>
               {categorie}
@@ -85,6 +93,7 @@ const AddNewProduct = () => {
         </select>
         <input
           type="number"
+          required
           min="1"
           className={styles.formSpan}
           name="price"
@@ -95,6 +104,7 @@ const AddNewProduct = () => {
           value={amount}
           placeholder="0.00"
         />
+
         <img
           className={styles.formCalculator}
           src={Calculator}

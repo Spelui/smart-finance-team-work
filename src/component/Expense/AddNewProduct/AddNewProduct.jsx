@@ -8,7 +8,7 @@ import {
   getCategoriesExpense,
 } from "../../../redux/transactions/transactionsOperation.js";
 import { useDispatch, useSelector } from "react-redux";
-import Calendar from "../Calendar/Calendar";
+import Calendar from "../../Calendar/Calendar";
 
 const AddNewProduct = () => {
   const [description, setDescription] = useState("");
@@ -18,15 +18,15 @@ const AddNewProduct = () => {
   const categoriesExpense = useSelector(
     (state) => state.transactions.categoriesExpense
   );
+  const date = useSelector(
+    (state) => state.transactions.date
+  );
+
 
   useEffect(() => {
     dispatch(getCategoriesExpense());
     dispatch(getExpense());
   }, [dispatch]);
-
-  const handelSubmit = (e) => {
-    e.preventDefault();
-  };
 
   const handleBtnClear = (e) => {
     setAmount("");
@@ -51,16 +51,17 @@ const AddNewProduct = () => {
       category,
       description,
       amount: Number(amount),
-      date: "2020-12-31",
+      date,
     };
 
-    dispatch(addExpense(newOperation));
-
-    setAmount("");
+    dispatch(addExpense(newOperation)).then(() => dispatch(getExpense()));
+    handleBtnClear();
   };
+
   const handleChange = (event) => {
     setCategory(event.target.value);
   };
+
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
       <div className={styles.imputForm}>
@@ -72,12 +73,19 @@ const AddNewProduct = () => {
           name="product"
           onChange={handleInputChange}
           placeholder="Описание товара"
+          maxLength="20"
+          minLength="3"
+          size="20"
+          required
+                    pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+
         />
         <select
           className={styles.formSelect}
           value={category}
           label="Category"
           onChange={handleChange}
+          required
         >
           <option value="hide">Категория товара</option>
           {categoriesExpense?.map((categorie) => (
@@ -88,6 +96,7 @@ const AddNewProduct = () => {
         </select>
         <input
           type="number"
+          required
           min="1"
           className={styles.formSpan}
           name="price"

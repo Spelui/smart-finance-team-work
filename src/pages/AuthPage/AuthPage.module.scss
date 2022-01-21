@@ -100,6 +100,7 @@
   font-weight: 700;
   line-height: calc(19 / 16);
   letter-spacing: 0.01em;
+  fill: #000000;
 
   @media screen and (min-width: 768px) {
     font-size: 80px;
@@ -307,5 +308,62 @@
 
   &:first-child {
     margin-right: 15px;
+  }
+}
+
+.darkTheme {
+  background-color: #1f2022;
+  color: #eee;
+
+  .heroTitle {
+    fill: #757781;
+  }
+
+  .heroText {
+    color: #757781;
+  }
+
+  .authBox {
+    background: #252529;
+  }
+
+  .googleAuthText {
+    color: #f0e7e7;
+  }
+
+  .authText {
+    color: #f0e7e7;
+  }
+
+  .authLabel {
+    color: #f0e7e7;
+  }
+
+  .googleBtn {
+    background-color: #757781;
+
+    .googleText {
+      color: #f0e7e7;
+    }
+  }
+
+  .authInput {
+    background-color: #1f2022;
+    color: #f0e7e7;
+  }
+
+  .btn {
+    background-color: #757781;
+    color: #f0e7e7;
+
+    &:hover,
+    &:focus {
+      background: #ff751d;
+      color: white;
+      filter: drop-shadow(1px 3px 5px rgba(255, 107, 8, 0.35));
+
+      transition: background 250ms linear, color 250ms linear,
+        filter 250ms linear;
+    }
   }
 }

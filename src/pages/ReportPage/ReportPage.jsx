@@ -8,8 +8,9 @@ import GraphicComponent from "../../component/GraphicComponent";
 
 import s from "./ReportPage.module.scss";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { getPeriodData } from "../../redux/user/user-operations";
+import { ThemeContext, themes } from "../../context/themeContext";
 //
 
 const ReportPage = () => {
@@ -18,6 +19,11 @@ const ReportPage = () => {
   const [categoryName, setCategoryName] = useState("");
 
   const balance = useSelector((state) => state.auth?.user?.balance);
+  const date = useSelector((state) => state.transactions.date);
+
+  const { theme } = useContext(ThemeContext);
+
+  const normalizedDate = date.slice(0, 7);
 
   const getGraphObj = (obj, name) => {
     setReportGraphObj(obj);
@@ -37,17 +43,37 @@ const ReportPage = () => {
   };
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getPeriodData("2020-12"));
+    dispatch(getPeriodData("2022-01"));
   }, [dispatch]);
   return (
     <>
-      <section className={`${s.reportInfo_section} background`}>
-        <div className={s.backgroundTest}>
-          <div className={s.report_head_wrap}>
-            <CurrentPeriod />
-            <div className={s.reportBalance_wrap}>
-              <span className={s.balanceText}>Баланс:</span>
-              <span className={s.balanceNumber}>{`${balance}.00`} uah</span>
+      <section
+        className={`${s.reportInfo_section} background ${
+          theme === themes.light ? "lightTheme" : s.darkTheme
+        }`}
+      >
+        <div className={s.wrap}>
+          <div className={s.backgroundTest}>
+            <div className={s.report_head_wrap}>
+              <CurrentPeriod />
+              <div className={s.reportBalance_wrap}>
+                <span className={s.balanceText}>Баланс:</span>
+                <span className={s.balanceNumber}>{`${balance}.00`} uah</span>
+              </div>
+              <BackspaceBtn />
+            </div>
+            <ReportInfo />
+            <div className={s.section_categories}>
+              <div className={s.report_switch_wrap}>
+                <ReportSwitcher
+                  reportTitle={reportTitle}
+                  change={reportTitleChange}
+                />
+                <CategoryList
+                  reportTitle={reportTitle}
+                  setGraphObj={getGraphObj}
+                />
+              </div>
             </div>
             <BackspaceBtn />
           </div>
