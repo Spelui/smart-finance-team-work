@@ -15,8 +15,8 @@ const AddNewProduct = () => {
   const [category, setCategory] = useState("");
   const dispatch = useDispatch();
   const categories = useSelector((state) => state.transactions.categories);
-   const date = useSelector(
-    (state) => state.transactions.date
+  const date = useSelector(
+  (state) => state.transactions.date
   );
 
   useEffect(() => {
@@ -31,6 +31,7 @@ const AddNewProduct = () => {
   };
 
   const handleInputChange = (e) => {
+
     const { name, value } = e.currentTarget;
     switch (name) {
       case "product":
@@ -46,7 +47,7 @@ const AddNewProduct = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (description === "" || amount === "" || category === "Категория товара")
+    if (description === "" || amount === 0 || category === "")
       return;
 
     const newOperation = {
@@ -83,8 +84,10 @@ const AddNewProduct = () => {
           value={category}
           label="Category"
           onChange={handleChange}
+          name="category"
+          required
         >
-          <option value="hide">Категория дохода</option>
+          <option value="">Категория дохода</option>
           {categories.map((categorie) => (
             <option key={categorie} value={categorie}>
               {categorie}
