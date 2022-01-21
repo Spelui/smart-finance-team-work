@@ -10,6 +10,13 @@
   display: flex;
   align-items: center;
 
+  &:hover,
+  &:focus {
+    .text {
+      color: #ff751d;
+    }
+  }
+
   background-color: inherit;
   @media screen and (min-width: 768px) {
     position: static;
@@ -50,5 +57,20 @@
     clip-path: inset(100%);
     clip: rect(0 0 0 0);
     overflow: hidden;
+  }
+}
+
+.darkTheme {
+  .text {
+    color: #f0e7e7;
+  }
+
+  .btn_backspace {
+    &:hover,
+    &:focus {
+      .text {
+        color: #ff751d;
+      }
+    }
   }
 }

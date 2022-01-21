@@ -8,8 +8,9 @@ import GraphicComponent from "../../component/GraphicComponent";
 
 import s from "./ReportPage.module.scss";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { getPeriodData } from "../../redux/user/user-operations";
+import { ThemeContext, themes } from "../../context/themeContext";
 //
 
 const ReportPage = () => {
@@ -17,11 +18,11 @@ const ReportPage = () => {
   const [reportGraphObj, setReportGraphObj] = useState({});
 
   const balance = useSelector((state) => state.auth?.user?.balance);
-  const date = useSelector(
-    (state) => state.transactions.date
-  );
-  
-  const normalizedDate = (date.slice(0, 7));
+  const date = useSelector((state) => state.transactions.date);
+
+  const { theme } = useContext(ThemeContext);
+
+  const normalizedDate = date.slice(0, 7);
 
   const getGraphObj = (obj) => {
     setReportGraphObj(obj);
@@ -36,7 +37,11 @@ const ReportPage = () => {
   }, [dispatch]);
   return (
     <>
-      <section className={`${s.reportInfo_section} background`}>
+      <section
+        className={`${s.reportInfo_section} background ${
+          theme === themes.light ? "lightTheme" : s.darkTheme
+        }`}
+      >
         <div className={s.wrap}>
           <div className={s.backgroundTest}>
             <div className={s.report_head_wrap}>
