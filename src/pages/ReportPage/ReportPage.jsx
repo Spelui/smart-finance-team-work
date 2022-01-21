@@ -15,11 +15,21 @@ import { getPeriodData } from "../../redux/user/user-operations";
 const ReportPage = () => {
   const [reportTitle, setReportTitle] = useState("расходы");
   const [reportGraphObj, setReportGraphObj] = useState({});
+  const [categoryName, setCategoryName] = useState("");
 
   const balance = useSelector((state) => state.auth?.user?.balance);
 
-  const getGraphObj = (obj) => {
+  const getGraphObj = (obj, name) => {
     setReportGraphObj(obj);
+    setCategoryName(name);
+    window.scrollTo({
+      top: document.documentElement.scrollHeight,
+      behavior: "smooth",
+    });
+    // window.scrollBy({
+    //   top: cardHeight * 2,
+    //   behavior: "smooth",
+    // });
   };
 
   const reportTitleChange = () => {
@@ -32,33 +42,31 @@ const ReportPage = () => {
   return (
     <>
       <section className={`${s.reportInfo_section} background`}>
-        <div className={s.wrap}>
-          <div className={s.backgroundTest}>
-            <div className={s.report_head_wrap}>
-              <CurrentPeriod />
-              <div className={s.reportBalance_wrap}>
-                <span className={s.balanceText}>Баланс:</span>
-                <span className={s.balanceNumber}>{`${balance}.00`} uah</span>
-              </div>
-              <BackspaceBtn />
+        <div className={s.backgroundTest}>
+          <div className={s.report_head_wrap}>
+            <CurrentPeriod />
+            <div className={s.reportBalance_wrap}>
+              <span className={s.balanceText}>Баланс:</span>
+              <span className={s.balanceNumber}>{`${balance}.00`} uah</span>
             </div>
-            <ReportInfo />
-            <div className={s.section_categories}>
-              <div className={s.report_switch_wrap}>
-                <ReportSwitcher
-                  reportTitle={reportTitle}
-                  change={reportTitleChange}
-                />
-                <CategoryList
-                  reportTitle={reportTitle}
-                  setGraphObj={getGraphObj}
-                />
-              </div>
+            <BackspaceBtn />
+          </div>
+          <ReportInfo />
+          <div className={s.section_categories}>
+            <div className={s.report_switch_wrap}>
+              <ReportSwitcher
+                reportTitle={reportTitle}
+                change={reportTitleChange}
+              />
+              <CategoryList
+                reportTitle={reportTitle}
+                setGraphObj={getGraphObj}
+              />
             </div>
           </div>
-          <div className={s.graph_dependency_wrap}>
-            <GraphicComponent obj={reportGraphObj} />
-          </div>
+        </div>
+        <div className={s.graph_dependency_wrap}>
+          <GraphicComponent obj={reportGraphObj} categoryName={categoryName} />
         </div>
       </section>
     </>

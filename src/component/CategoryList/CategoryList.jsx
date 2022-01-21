@@ -17,7 +17,6 @@ const CategoryList = ({ reportTitle, setGraphObj }) => {
     expenseObj === undefined ? [] : Object.values(expenseObj);
   const expenseListTitles =
     expenseObj === undefined ? [] : Object.keys(expenseObj);
-  console.log("expenseListValues :>> ", expenseListValues);
 
   return (
     <ul className={s.list}>
@@ -28,7 +27,7 @@ const CategoryList = ({ reportTitle, setGraphObj }) => {
                 key={index}
                 className={s.item}
                 onClick={() => {
-                  setGraphObj(item);
+                  setGraphObj(item, incomesListTitles[index]);
                 }}
               >
                 <span>{`${item.total}.00`}</span>
@@ -47,7 +46,7 @@ const CategoryList = ({ reportTitle, setGraphObj }) => {
               <li
                 key={index}
                 className={s.item}
-                onClick={() => setGraphObj(item)}
+                onClick={() => setGraphObj(item, expenseListTitles[index])}
               >
                 <span>{`${item.total}.00`}</span>
                 <div className={s.link}>
