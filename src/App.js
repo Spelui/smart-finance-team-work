@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 
 import { authOperations, authSelectors } from "./redux/auth";
 import { ThemeContext, themes } from "./context/themeContext";
@@ -13,9 +13,12 @@ import { AuthPage } from "./pages/AuthPage/AuthPage.jsx";
 import ReportPage from "./pages/ReportPage/ReportPage";
 //import OnLoader from "./component/OnLoader";
 import TransactionPage from "./pages/TransactionPage/TransactionPage";
+import { HomePage } from "./pages/HomePage/HomePage";
 
 const App = () => {
-  const [theme, setTheme] = useState(themes.light);
+  const [theme, setTheme] = useState(
+    () => localStorage.getItem("theme") ?? themes.light
+  );
 
   const dispatch = useDispatch();
   const isFetchingCurrentUser = useSelector(authSelectors.getIsFetchingCurrent);
@@ -39,6 +42,10 @@ const App = () => {
     };
   }, [dispatch, isLoggedIn]);
 
+  useEffect(() => {
+    localStorage.setItem("theme", theme);
+  }, [theme]);
+
   const toggleTheme = () =>
     setTheme((prevTheme) =>
       prevTheme === themes.light ? themes.dark : themes.light
@@ -56,6 +63,7 @@ const App = () => {
                 path="/"
                 element={
                   <PublickRoute restricted redirectTo="/transaction">
+                    {/* /homepage/expense */}
                     <AuthPage />
                   </PublickRoute>
                 }

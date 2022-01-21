@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useSelector } from "react-redux";
 import s from "./CategoryList.module.scss";
 import { categories, incomes } from "./categoriesIcons";
 import amount from "../../redux/user/user-selectors";
+import { ThemeContext, themes } from "../../context/themeContext";
 
 const CategoryList = ({ reportTitle, setGraphObj }) => {
   const incomesObj = useSelector(amount.payment);
   const expenseObj = useSelector(amount.expenses);
+  const { theme } = useContext(ThemeContext);
 
   const incomesListValues =
     incomesObj === undefined ? [] : Object.values(incomesObj);
@@ -20,7 +22,11 @@ const CategoryList = ({ reportTitle, setGraphObj }) => {
   console.log("expenseListValues :>> ", expenseListValues);
 
   return (
-    <ul className={s.list}>
+    <ul
+      className={`${s.list} ${
+        theme === themes.light ? "lightTheme" : s.darkTheme
+      }`}
+    >
       {reportTitle === "доходы"
         ? incomesListValues.map((item, index) => {
             return (

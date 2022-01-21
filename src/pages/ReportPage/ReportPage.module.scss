@@ -121,3 +121,20 @@
   height: 470px;
   width: calc(100vw - 30px);
 }
+
+.darkTheme {
+  background-color: #1f2022;
+
+  .balanceText {
+    color: #f0e7e7;
+  }
+
+  .balanceNumber {
+    background-color: #757781;
+    color: #f0e7e7;
+  }
+
+  .report_switch_wrap {
+    background-color: #757781;
+  }
+}
