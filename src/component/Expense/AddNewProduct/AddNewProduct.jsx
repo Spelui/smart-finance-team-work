@@ -14,7 +14,7 @@ const AddNewProduct = () => {
   const [description, setDescription] = useState("");
   const [amount, setAmount] = useState("");
   const [category, setCategory] = useState("");
-  // const [disabledBtn, setDisabledBtn] = useState(true);
+  const [disabledBtn, setDisabledBtn] = useState(true);
   const dispatch = useDispatch();
   const categoriesExpense = useSelector(
     (state) => state.transactions.categoriesExpense
@@ -34,24 +34,28 @@ const AddNewProduct = () => {
     setAmount("");
     setDescription("");
     setCategory("");
-    // setDisabledBtn(true)
+    setDisabledBtn(true)
   };
 
 
 
 
   const handleInputChange = (e) => {
-  //     if (description.length > 0 && category !==""){
-  //     setDisabledBtn(false)
-  // }
-    const { name, value } = e.currentTarget;
+      if (description.length !== 0 && category !== "" ){
+      setDisabledBtn(false)
+    }
+    
+    // const { name, value } = e.currentTarget;
+    const { name, value } = e.target;
     switch (name) {
       case "product":
         return setDescription(value);
       case "price":
         return setAmount(value);
-      // case "category":
-      //   return setCategory(value);
+      case "category":
+        return setCategory(value);
+      default:
+        return;
     }
   };
   
@@ -59,8 +63,8 @@ const AddNewProduct = () => {
   
   const handleSubmit = (e) => {
     e.preventDefault();
-if (description === "" || amount === 0 || category === "")
-      return;
+// if (description === "" || amount === 0 || category === "")
+//       return;
     const newOperation = {
       category,
       description,
@@ -70,12 +74,13 @@ if (description === "" || amount === 0 || category === "")
 
     dispatch(addExpense(newOperation)).then(() => dispatch(getExpense()));
     handleBtnClear();
-    // setDisabledBtn(true)
+    setDisabledBtn(true)
   };
 
-  const handleChange = (event) => {
-    setCategory(event.target.value);
-  };
+  // const handleChange = (event) => {
+  //   setCategory(event.target.value);
+    
+  // };
 
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
@@ -92,7 +97,7 @@ if (description === "" || amount === 0 || category === "")
           minLength="3"
           size="20"
           required
-                    pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+          pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
 
         />
         <select
@@ -100,7 +105,7 @@ if (description === "" || amount === 0 || category === "")
           value={category}
           label="Category"
           name="category"
-          onChange={handleChange}
+          onChange={handleInputChange}
           required
         >
           <option value="">Категория товара</option>
@@ -131,7 +136,7 @@ if (description === "" || amount === 0 || category === "")
         />
       </div>
       <div className={styles.AddNewProductBtmDiv}>
-        <button type="submit" className={styles.AddNewProductBtm}>
+        <button type="submit" disabled={ disabledBtn} className={styles.AddNewProductBtm}>
           <span className={styles.AddNewProductBtmSpan}>ВВОД</span>
         </button>
         <button

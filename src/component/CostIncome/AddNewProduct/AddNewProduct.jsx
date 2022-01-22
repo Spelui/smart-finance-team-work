@@ -18,6 +18,8 @@ const AddNewProduct = () => {
   const date = useSelector(
   (state) => state.transactions.date
   );
+  const [disabledBtn, setDisabledBtn] = useState(true);
+
 
   useEffect(() => {
     dispatch(getCategories());
@@ -28,16 +30,22 @@ const AddNewProduct = () => {
     setAmount("");
     setDescription("");
     setCategory("");
+    setDisabledBtn(true)
+
   };
 
   const handleInputChange = (e) => {
-
+  if (description.length !== 0 && category !== "" ){
+      setDisabledBtn(false)
+    }
     const { name, value } = e.currentTarget;
     switch (name) {
       case "product":
         return setDescription(value);
       case "price":
         return setAmount(value);
+      default:
+        return;
     }
   };
 
@@ -59,6 +67,8 @@ const AddNewProduct = () => {
 
     dispatch(addIncome(newOperation)).then(() => dispatch(getIncome()));
     handleBtnClear();
+    setDisabledBtn(true)
+
   };
 
   return (
@@ -116,7 +126,7 @@ const AddNewProduct = () => {
         />
       </div>
       <div className={styles.AddNewProductBtmDiv}>
-        <button type="submit" className={styles.AddNewProductBtm}>
+        <button type="submit" disabled={ disabledBtn} className={styles.AddNewProductBtm}>
           <span className={styles.AddNewProductBtmSpan}>ВВОД</span>
         </button>
         <button
