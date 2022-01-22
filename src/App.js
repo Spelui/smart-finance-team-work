@@ -62,17 +62,25 @@ const App = () => {
               <Route
                 path="/"
                 element={
-                  <PublickRoute restricted redirectTo="/transaction">
+                  <PublickRoute restricted redirectTo="/homepage/expense">
                     {/* /homepage/expense */}
                     <AuthPage />
                   </PublickRoute>
                 }
               />
               <Route
-                path="/transaction/*"
+                path="/homepage"
                 element={
                   <PrivateRoute>
-                    <TransactionPage />
+                    <HomePage />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path="/homepage/*"
+                element={
+                  <PrivateRoute>
+                    <HomePage />
                   </PrivateRoute>
                 }
               />

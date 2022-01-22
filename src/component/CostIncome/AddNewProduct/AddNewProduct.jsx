@@ -15,9 +15,7 @@ const AddNewProduct = () => {
   const [category, setCategory] = useState("");
   const dispatch = useDispatch();
   const categories = useSelector((state) => state.transactions.categories);
-   const date = useSelector(
-    (state) => state.transactions.date
-  );
+  const date = useSelector((state) => state.transactions.date);
 
   useEffect(() => {
     dispatch(getCategories());
@@ -32,6 +30,7 @@ const AddNewProduct = () => {
 
   const handleInputChange = (e) => {
     const { name, value } = e.currentTarget;
+    // eslint-disable-next-line default-case
     switch (name) {
       case "product":
         return setDescription(value);
@@ -76,7 +75,6 @@ const AddNewProduct = () => {
           size="20"
           required
           pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-
         />
         <select
           className={styles.formSelect}
