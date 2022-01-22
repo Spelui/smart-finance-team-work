@@ -5,17 +5,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { deleteIncom } from "../../../redux/transactions/transactionsOperation";
 import { useState, useEffect } from "react";
 import { getIncome } from "../../../redux/transactions/transactionsOperation.js";
-import Modal from '../../Modal/Modal'
+import Modal from "../../Modal/Modal";
 
 const CostIncomeItem = () => {
   const dispatch = useDispatch();
   const incomes = useSelector((state) => state.transactions.items);
   const [isOpenedModal, setisOpenedModal] = useState(false);
-  const [deleteId, setDeleteId] = useState('');
-    const selectedDate = useSelector(
-    (state) => state.transactions.date
-  );
-  
+  const [deleteId, setDeleteId] = useState("");
+  const selectedDate = useSelector((state) => state.transactions.date);
+
   useEffect(() => {
     dispatch(getIncome());
   }, [dispatch]);
@@ -26,16 +24,19 @@ const CostIncomeItem = () => {
   };
 
   const closeModal = () => {
-    setisOpenedModal(false)
-    setDeleteId("")
-  };
-  const openModal = (id) => {
-    setisOpenedModal(true)
-    setDeleteId(id)
+    setisOpenedModal(false);
+    setDeleteId("");
   };
 
-  const filterForDate = () => 
-  incomes?.filter(({ _id, category, date, amount, description }) =>date === selectedDate)
+  const openModal = (id) => {
+    setisOpenedModal(true);
+    setDeleteId(id);
+  };
+
+  const filterForDate = () =>
+    incomes?.filter(
+      ({ _id, category, date, amount, description }) => date === selectedDate
+    );
 
   return (
     <>
@@ -53,14 +54,14 @@ const CostIncomeItem = () => {
           <img src={Delete} alt="" width="18" onClick={() => openModal(_id)} />
         </div>
       ))}
-      {isOpenedModal &&(
+      {isOpenedModal && (
         <Modal
           title="Вы уверены?"
           onClose={closeModal}
           onDelete={onDelete}
-          deleteId ={deleteId}
+          deleteId={deleteId}
         />
-        )}
+      )}
     </>
   );
 };

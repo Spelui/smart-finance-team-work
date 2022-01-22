@@ -1,24 +1,16 @@
-// import React from 'react';
-// import { useMediaQuery } from 'react-responsive'
-// import sprite from '../../images/sprite.svg'
-// import Balance from '../../component/Balance'
-// import Calendar from '../../component/Calendar/Calendar'
+import React from "react";
+import { Decstop } from "./Decstop/Decstop";
+import { useMediaQuery } from "react-responsive";
 
-// import  {Mobile}  from './Mobile/Mobile';
+import { Mobile } from "./Mobile/Mobile";
 
-// import s from "./HomePage.module.scss";
+import s from "./HomePage.module.scss";
 
-// export const HomePage = () => {
-
-//     const isMobile = useMediaQuery({ minWidth: 320, maxWidth: 767 })
-
-//     return (
-//         <section className="background">
-//             <div className="container">
-//                 {isMobile && <Mobile/>}
-//             </div>
-        
-//         </section>
-//     );
-// };
-
+export const HomePage = () => {
+  const isMobile = useMediaQuery({ minWidth: 320, maxWidth: 767 });
+  return (
+    <section className={`background ${s.home}`}>
+      <div className="container">{isMobile ? <Mobile /> : <Decstop />}</div>
+    </section>
+  );
+};

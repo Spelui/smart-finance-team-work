@@ -15,11 +15,8 @@ const AddNewProduct = () => {
   const [category, setCategory] = useState("");
   const dispatch = useDispatch();
   const categories = useSelector((state) => state.transactions.categories);
-  const date = useSelector(
-  (state) => state.transactions.date
-  );
+  const date = useSelector((state) => state.transactions.date);
   const [disabledBtn, setDisabledBtn] = useState(true);
-
 
   useEffect(() => {
     dispatch(getCategories());
@@ -30,15 +27,15 @@ const AddNewProduct = () => {
     setAmount("");
     setDescription("");
     setCategory("");
-    setDisabledBtn(true)
-
+    setDisabledBtn(true);
   };
 
   const handleInputChange = (e) => {
-  if (description.length !== 0 && category !== "" ){
-      setDisabledBtn(false)
+    if (description.length !== 0 && category !== "") {
+      setDisabledBtn(false);
     }
     const { name, value } = e.currentTarget;
+    // eslint-disable-next-line default-case
     switch (name) {
       case "product":
         return setDescription(value);
@@ -46,7 +43,6 @@ const AddNewProduct = () => {
         return setAmount(value);
       default:
         return;
-
     }
   };
 
@@ -56,8 +52,7 @@ const AddNewProduct = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (description === "" || amount === 0 || category === "")
-      return;
+    if (description === "" || amount === 0 || category === "") return;
 
     const newOperation = {
       category,
@@ -68,8 +63,7 @@ const AddNewProduct = () => {
 
     dispatch(addIncome(newOperation)).then(() => dispatch(getIncome()));
     handleBtnClear();
-    setDisabledBtn(true)
-
+    setDisabledBtn(true);
   };
 
   return (
@@ -88,7 +82,6 @@ const AddNewProduct = () => {
           size="20"
           required
           pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-
         />
         <select
           className={styles.formSelect}
@@ -127,7 +120,11 @@ const AddNewProduct = () => {
         />
       </div>
       <div className={styles.AddNewProductBtmDiv}>
-        <button type="submit" disabled={ disabledBtn} className={styles.AddNewProductBtm}>
+        <button
+          type="submit"
+          disabled={disabledBtn}
+          className={styles.AddNewProductBtm}
+        >
           <span className={styles.AddNewProductBtmSpan}>ВВОД</span>
         </button>
         <button
