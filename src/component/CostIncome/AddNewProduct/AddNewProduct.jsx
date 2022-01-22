@@ -46,6 +46,7 @@ const AddNewProduct = () => {
         return setAmount(value);
       default:
         return;
+
     }
   };
 

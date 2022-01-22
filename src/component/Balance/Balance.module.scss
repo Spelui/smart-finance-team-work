@@ -15,6 +15,7 @@
   }
 
   &__title {
+    padding-bottom: 6px;
     color: rgba(82, 85, 95, 0.7);
     letter-spacing: 0.02em;
 
@@ -28,6 +29,7 @@
   }
 
   &__input {
+    width: 125px;
     padding: 15px 17px 15px 23px;
     border: 2px solid #ffffff;
     border-right: none;
@@ -35,6 +37,11 @@
     border-radius: 22px 0px 0px 22px;
     font-weight: 700;
     text-transform: uppercase;
+    text-align: center;
+
+    &::placeholder {
+      color: #000000;
+    }
 
     @media screen and (min-width: 768px) {
       width: 125px;
@@ -45,7 +52,8 @@
     }
   }
 
-  &__btn {
+  &__activebtn {
+    width: 125px;
     color: rgba(82, 85, 95, 0.7);
     letter-spacing: 0.02em;
     text-transform: uppercase;
@@ -59,6 +67,23 @@
       background-color: #ff751d;
       color: #ffffff;
     }
+
+    @media screen and (min-width: 768px) {
+      padding: 12px 18px;
+      border-radius: 16px;
+    }
+  }
+
+  &__disabledbtn {
+    width: 125px;
+    color: rgba(82, 85, 95, 0.7);
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    padding: 12px 17px;
+    border: 2px solid #ffffff;
+    border-radius: 0px 22px 22px 0px;
+    background: transparent;
+    cursor: default;
 
     @media screen and (min-width: 768px) {
       padding: 12px 18px;

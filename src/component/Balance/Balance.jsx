@@ -37,10 +37,10 @@ const Balance = () => {
           disabled
           className={s.balance__input}
           type="text"
-          placeholder={`${balance || '00.00'} UAH`}
+            placeholder={`${balance || '00.00'} UAH`}
         />
         }
-        {mustBeShown && <button onClick={clickHandle} type='button' className={s.balance__btn}>Подтвердить</button>}
+        {mustBeShown ? <button onClick={clickHandle} type='button' className={s.balance__activebtn}>Подтвердить</button> : <button onClick={clickHandle} type='button' className={s.balance__disabledbtn} disabled>Подтвердить</button>}
       </form>
     </div>
   );
