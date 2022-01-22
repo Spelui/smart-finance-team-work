@@ -97,7 +97,13 @@ const TransactionForm = () => {
           pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
         />
 
-        <select className={`${s.select}`} onChange={handleChange}>
+        <select
+          className={`${s.select}`}
+          onChange={handleChange}
+          value={category}
+          name="category"
+          required
+        >
           <option value="hide">Категория дохода</option>
           {(isExpense ? categoriesExpense : categories).map((categorie) => (
             <option key={categorie} value={categorie}>

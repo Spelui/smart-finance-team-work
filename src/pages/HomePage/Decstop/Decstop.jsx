@@ -1,11 +1,13 @@
 import { Routes, Route, Link } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { useContext } from "react";
 
 import Balance from "../../../component/Balance";
 import HeaderTransaction from "../../../component/HeaderTransaction/HeaderTransaction";
 import TransactionForm from "../../../component/TransactionForm/TransactionForm";
 import TransactionTable from "../../../component/TransactionTable/TransactionTable";
 import Summary from "../../../component/Summary/Summary";
+import { ThemeContext, themes } from "../../../context/themeContext";
 
 import sprite from "../../../images/sprite.svg";
 import s from "./Decstop.module.scss";
@@ -13,11 +15,12 @@ import st from "../../../component/Summary/Summary.module.scss";
 
 export const Decstop = () => {
   const userMonth = useSelector((state) => state.transactions.month);
+  const { theme } = useContext(ThemeContext);
 
   const date = new Date();
   const monthNow = date.getMonth() + 1;
   return (
-    <>
+    <div className={theme === themes.light ? "lightTheme" : s.darkTheme}>
       <div className={s.header}>
         <Balance />
 
@@ -59,6 +62,6 @@ export const Decstop = () => {
       </div>
 
       <Summary />
-    </>
+    </div>
   );
 };

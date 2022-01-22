@@ -10,6 +10,8 @@
   .report {
     display: flex;
     align-items: center;
+    letter-spacing: 0.04em;
+    color: rgba(82, 85, 95, 0.7);
 
     @media screen and (min-width: 1280px) {
       margin-left: 23%;
@@ -48,5 +50,15 @@
   }
   @media screen and (min-width: 1280px) {
     display: block;
+  }
+}
+
+.darkTheme {
+  .report {
+    color: #f0e7e7;
+  }
+
+  .chart {
+    background: #252529;
   }
 }
