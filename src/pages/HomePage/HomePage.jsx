@@ -10,10 +10,7 @@ export const HomePage = () => {
   const isMobile = useMediaQuery({ minWidth: 320, maxWidth: 767 });
   return (
     <section className={`background ${s.home}`}>
-      <div className="container">
-        {isMobile && <Mobile />}
-        <Decstop />
-      </div>
+      <div className="container">{isMobile ? <Mobile /> : <Decstop />}</div>
     </section>
   );
 };
