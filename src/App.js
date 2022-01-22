@@ -59,58 +59,60 @@ const App = () => {
         {!isFetchingCurrentUser && (
           <>
             {/*<OnLoader />*/}
-            <Routes>
-              <Route
-                path="/"
-                element={
-                  <PublickRoute restricted redirectTo="/homepage/expense">
-                    {/* /homepage/expense */}
-                    <AuthPage />
-                  </PublickRoute>
-                }
-              />
-              <Route
-                path="/homepage"
-                element={
-                  <PrivateRoute>
-                    <HomePage />
-                  </PrivateRoute>
-                }
-              />
-              <Route
-                path="/homepage/*"
-                element={
-                  <PrivateRoute>
-                    <HomePage />
-                  </PrivateRoute>
-                }
-              />
-              <Route
-                path="/report"
-                element={
-                  <PrivateRoute>
-                    <ReportPage />
-                  </PrivateRoute>
-                }
-              />
+            {!isRefreshing && (
+              <Routes>
+                <Route
+                  path="/"
+                  element={
+                    <PublickRoute restricted redirectTo="/homepage/expense">
+                      {/* /homepage/expense */}
+                      <AuthPage />
+                    </PublickRoute>
+                  }
+                />
+                <Route
+                  path="/homepage"
+                  element={
+                    <PrivateRoute>
+                      <HomePage />
+                    </PrivateRoute>
+                  }
+                />
+                <Route
+                  path="/homepage/*"
+                  element={
+                    <PrivateRoute>
+                      <HomePage />
+                    </PrivateRoute>
+                  }
+                />
+                <Route
+                  path="/report"
+                  element={
+                    <PrivateRoute>
+                      <ReportPage />
+                    </PrivateRoute>
+                  }
+                />
 
-              <Route
-                path="/add-expense"
-                element={
-                  <PrivateRoute>
-                    <MobileForm transaction="expense" />
-                  </PrivateRoute>
-                }
-              />
-              <Route
-                path="/add-income"
-                element={
-                  <PrivateRoute>
-                    <MobileForm transaction="income" />
-                  </PrivateRoute>
-                }
-              />
-            </Routes>
+                <Route
+                  path="/add-expense"
+                  element={
+                    <PrivateRoute>
+                      <MobileForm transaction="expense" />
+                    </PrivateRoute>
+                  }
+                />
+                <Route
+                  path="/add-income"
+                  element={
+                    <PrivateRoute>
+                      <MobileForm transaction="income" />
+                    </PrivateRoute>
+                  }
+                />
+              </Routes>
+            )}
           </>
         )}
       </div>
