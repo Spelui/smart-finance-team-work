@@ -61,3 +61,17 @@
   height: 60px;
   background-color: #e0e5eb;
 }
+
+.text {
+  margin-bottom: 3px;
+}
+
+.darkTheme {
+  .costIncomes_report {
+    background-color: #757781;
+  }
+
+  .text {
+    color: #f0e7e7;
+  }
+}
