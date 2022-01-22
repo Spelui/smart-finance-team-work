@@ -14,6 +14,7 @@ import ReportPage from "./pages/ReportPage/ReportPage";
 //import OnLoader from "./component/OnLoader";
 import TransactionPage from "./pages/TransactionPage/TransactionPage";
 import { HomePage } from "./pages/HomePage/HomePage";
+import { MobileForm } from "./pages/HomePage/MobileForm/MobileForm";
 
 const App = () => {
   const [theme, setTheme] = useState(
@@ -34,7 +35,7 @@ const App = () => {
 
       secondTimerId = setInterval(() => {
         dispatch(authOperations.refreshTokens());
-      }, 900000);
+      }, 600000);
     }
 
     return () => {
@@ -89,6 +90,23 @@ const App = () => {
                 element={
                   <PrivateRoute>
                     <ReportPage />
+                  </PrivateRoute>
+                }
+              />
+
+              <Route
+                path="/add-expense"
+                element={
+                  <PrivateRoute>
+                    <MobileForm transaction="expense" />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path="/add-income"
+                element={
+                  <PrivateRoute>
+                    <MobileForm transaction="income" />
                   </PrivateRoute>
                 }
               />

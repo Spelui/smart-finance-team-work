@@ -9,8 +9,7 @@ import Close from "./Close.svg";
 const modalRootRef = document.querySelector('#modal-root');
 
 const Modal = ({ onClose, title, onDelete, deleteId }) => {
-console.log("Modal ~ deleteId", deleteId)
-console.log("Modal ~ onDelete", onDelete)
+
   useLockBodyScroll(true);
 
   useEffect(() => {
