@@ -37,7 +37,7 @@ const transactionSlice = createSlice({
       })
       .addCase(addIncome.fulfilled, (state, action) => ({
         ...state,
-        items: [action.payload.transaction, ...state.items],
+        items: [...state.items, action.payload.transaction],
       }))
 
       .addCase(getCategories.fulfilled, (state, action) => ({
@@ -56,7 +56,7 @@ const transactionSlice = createSlice({
       })
       .addCase(addExpense.fulfilled, (state, action) => ({
         ...state,
-        itemsExpense: [action.payload.transaction, ...state.itemsExpense],
+        itemsExpense: [...state.itemsExpense, action.payload.transaction],
       }))
 
       .addCase(getCategoriesExpense.fulfilled, (state, action) => ({

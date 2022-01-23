@@ -40,9 +40,6 @@ const TransactionForm = () => {
 
   useEffect(() => {
     isExpense ? dispatch(getCategoriesExpense()) : dispatch(getCategories());
-  }, [dispatch, isExpense]);
-
-  useEffect(() => {
     isExpense ? dispatch(getExpense()) : dispatch(getIncome());
   }, [dispatch, isExpense]);
 

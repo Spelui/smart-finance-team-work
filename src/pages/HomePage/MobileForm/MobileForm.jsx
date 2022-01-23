@@ -14,6 +14,7 @@ export const MobileForm = ({transaction}) => {
   const [description, setDescription] = useState("");
   const [amount, setAmount] = useState("");
   const [category, setCategory] = useState("");
+    const [disabledBtn, setDisabledBtn] = useState(true);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -38,17 +39,22 @@ export const MobileForm = ({transaction}) => {
     setAmount("");
     setDescription("");
     setCategory("");
+    setDisabledBtn(true);
   };
 
   const onChangeInput = (e) => {
     const { name, value } = e.currentTarget;
+    if (description.length !== 0 && category !== "") {
+      setDisabledBtn(false);
+    }
     switch (name) {
       case "product":
         return setDescription(value);
       case "price":
         return setAmount(value);
       
-      default: break;
+      default:
+        return;
     }
   };
 
@@ -58,8 +64,6 @@ export const MobileForm = ({transaction}) => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    if (description === "" || amount === "" || category === "Категория товара")
-      return;
 
     const newOperation = {
       category,
@@ -74,6 +78,7 @@ export const MobileForm = ({transaction}) => {
       dispatch(addExpense(newOperation)).then(() => dispatch(getExpense()));
     }
     resetInputs();
+    setDisabledBtn(true);
     goBackHandler();
   };
 
@@ -136,7 +141,7 @@ export const MobileForm = ({transaction}) => {
         </form>
 
         <div className={s.transactionadd__btnwrapper}>
-          <button className={s.transactionadd__btn} type='button' onClick={submitHandler}>Ввод</button>
+          <button className={s.transactionadd__btn} type='button' onClick={submitHandler} disabled={disabledBtn}>Ввод</button>
           <button className={s.transactionadd__btn} type='button' onClick={()=> resetInputs()}>Очистить</button>
         </div>
       </div>

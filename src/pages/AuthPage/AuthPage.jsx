@@ -1,5 +1,4 @@
-import React from "react";
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { authOperations } from "../../redux/auth";
 import { ThemeContext, themes } from "../../context/themeContext";
@@ -38,6 +37,9 @@ export const AuthPage = () => {
     setEmail("");
     setPassword("");
   };
+
+
+
 
   return (
     <section

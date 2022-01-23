@@ -3,9 +3,15 @@ import { Routes, Route, Navigate, NavLink, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { getPeriodData } from "../../../redux/user/user-operations";
-import { getIncome } from '../../../redux/transactions/transactionsOperation';
-import { getExpense } from '../../../redux/transactions/transactionsOperation';
 
+import {
+  getExpense,
+  getIncome,
+  deleteIncom,
+  deleteExpense,
+} from "../../../redux/transactions/transactionsOperation";
+
+import Modal from "../../../component/Modal/Modal";
 import Balance from '../../../component/Balance';
 import CalendarNew from '../../../component/Calendar/Calendar';
 
@@ -14,6 +20,8 @@ import s from './Mobile.module.scss'
 
 export const Mobile = () => {
     const dispatch = useDispatch();
+    const [isOpenedModal, setisOpenedModal] = useState(false);
+    const [deleteId, setDeleteId] = useState("");
 
     const incomes = useSelector((state) => state.transactions.items);
     const expenses = useSelector((state) => state.transactions.itemsExpense);
@@ -39,6 +47,22 @@ export const Mobile = () => {
     }
 
     const filteredDate = filterDate();
+
+    const onDelete = (id) => () => {
+        dispatch(deleteExpense(id)).then(() => dispatch(getExpense()))
+        dispatch(deleteIncom(id)).then(() => dispatch(getIncome()));
+        closeModal();   
+     };
+
+    const closeModal = () => {
+    setisOpenedModal(false);
+    setDeleteId("");
+  };
+
+    const openModal = (id) => {
+    setisOpenedModal(true);
+    setDeleteId(id);
+  };
     
     return (
         <>
@@ -61,17 +85,17 @@ export const Mobile = () => {
                             {filteredDate.map(({ _id, category, date, amount, description }) => {
                                 const isIncome = (category === "З/П" || category === "Доп. доход");
                                 return <li key={_id} className={s.transactions__item}>
-                                    <div className={s.transactions__leftpart}>
-                                        <p className={s.transactions__description}>{description}</p>
-                                        <p className={s.transactions__date}>{date}</p>
-                                    </div>
-                                    <p className={s.transactions__category}>{category}</p>
-                                    <div className={s.transactions__rightpart}>
-                                        <p style={{color: isIncome ? '#407946' : '#E7192E'}} className={s.transactions__amount}>{isIncome ? amount : `- ${amount}`} грн.</p>
-                                        <svg width='15px' height='18px' className={s.heroTitle}>
-                                            <use  href={`${sprite}#delete-icon`}></use>
-                                        </svg>
-                                    </div>
+                                            <div className={s.transactions__leftpart}>
+                                                <p className={s.transactions__description}>{description}</p>
+                                                <p className={s.transactions__date}>{date}</p>
+                                            </div>
+                                            <p className={s.transactions__category}>{category}</p>
+                                            <div className={s.transactions__rightpart}>
+                                                <p style={{color: isIncome ? '#407946' : '#E7192E'}} className={s.transactions__amount}>{isIncome ? amount : `- ${amount}`} грн.</p>
+                                                <svg width='15px' height='18px' className={s.heroTitle} onClick={() => openModal(_id)}>
+                                                    <use  href={`${sprite}#del`}></use>
+                                                </svg>
+                                            </div>
                                 </li>;
                             })}
                         </ul>
@@ -82,6 +106,14 @@ export const Mobile = () => {
                     </div>
                 </div>
             </div>
+            {isOpenedModal && (
+            <Modal
+                title="Вы уверены?"
+                onClose={closeModal}
+                onDelete={onDelete}
+                deleteId={deleteId}
+            />
+      )}
         </>
     );
 };
