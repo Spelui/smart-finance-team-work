@@ -9,28 +9,24 @@ import {
 } from "../../redux/transactions/transactionsOperation";
 import { ThemeContext, themes } from "../../context/themeContext";
 import { utils } from "../../utils";
-
-const CurrentPeriod = ({ date, monthsStat }) => {
+// { date, monthsStat }
+const CurrentPeriod = () => {
+  const date = useSelector((state) => state.transactions.date);
   const dispatch = useDispatch();
   const { theme } = useContext(ThemeContext);
   const [currentDate, setCurrentDate] = useState(date.slice(0, 7));
+
   const [i, setI] = useState(0);
-  const beginDate = utils.transDate();
+  const incomes = useSelector((state) => state.transactions.items);
+  const expenses = useSelector((state) => state.transactions.itemsExpense);
 
-  const getYear = date.slice(0, 4);
+  const dates = utils.convertDate(incomes, expenses);
+  const convertMonths = utils.transformCurrentDate(
+    dates.map((item) => item.slice(-2))
+  );
+  const getYears = dates.map((item) => item.slice(0, 4));
 
-  const availableMonthsDate = Object.entries(monthsStat)
-    .map(([name, value], index) => ({
-      date: `${utils.normalizeDate(
-        new Date(`${getYear}-${index + 1 < 12 ? index + 1 : 12}`)
-      )}`,
-      name,
-      value,
-    }))
-    .filter(({ value }) => value > 0)
-    .map(({ name, date }) => ({ name, date: date.slice(0, 7) }));
-
-  const keys = availableMonthsDate;
+  const beginDate = dates.length ? "" : utils.transDate();
 
   useEffect(() => {
     dispatch(getIncome());
@@ -38,14 +34,23 @@ const CurrentPeriod = ({ date, monthsStat }) => {
     dispatch(getPeriodData(currentDate));
   }, [currentDate, dispatch]);
 
-  const change = () => {
+  const prev = () => {
+    setI(i - 1);
+
+    if (i === 0) {
+      setI(dates.length - 1);
+      setCurrentDate(dates[0]);
+    }
+    setCurrentDate(dates[i - 1] ? dates[i - 1] : dates[0]);
+  };
+  const next = () => {
     setI(i + 1);
 
-    if (i === keys.length - 1) {
+    if (i === dates.length - 1) {
       setI(0);
-      setCurrentDate(keys[0].date);
+      setCurrentDate(dates[0]);
     }
-    setCurrentDate(keys[i + 1]?.date ? keys[i + 1]?.date : keys[0].date);
+    setCurrentDate(dates[i + 1] ? dates[i + 1] : dates[0]);
   };
   return (
     <div
@@ -57,24 +62,22 @@ const CurrentPeriod = ({ date, monthsStat }) => {
       <div className={s.current_period_wrap}>
         <button
           type="button"
-          onClick={() => change(i)}
+          onClick={() => prev(i)}
           className={s.current_period_btn}
-          disabled={keys.length ? false : true}
+          disabled={dates.length ? false : true}
         >
           <svg viewBox="0 0 28.3 28.3" className={s.current_period_arrow}>
             <use href={`${sprite}#arrow_left`} />
           </svg>
         </button>
         <span className={s.cost_incomes}>
-          {keys.length
-            ? `${keys[i]?.name} ${keys[i]?.date.slice(0, 4)}`
-            : beginDate}
+          {dates.length ? ` ${convertMonths[i]} ${getYears[i]}` : beginDate}
         </span>
         <button
           type="button"
-          onClick={() => change(i)}
+          onClick={() => next(i)}
           className={s.current_period_btn}
-          disabled={keys.length ? false : true}
+          disabled={dates.length ? false : true}
         >
           <svg viewBox="0 0 28.3 28.3" className={s.current_period_arrow}>
             <use href={`${sprite}#arrow_rigth`} />

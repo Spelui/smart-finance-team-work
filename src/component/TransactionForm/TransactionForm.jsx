@@ -36,7 +36,6 @@ const TransactionForm = () => {
   const { theme } = useContext(ThemeContext);
 
   const [disabledBtn, setDisabledBtn] = useState(true);
-  console.log("~ disabledBtn", disabledBtn);
 
   useEffect(() => {
     isExpense ? dispatch(getCategoriesExpense()) : dispatch(getCategories());

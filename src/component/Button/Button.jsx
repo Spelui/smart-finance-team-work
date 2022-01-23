@@ -9,7 +9,7 @@ const Button = ({
   isDisabled,
 }) => {
   const dis = text === "ОЧИCТИТЬ" ? false : isDisabled;
-  console.log("~ disabled", isDisabled);
+
   return (
     <button
       className={`${s.button} ${className}`}

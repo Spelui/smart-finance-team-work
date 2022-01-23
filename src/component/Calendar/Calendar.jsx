@@ -69,8 +69,8 @@ const CalendarNew = () => {
         <Calendar
           onChange={onChange}
           value={date}
-          maxDate={new Date()}
-          // maxDate={new Date("2022-12-31")}
+          // maxDate={new Date()}
+          maxDate={new Date("2022-12-31")}
           className="react-calendar-style"
         />
       )}
