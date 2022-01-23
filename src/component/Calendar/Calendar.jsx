@@ -42,8 +42,6 @@ const CalendarNew = () => {
     return setShow(!show);
   }
 
-  console.log(utils.transDate());
-
   return (
     <div
       className={`${styles.calendar} ${

@@ -26,7 +26,6 @@ const transDate = (dates = null) => {
   const currentYear = new Date().getFullYear().toString();
   const newDateMonth = new Date().getMonth();
   const transMonts = months.find((item, i) => {
-    console.log("object :>> ", (i + 1).toString().padStart(2, 0));
     return i === newDateMonth;
   });
   return `${transMonts} ${currentYear}`;
