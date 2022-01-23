@@ -17,7 +17,7 @@ const CalendarNew = () => {
   const day = padNum(newDate.getDate());
   const month = padNum(newDate.getMonth() + 1);
   const year = padNum(newDate.getFullYear());
-  const newData = `${year}-${month}-${day}`;
+  // const newData = `${year}-${month}-${day}`;
   const { theme } = useContext(ThemeContext);
   const data = utils.normalizeDate(date);
 
@@ -41,8 +41,6 @@ const CalendarNew = () => {
   function toggleCalendar() {
     return setShow(!show);
   }
-
-  console.log(utils.transDate());
 
   return (
     <div
