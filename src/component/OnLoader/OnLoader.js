@@ -1,21 +1,29 @@
-// import React from 'react';
-// import Loader from 'react-loader-spinner';
-//
-// const OnLoader = () => {
-//     return (
-//         <Loader
-//             style={{
-//                 position: 'absolute',
-//                 top: '50%',
-//                 left: '50%',
-//                 transform: 'translate(-50%, -50%)',
-//             }}
-//             type="Rings"
-//             color="#FFDAC0"
-//             height={100}
-//             width={100}
-//         />
-//     );
-// };
-//
-// export default OnLoader;
+import React from "react";
+
+import s from "./OnLoader.module.scss";
+
+const OnLoader = () => {
+  return (
+    <div class={`${s.loader} ${s.loader_hide}`}>
+      <div class={`${s.loader_inner}`}>
+        <div class={`${s.loader_line_wrap}`}>
+          <div class={`${s.loader_line}`}></div>
+        </div>
+        <div class={`${s.loader_line_wrap}`}>
+          <div class={`${s.loader_line}`}></div>
+        </div>
+        <div class={`${s.loader_line_wrap}`}>
+          <div class={`${s.loader_line}`}></div>
+        </div>
+        <div class={`${s.loader_line_wrap}`}>
+          <div class={`${s.loader_line}`}></div>
+        </div>
+        <div class={`${s.loader_line_wrap}`}>
+          <div class={`${s.loader_line}`}></div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default OnLoader;

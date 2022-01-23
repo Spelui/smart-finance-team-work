@@ -1,3 +1,4 @@
+// import { useSelector } from "react-redux";
 import PropTypes from "prop-types";
 import s from "./Button.module.scss";
 
@@ -8,8 +9,8 @@ const Button = ({
   className,
   isDisabled,
 }) => {
+  // const loader = useSelector((state) => state.transactions.onload);
   const dis = text === "ОЧИCТИТЬ" ? false : isDisabled;
-  console.log("~ disabled", isDisabled);
   return (
     <button
       className={`${s.button} ${className}`}
