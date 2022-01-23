@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getCategories, getCategoriesExpense, getIncome, getExpense, addExpense, addIncome } from '../../../redux/transactions/transactionsOperation';
+import { authOperations } from '../../../redux/auth';
 
 import sprite from '../../../images/sprite.svg'
 import s from './MobileForm.module.scss'
@@ -14,6 +15,7 @@ export const MobileForm = ({transaction}) => {
   const [description, setDescription] = useState("");
   const [amount, setAmount] = useState("");
   const [category, setCategory] = useState("");
+    const [disabledBtn, setDisabledBtn] = useState(true);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -38,17 +40,25 @@ export const MobileForm = ({transaction}) => {
     setAmount("");
     setDescription("");
     setCategory("");
+    setDisabledBtn(true);
   };
 
   const onChangeInput = (e) => {
     const { name, value } = e.currentTarget;
+    if (description.length !== 0 && category !== "" && amount > 0) {
+      setDisabledBtn(false);
+    } else {
+      setDisabledBtn(true)
+    }
+
     switch (name) {
       case "product":
         return setDescription(value);
       case "price":
         return setAmount(value);
       
-      default: break;
+      default:
+        return;
     }
   };
 
@@ -58,8 +68,6 @@ export const MobileForm = ({transaction}) => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    if (description === "" || amount === "" || category === "Категория товара")
-      return;
 
     const newOperation = {
       category,
@@ -69,11 +77,12 @@ export const MobileForm = ({transaction}) => {
     };
 
     if (isIncome) {
-      dispatch(addIncome(newOperation)).then(() => dispatch(getIncome()));  
+      dispatch(addIncome(newOperation)).then(() => dispatch(getIncome())).then(()=> dispatch(authOperations.getBalance()));  
     } else {
-      dispatch(addExpense(newOperation)).then(() => dispatch(getExpense()));
+      dispatch(addExpense(newOperation)).then(() => dispatch(getExpense())).then(()=> dispatch(authOperations.getBalance()));
     }
     resetInputs();
+    setDisabledBtn(true);
     goBackHandler();
   };
 
@@ -136,7 +145,7 @@ export const MobileForm = ({transaction}) => {
         </form>
 
         <div className={s.transactionadd__btnwrapper}>
-          <button className={s.transactionadd__btn} type='button' onClick={submitHandler}>Ввод</button>
+          <button className={s.transactionadd__btn} type='button' onClick={submitHandler} disabled={disabledBtn}>Ввод</button>
           <button className={s.transactionadd__btn} type='button' onClick={()=> resetInputs()}>Очистить</button>
         </div>
       </div>

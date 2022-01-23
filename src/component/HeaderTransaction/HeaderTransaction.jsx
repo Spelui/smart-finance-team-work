@@ -11,10 +11,20 @@ const HeaderTransaction = () => {
         theme === themes.light ? "lightTheme" : s.darkTheme
       }`}
     >
-      <NavLink to="expense" className={s.link} exact>
+      <NavLink
+        to="expense"
+        className={({ isActive }) =>
+          isActive ? `${s.link} ${s.active}` : `${s.link}`
+        }
+      >
         РАСХОД
       </NavLink>
-      <NavLink to="income" className={s.link}>
+      <NavLink
+        to="income"
+        className={({ isActive }) =>
+          isActive ? `${s.link} ${s.active}` : `${s.link}`
+        }
+      >
         ДОХОД
       </NavLink>
     </div>

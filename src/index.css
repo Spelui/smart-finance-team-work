@@ -221,8 +221,8 @@ h6 {
   .react-calendar {
     width: 300px;
 
-    top: 245px;
-    left: 50%;
+    top: 85px;
+    left: 30%;
     transform: translate(-50%, 0%) scale(1);
   }
 }
@@ -231,7 +231,7 @@ h6 {
   .react-calendar {
     width: 300px;
 
-    top: 220px;
-    left: 185px;
+    top: 85px;
+    left: 30px;
   }
 }

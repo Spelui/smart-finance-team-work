@@ -2,15 +2,18 @@ import { useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { useLockBodyScroll } from 'react-use';
 import PropTypes from 'prop-types';
+import { useDispatch } from "react-redux";
+import { authOperations } from "../../redux/auth";
 import styles from './Modal.module.css';
 import Close from "./Close.svg";
 
 
 const modalRootRef = document.querySelector('#modal-root');
 
-const Modal = ({ onClose, title, onDelete, deleteId }) => {
+const Modal = ({ onClose, title, onDelete, deleteId, shouldLogOut = false }) => {
 
   useLockBodyScroll(true);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const onEscPress = e => {
@@ -39,7 +42,7 @@ const Modal = ({ onClose, title, onDelete, deleteId }) => {
           <button
             type="button"
             className={styles.btn}
-            onClick={onDelete(deleteId)}
+            onClick={shouldLogOut ? () => dispatch(authOperations.loginOut()) : onDelete(deleteId)}
             //onClick={() => onDelete(deleteId)}
             //onClick={() => console.log(onDelete)}
           >
@@ -60,10 +63,10 @@ const Modal = ({ onClose, title, onDelete, deleteId }) => {
 };
 
 Modal.propTypes = {
-  onClose: PropTypes.func.isRequired,
+  onClose: PropTypes.func,
   title: PropTypes.string.isRequired,
-  onDelete: PropTypes.func.isRequired,
-  deleteId: PropTypes.string.isRequired,
+  onDelete: PropTypes.func,
+  deleteId: PropTypes.string,
 };
 
 export default Modal;

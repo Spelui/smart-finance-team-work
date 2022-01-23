@@ -5,6 +5,7 @@ import { useLocation } from "react-router";
 import Button from "../Button/Button";
 import Calendar from "../Calendar/Calendar";
 import { ThemeContext, themes } from "../../context/themeContext";
+import { authOperations } from "../../redux/auth";
 
 import {
   getExpense,
@@ -39,9 +40,6 @@ const TransactionForm = () => {
 
   useEffect(() => {
     isExpense ? dispatch(getCategoriesExpense()) : dispatch(getCategories());
-  }, [dispatch, isExpense]);
-
-  useEffect(() => {
     isExpense ? dispatch(getExpense()) : dispatch(getIncome());
   }, [dispatch, isExpense]);
 
@@ -54,8 +52,10 @@ const TransactionForm = () => {
 
   const handleInputChange = (e) => {
     const { name, value } = e.currentTarget;
-    if (description.length !== 0 && category !== "") {
+    if (description.length !== 0 && category !== "" && amount > 0) {
       setDisabledBtn(false);
+    } else {
+      setDisabledBtn(true);
     }
     switch (name) {
       case "product":
@@ -82,10 +82,11 @@ const TransactionForm = () => {
     };
 
     isExpense
-      ? dispatch(addExpense(newOperation)).then(() => dispatch(getExpense()))
-      : dispatch(addIncome(newOperation)).then(() => dispatch(getIncome()));
+      ? dispatch(addExpense(newOperation)).then(() => dispatch(getExpense())).then(()=> dispatch(authOperations.getBalance()))
+      : dispatch(addIncome(newOperation)).then(() => dispatch(getIncome())).then(()=> dispatch(authOperations.getBalance()));
     handleBtnClear();
     setDisabledBtn(true);
+    
   };
 
   return (

@@ -13,6 +13,11 @@
     letter-spacing: 0.04em;
     color: rgba(82, 85, 95, 0.7);
 
+    &:hover,
+    &:focus {
+      color: #ff751d;
+    }
+
     @media screen and (min-width: 1280px) {
       margin-left: 23%;
     }
