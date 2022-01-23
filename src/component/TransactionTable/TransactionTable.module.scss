@@ -11,6 +11,8 @@
   background: #f5f6fb;
   padding: 14px 21px;
   border-radius: 20px 20px 0 0;
+  border: 2px solid #f5f6fb;
+  border-bottom: none;
 }
 
 .text {
@@ -31,10 +33,21 @@
 }
 
 .item {
+  position: relative;
   display: flex;
   align-items: center;
-  padding: 2px 0;
+  padding: 14px 0;
   // justify-content: space-between;
+
+  &::after {
+    content: "";
+    position: absolute;
+    left: -20px;
+    bottom: 0;
+    background: #f5f6fb;
+    width: 110%;
+    height: 2px;
+  }
 
   &__category,
   &__sum,
@@ -84,7 +97,7 @@
 
   .list {
     background-color: #1f2022;
-    border-color: #1f2022;
+    border-color: #f5f6fb;
   }
 
   .item {
