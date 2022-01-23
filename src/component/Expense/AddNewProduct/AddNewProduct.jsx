@@ -1,13 +1,14 @@
+import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import Calculator from "./calculator.svg";
 import styles from "./AddNewProduct.module.scss";
-import { useState, useEffect } from "react";
+import { authOperations } from "../../../redux/auth";
 import {
   getExpense,
   addExpense,
   deleteExpense,
   getCategoriesExpense,
 } from "../../../redux/transactions/transactionsOperation.js";
-import { useDispatch, useSelector } from "react-redux";
 import Calendar from "../../Calendar/Calendar";
 
 const AddNewProduct = () => {
@@ -18,10 +19,7 @@ const AddNewProduct = () => {
   const categoriesExpense = useSelector(
     (state) => state.transactions.categoriesExpense
   );
-  const date = useSelector(
-    (state) => state.transactions.date
-  );
-
+  const date = useSelector((state) => state.transactions.date);
 
   useEffect(() => {
     dispatch(getCategoriesExpense());
@@ -41,6 +39,8 @@ const AddNewProduct = () => {
         return setDescription(value);
       case "price":
         return setAmount(value);
+      default:
+        return;
     }
   };
 
@@ -54,7 +54,11 @@ const AddNewProduct = () => {
       date,
     };
 
-    dispatch(addExpense(newOperation)).then(() => dispatch(getExpense()));
+    dispatch(addExpense(newOperation)).then(() => {
+      // console.log("Fetch before actual information :>> ");
+      dispatch(authOperations.fetchCurrentUser());
+      dispatch(getExpense());
+    });
     handleBtnClear();
   };
 
@@ -77,8 +81,7 @@ const AddNewProduct = () => {
           minLength="3"
           size="20"
           required
-                    pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-
+          pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
         />
         <select
           className={styles.formSelect}

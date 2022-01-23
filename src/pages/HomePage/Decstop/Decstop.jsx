@@ -1,6 +1,6 @@
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 
-import Balance from "../../../component/Balance";
+// import Balance from "../../../component/Balance";
 
 // const Decstop = () => {
 //   return (

@@ -56,7 +56,7 @@ const authSlice = createSlice({
         state.isFirstLogin = false;
       })
       .addCase(authOperations.refreshTokens.pending, (state, action) => {
-        console.log(action.payload);
+        // console.log(action.payload);
         state.isRefreshing = true;
       })
       .addCase(authOperations.refreshTokens.rejected, (state, action) => {
@@ -64,7 +64,7 @@ const authSlice = createSlice({
         state.isRefreshing = false;
       })
       .addCase(authOperations.refreshTokens.fulfilled, (state, action) => {
-        console.log(action.payload);
+        // console.log(action.payload);
         state.token = action.payload.newAccessToken;
         state.refreshToken = action.payload.newRefreshToken;
         state.sid = action.payload.newSid;

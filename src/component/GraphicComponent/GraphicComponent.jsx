@@ -34,7 +34,7 @@ const random = (accentColor) =>
 //   };
 //
 
-const GraphicComponent = ({ obj, categoryName }) => {
+const GraphicComponent = ({ obj, categoryName, show }) => {
   // console.log("obj :>> ", obj);
   const dataObj = Object.entries(obj).map(([name, value]) => ({ name, value }));
 
@@ -156,7 +156,7 @@ const GraphicComponent = ({ obj, categoryName }) => {
         // style={{ marginBottom: "5rem", paddingBottom: "5rem" }}
         className={s.bar_wrap}
       >
-        <Bar options={options} data={data} />
+        {show && <Bar options={options} data={data} />}
       </div>
     </div>
   );
