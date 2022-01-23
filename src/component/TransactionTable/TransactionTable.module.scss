@@ -3,6 +3,36 @@
     width: 760px;
     margin-right: 30px;
   }
+  ::-webkit-scrollbar-button {
+    background-image: url("");
+    background-repeat: no-repeat;
+    width: 5px;
+    height: 0px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background-color: #f5f6fb;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 0px;
+    border-radius: 2px;
+    background-color: #ff751d;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: #56999f;
+  }
+
+  ::-webkit-resizer {
+    background-image: url("");
+    background-repeat: no-repeat;
+    width: 4px;
+  }
+
+  ::-webkit-scrollbar {
+    width: 4px;
+  }
 }
 
 .table_header {
@@ -30,6 +60,7 @@
   border: 2px solid #f5f6fb;
   padding: 0 21px 0 12px;
   vertical-align: baseline;
+  border-right: none;
 }
 
 .item {
