@@ -73,7 +73,10 @@ const TransactionTable = () => {
                   <p className={s.item__date}>{date}</p>
                   <p className={s.item__descrip}>{description}</p>
                   <p className={s.item__category}>{category}</p>
-                  <p className={s.item__sum}>
+                  <p
+                    className={s.item__sum}
+                    style={{ color: isExpense ? "#E7192E" : "#407946" }}
+                  >
                     {isExpense ? -amount : amount} грн.
                   </p>
                   <button className={s.btn} onClick={() => openModal(_id)}>
