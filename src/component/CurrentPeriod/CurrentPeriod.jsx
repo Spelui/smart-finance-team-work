@@ -1,5 +1,5 @@
 import { useEffect, useContext, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import sprite from "../../images/sprite.svg";
 import s from "./CurrentPeriod.module.scss";
 import { getPeriodData } from "../../redux/user/user-operations";
