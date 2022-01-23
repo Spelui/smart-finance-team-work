@@ -1,9 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router";
 
 import Button from "../Button/Button";
 import Calendar from "../Calendar/Calendar";
+import { ThemeContext, themes } from "../../context/themeContext";
 
 import {
   getExpense,
@@ -31,6 +32,8 @@ const TransactionForm = () => {
   const location = useLocation();
 
   const isExpense = location.pathname === "/homepage/expense";
+
+  const { theme } = useContext(ThemeContext);
 
   useEffect(() => {
     isExpense ? dispatch(getCategoriesExpense()) : dispatch(getCategories());
@@ -80,7 +83,12 @@ const TransactionForm = () => {
   };
 
   return (
-    <form className={s.form} onSubmit={handleSubmit}>
+    <form
+      className={`${s.form} ${
+        theme === themes.light ? "lightTheme" : s.darkTheme
+      }`}
+      onSubmit={handleSubmit}
+    >
       <Calendar />
       <div className={s.input_box}>
         <input
@@ -97,7 +105,13 @@ const TransactionForm = () => {
           pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
         />
 
-        <select className={`${s.select}`} onChange={handleChange}>
+        <select
+          className={`${s.select}`}
+          onChange={handleChange}
+          value={category}
+          name="category"
+          required
+        >
           <option value="hide">Категория дохода</option>
           {(isExpense ? categoriesExpense : categories).map((categorie) => (
             <option key={categorie} value={categorie}>

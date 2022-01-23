@@ -43,3 +43,14 @@
     justify-content: space-between;
   }
 }
+
+.darkTheme {
+  .summary__title {
+    background-color: #1f2022;
+    color: #f0e7e7;
+  }
+  .summary__item {
+    background-color: #1f2022;
+    color: #f0e7e7;
+  }
+}

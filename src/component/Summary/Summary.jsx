@@ -1,5 +1,7 @@
 import { useSelector } from "react-redux";
+import { useContext } from "react";
 import s from "./Summary.module.scss";
+import { ThemeContext, themes } from "../../context/themeContext";
 
 const Summary = () => {
   // dispatch(getIncome());
@@ -8,8 +10,14 @@ const Summary = () => {
   const date = new Date();
   const monthNow = date.getMonth() + 1;
 
+  const { theme } = useContext(ThemeContext);
+
   return (
-    <div className={s.summary}>
+    <div
+      className={`${s.summary} ${
+        theme === themes.light ? "lightTheme" : s.darkTheme
+      }`}
+    >
       <h3 className={s.summary__title}>Сводка</h3>
       <ul className={s.summary__list}>
         {Object.keys(userMonth)

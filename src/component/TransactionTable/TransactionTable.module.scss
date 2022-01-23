@@ -75,3 +75,21 @@
     margin-left: auto;
   }
 }
+
+.darkTheme {
+  .table_header {
+    background-color: #1f2022;
+    color: #f0e7e7;
+  }
+
+  .list {
+    background-color: #1f2022;
+    border-color: #1f2022;
+  }
+
+  .item {
+    p {
+      color: #f0e7e7;
+    }
+  }
+}

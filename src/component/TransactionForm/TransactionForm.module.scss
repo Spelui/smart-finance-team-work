@@ -115,3 +115,19 @@
 .btnClean:hover {
   background-color: #ff751d;
 }
+
+.darkTheme {
+  .input,
+  .select,
+  .number {
+    background-color: #757781;
+    color: #f0e7e7;
+  }
+
+  .input,
+  .number {
+    &::placeholder {
+      color: #f0e7e7;
+    }
+  }
+}

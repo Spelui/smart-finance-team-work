@@ -97,7 +97,7 @@ const AddNewProduct = () => {
         >
           <option value="">Категория дохода</option>
           {categories.map((categorie) => (
-            <option key={categorie} value={categorie}>
+            <option key={categorie} value={category}>
               {categorie}
             </option>
           ))}
