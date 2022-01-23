@@ -12,7 +12,7 @@ const BackspaceBtn = () => {
   const { theme } = useContext(ThemeContext);
 
   const clickBackBtn = () => {
-    navigate("/transaction/expense");
+    navigate("/homepage/expense");
   };
   return (
     <div

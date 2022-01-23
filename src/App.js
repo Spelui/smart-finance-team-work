@@ -14,6 +14,7 @@ import ReportPage from "./pages/ReportPage/ReportPage";
 //import OnLoader from "./component/OnLoader";
 import TransactionPage from "./pages/TransactionPage/TransactionPage";
 import { HomePage } from "./pages/HomePage/HomePage";
+import { MobileForm } from "./pages/HomePage/MobileForm/MobileForm";
 
 const App = () => {
   const [theme, setTheme] = useState(
@@ -34,7 +35,7 @@ const App = () => {
 
       secondTimerId = setInterval(() => {
         dispatch(authOperations.refreshTokens());
-      }, 900000);
+      }, 600000);
     }
 
     return () => {
@@ -58,33 +59,60 @@ const App = () => {
         {!isFetchingCurrentUser && (
           <>
             {/*<OnLoader />*/}
-            <Routes>
-              <Route
-                path="/"
-                element={
-                  <PublickRoute restricted redirectTo="/transaction">
-                    {/* /homepage/expense */}
-                    <AuthPage />
-                  </PublickRoute>
-                }
-              />
-              <Route
-                path="/transaction/*"
-                element={
-                  <PrivateRoute>
-                    <TransactionPage />
-                  </PrivateRoute>
-                }
-              />
-              <Route
-                path="/report"
-                element={
-                  <PrivateRoute>
-                    <ReportPage />
-                  </PrivateRoute>
-                }
-              />
-            </Routes>
+            {!isRefreshing && (
+              <Routes>
+                <Route
+                  path="/"
+                  element={
+                    <PublickRoute restricted redirectTo="/homepage/expense">
+                      {/* /homepage/expense */}
+                      <AuthPage />
+                    </PublickRoute>
+                  }
+                />
+                <Route
+                  path="/homepage"
+                  element={
+                    <PrivateRoute>
+                      <HomePage />
+                    </PrivateRoute>
+                  }
+                />
+                <Route
+                  path="/homepage/*"
+                  element={
+                    <PrivateRoute>
+                      <HomePage />
+                    </PrivateRoute>
+                  }
+                />
+                <Route
+                  path="/report"
+                  element={
+                    <PrivateRoute>
+                      <ReportPage />
+                    </PrivateRoute>
+                  }
+                />
+
+                <Route
+                  path="/add-expense"
+                  element={
+                    <PrivateRoute>
+                      <MobileForm transaction="expense" />
+                    </PrivateRoute>
+                  }
+                />
+                <Route
+                  path="/add-income"
+                  element={
+                    <PrivateRoute>
+                      <MobileForm transaction="income" />
+                    </PrivateRoute>
+                  }
+                />
+              </Routes>
+            )}
           </>
         )}
       </div>

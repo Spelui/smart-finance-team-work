@@ -15,6 +15,7 @@ const AddNewProduct = () => {
   const [description, setDescription] = useState("");
   const [amount, setAmount] = useState("");
   const [category, setCategory] = useState("");
+  const [disabledBtn, setDisabledBtn] = useState(true);
   const dispatch = useDispatch();
   const categoriesExpense = useSelector(
     (state) => state.transactions.categoriesExpense
@@ -30,10 +31,16 @@ const AddNewProduct = () => {
     setAmount("");
     setDescription("");
     setCategory("");
+    setDisabledBtn(true);
   };
 
   const handleInputChange = (e) => {
-    const { name, value } = e.currentTarget;
+    if (description.length !== 0 && category !== "") {
+      setDisabledBtn(false);
+    }
+
+    // const { name, value } = e.currentTarget;
+    const { name, value } = e.target;
     switch (name) {
       case "product":
         return setDescription(value);
@@ -46,7 +53,8 @@ const AddNewProduct = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
+    // if (description === "" || amount === 0 || category === "")
+    //       return;
     const newOperation = {
       category,
       description,
@@ -60,11 +68,13 @@ const AddNewProduct = () => {
       dispatch(getExpense());
     });
     handleBtnClear();
+    setDisabledBtn(true);
   };
 
-  const handleChange = (event) => {
-    setCategory(event.target.value);
-  };
+  // const handleChange = (event) => {
+  //   setCategory(event.target.value);
+
+  // };
 
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
@@ -87,10 +97,11 @@ const AddNewProduct = () => {
           className={styles.formSelect}
           value={category}
           label="Category"
-          onChange={handleChange}
+          name="category"
+          onChange={handleInputChange}
           required
         >
-          <option value="hide">Категория товара</option>
+          <option value="">Категория товара</option>
           {categoriesExpense?.map((categorie) => (
             <option key={categorie} value={categorie}>
               {categorie}
@@ -118,7 +129,11 @@ const AddNewProduct = () => {
         />
       </div>
       <div className={styles.AddNewProductBtmDiv}>
-        <button type="submit" className={styles.AddNewProductBtm}>
+        <button
+          type="submit"
+          disabled={disabledBtn}
+          className={styles.AddNewProductBtm}
+        >
           <span className={styles.AddNewProductBtmSpan}>ВВОД</span>
         </button>
         <button

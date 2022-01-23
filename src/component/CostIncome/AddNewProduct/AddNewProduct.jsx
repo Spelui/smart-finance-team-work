@@ -27,10 +27,15 @@ const AddNewProduct = () => {
     setAmount("");
     setDescription("");
     setCategory("");
+    setDisabledBtn(true);
   };
 
   const handleInputChange = (e) => {
+    if (description.length !== 0 && category !== "") {
+      setDisabledBtn(false);
+    }
     const { name, value } = e.currentTarget;
+    // eslint-disable-next-line default-case
     switch (name) {
       case "product":
         return setDescription(value);
@@ -47,8 +52,7 @@ const AddNewProduct = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (description === "" || amount === "" || category === "Категория товара")
-      return;
+    if (description === "" || amount === 0 || category === "") return;
 
     const newOperation = {
       category,
@@ -63,6 +67,7 @@ const AddNewProduct = () => {
       dispatch(getIncome());
     });
     handleBtnClear();
+    setDisabledBtn(true);
   };
 
   return (
@@ -87,8 +92,10 @@ const AddNewProduct = () => {
           value={category}
           label="Category"
           onChange={handleChange}
+          name="category"
+          required
         >
-          <option value="hide">Категория дохода</option>
+          <option value="">Категория дохода</option>
           {categories.map((categorie) => (
             <option key={categorie} value={categorie}>
               {categorie}
@@ -117,7 +124,11 @@ const AddNewProduct = () => {
         />
       </div>
       <div className={styles.AddNewProductBtmDiv}>
-        <button type="submit" className={styles.AddNewProductBtm}>
+        <button
+          type="submit"
+          disabled={disabledBtn}
+          className={styles.AddNewProductBtm}
+        >
           <span className={styles.AddNewProductBtmSpan}>ВВОД</span>
         </button>
         <button
