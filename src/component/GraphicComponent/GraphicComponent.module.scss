@@ -25,7 +25,7 @@
 //   overflow: hidden;
 // }
 .bar_wrap {
-  max-width: calc(100vw - 38px);
+  max-width: 282px;
   // height: 800px;
   margin: 0 auto;
   @media screen and (min-width: 768px) {
@@ -35,7 +35,8 @@
     max-width: 758px;
   }
 }
-.observer {
-  // display: flex;
-  // width: auto;
-}
+// .observer {
+//   // display: flex;
+//   // width: auto;
+//   // max-width: 282px;
+// }

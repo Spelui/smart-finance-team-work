@@ -122,7 +122,7 @@
   margin-bottom: 70px;
   margin: 0 auto;
   // max-height: 500px;
-  max-width: 282px;
+  max-width: calc(100vw - 38px);
   // display: flex;
   @media screen and (min-width: 768px) {
     // transform: rotate(0deg);
@@ -139,10 +139,10 @@
     box-shadow: 0px 10px 60px rgba(170, 178, 197, 0.2);
     border-radius: 30px;
   }
-  @media screen and (min-width: 1280) {
-    max-width: 1060px;
+  @media screen and (min-width: 1280px) {
+    // max-width: 1060px;
     // max-height: 1060px;
-    // max-width: calc(100vw - 220px);
+    max-width: calc(100vw - 220px);
     // width: 1060px;
     height: 422px;
   }
@@ -162,5 +162,9 @@
 
   .report_switch_wrap {
     background-color: #757781;
+  }
+  .graph_dependency_wrap {
+    background-color: #757781;
+    color: #f0e7e7;
   }
 }

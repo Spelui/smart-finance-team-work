@@ -43,8 +43,6 @@ const GraphicComponent = ({ obj, categoryName, show }) => {
 
   dataGraph.sort((a, b) => b.value - a.value);
 
-  // console.log("dataGraph :>> ", dataGraph);
-
   const wrapperRef = useRef();
   const dimensions = useResizeObserver(wrapperRef);
   // console.log("dimensions :>> ", dimensions);
@@ -150,15 +148,15 @@ const GraphicComponent = ({ obj, categoryName, show }) => {
   };
 
   return (
-    <div className={s.observer}>
-      <div
-        ref={wrapperRef}
-        // style={{ marginBottom: "5rem", paddingBottom: "5rem" }}
-        className={s.bar_wrap}
-      >
-        {show && <Bar options={options} data={data} />}
-      </div>
+    // <div className={s.observer}>
+    <div
+      ref={wrapperRef}
+      // style={{ marginBottom: "5rem", paddingBottom: "5rem" }}
+      className={s.bar_wrap}
+    >
+      {show && <Bar options={options} data={data} />}
     </div>
+    // </div>
   );
 };
 

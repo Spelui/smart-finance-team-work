@@ -27,12 +27,12 @@ const AddNewProduct = () => {
     setAmount("");
     setDescription("");
     setCategory("");
-    setDisabledBtn(true);
+    // setDisabledBtn(true);
   };
 
   const handleInputChange = (e) => {
     if (description.length !== 0 && category !== "") {
-      setDisabledBtn(false);
+      // setDisabledBtn(false);
     }
     const { name, value } = e.currentTarget;
     // eslint-disable-next-line default-case
@@ -67,7 +67,7 @@ const AddNewProduct = () => {
       dispatch(getIncome());
     });
     handleBtnClear();
-    setDisabledBtn(true);
+    // setDisabledBtn(true);
   };
 
   return (
@@ -126,7 +126,7 @@ const AddNewProduct = () => {
       <div className={styles.AddNewProductBtmDiv}>
         <button
           type="submit"
-          disabled={disabledBtn}
+          // disabled={disabledBtn}
           className={styles.AddNewProductBtm}
         >
           <span className={styles.AddNewProductBtmSpan}>ВВОД</span>
