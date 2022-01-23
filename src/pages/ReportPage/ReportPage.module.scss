@@ -105,21 +105,47 @@
   margin: 0 auto;
   @media screen and (min-width: 768px) {
     width: calc(100vw - 100px);
+    margin-bottom: 21px;
     background-color: #ffffff;
     border-radius: 30px;
     box-shadow: 0px 10px 60px rgba(170, 178, 197, 0.2);
   }
   @media screen and (min-width: 1280px) {
     width: calc(100vw - 220px);
+    margin-bottom: 30px;
   }
 }
 // ========================  GRAPH DEPENDENCY
 .graph_dependency_wrap {
-  padding-top: 30px;
-  padding-bottom: 50px;
+  // transform: rotate(90deg);
+  // margin-top: 30px;
+  margin-bottom: 70px;
   margin: 0 auto;
-  height: 470px;
-  width: calc(100vw - 30px);
+  // max-height: 500px;
+  max-width: calc(100vw - 38px);
+  // display: flex;
+  @media screen and (min-width: 768px) {
+    // transform: rotate(0deg);
+    // max-width: 666px;
+    max-width: calc(100vw - 102px);
+
+    max-height: 422px;
+    // max-width: 422px;
+    // max-height: 666px;
+
+    background: #ffffff;
+    /* shadow 1 */
+
+    box-shadow: 0px 10px 60px rgba(170, 178, 197, 0.2);
+    border-radius: 30px;
+  }
+  @media screen and (min-width: 1280px) {
+    // max-width: 1060px;
+    // max-height: 1060px;
+    max-width: calc(100vw - 220px);
+    // width: 1060px;
+    height: 422px;
+  }
 }
 
 .darkTheme {
@@ -136,5 +162,9 @@
 
   .report_switch_wrap {
     background-color: #757781;
+  }
+  .graph_dependency_wrap {
+    background-color: #757781;
+    color: #f0e7e7;
   }
 }

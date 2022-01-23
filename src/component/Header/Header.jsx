@@ -37,7 +37,7 @@ export const Header = () => {
               </div>
               <p className={s.userName}>{email}</p>
               <button type="button" className={s.btn}>
-                <svg width="16px" height="16px" className={s.logoutIcon}>
+                <svg width="16px" height="16px" className={s.logoutIcon} onClick={() => dispatch(authOperations.loginOut())}>
                   <use href={`${sprite}#logout`}></use>
                 </svg>
                 <p

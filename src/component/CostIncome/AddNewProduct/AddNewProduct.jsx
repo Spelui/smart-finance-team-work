@@ -1,3 +1,4 @@
+import { useDispatch, useSelector } from "react-redux";
 import Calculator from "./calculator.svg";
 import styles from "./AddNewProduct.module.scss";
 import { useState, useEffect } from "react";
@@ -6,7 +7,7 @@ import {
   addIncome,
   getCategories,
 } from "../../../redux/transactions/transactionsOperation.js";
-import { useDispatch, useSelector } from "react-redux";
+import { authOperations } from "../../../redux/auth";
 import Calendar from "../../Calendar/Calendar";
 
 const AddNewProduct = () => {
@@ -16,7 +17,6 @@ const AddNewProduct = () => {
   const dispatch = useDispatch();
   const categories = useSelector((state) => state.transactions.categories);
   const date = useSelector((state) => state.transactions.date);
-  const [disabledBtn, setDisabledBtn] = useState(true);
 
   useEffect(() => {
     dispatch(getCategories());
@@ -27,12 +27,12 @@ const AddNewProduct = () => {
     setAmount("");
     setDescription("");
     setCategory("");
-    setDisabledBtn(true);
+    // setDisabledBtn(true);
   };
 
   const handleInputChange = (e) => {
     if (description.length !== 0 && category !== "") {
-      setDisabledBtn(false);
+      // setDisabledBtn(false);
     }
     const { name, value } = e.currentTarget;
     // eslint-disable-next-line default-case
@@ -61,9 +61,13 @@ const AddNewProduct = () => {
       date,
     };
 
-    dispatch(addIncome(newOperation)).then(() => dispatch(getIncome()));
+    dispatch(addIncome(newOperation)).then(() => {
+      // console.log("Fetch before actual information :>> ");
+      dispatch(authOperations.fetchCurrentUser());
+      dispatch(getIncome());
+    });
     handleBtnClear();
-    setDisabledBtn(true);
+    // setDisabledBtn(true);
   };
 
   return (
@@ -122,7 +126,7 @@ const AddNewProduct = () => {
       <div className={styles.AddNewProductBtmDiv}>
         <button
           type="submit"
-          disabled={disabledBtn}
+          // disabled={disabledBtn}
           className={styles.AddNewProductBtm}
         >
           <span className={styles.AddNewProductBtmSpan}>ВВОД</span>

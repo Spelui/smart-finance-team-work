@@ -19,7 +19,6 @@ const CategoryList = ({ reportTitle, setGraphObj }) => {
     expenseObj === undefined ? [] : Object.values(expenseObj);
   const expenseListTitles =
     expenseObj === undefined ? [] : Object.keys(expenseObj);
-  console.log("expenseListValues :>> ", expenseListValues);
 
   return (
     <ul
@@ -28,44 +27,56 @@ const CategoryList = ({ reportTitle, setGraphObj }) => {
       }`}
     >
       {reportTitle === "доходы"
-        ? incomesListValues.map((item, index) => {
-            return (
-              <li
-                key={index}
-                className={s.item}
-                onClick={() => {
-                  setGraphObj(item);
-                }}
-              >
-                <span>{`${item.total}.00`}</span>
-                <div className={s.link}>
-                  <svg viewBox="0 0 32 32" className={s.img}>
-                    <use href={incomes[index].svg} />
-                  </svg>
-                  <div className={s.rectangle_icon}></div>
-                </div>
-                <span>{incomesListTitles[index]}</span>
-              </li>
-            );
-          })
-        : expenseListValues.map((item, index) => {
-            return (
-              <li
-                key={index}
-                className={s.item}
-                onClick={() => setGraphObj(item)}
-              >
-                <span>{`${item.total}.00`}</span>
-                <div className={s.link}>
-                  <svg viewBox="0 0 32 32" className={s.img}>
-                    <use href={categories[index].svg} />
-                  </svg>
-                  <div className={s.rectangle_icon}></div>
-                </div>
-                <span>{expenseListTitles[index]}</span>
-              </li>
-            );
-          })}
+        ? incomesListValues
+            // .sort((a, b) => b.total - a.total)
+            .map((item, index) => {
+              const filteredIcon = incomes.find(
+                ({ name }) =>
+                  incomesListTitles[index].toString() === name.toString()
+              );
+              return (
+                <li
+                  key={index}
+                  className={s.item}
+                  onClick={() => {
+                    setGraphObj(item, incomesListTitles[index]);
+                  }}
+                >
+                  <span>{`${item.total}.00`}</span>
+                  <div className={s.link}>
+                    <svg viewBox="0 0 32 32" className={s.img}>
+                      <use href={filteredIcon.svg} />
+                    </svg>
+                    <div className={s.rectangle_icon}></div>
+                  </div>
+                  <span>{incomesListTitles[index]}</span>
+                </li>
+              );
+            })
+        : expenseListValues
+            // .sort((a, b) => b.total - a.total)
+            .map((item, index) => {
+              const filteredIcon = categories.find(
+                ({ name }) =>
+                  expenseListTitles[index].toString() === name.toString()
+              );
+              return (
+                <li
+                  key={index}
+                  className={s.item}
+                  onClick={() => setGraphObj(item, expenseListTitles[index])}
+                >
+                  <span>{`${item.total}.00`}</span>
+                  <div className={s.link}>
+                    <svg viewBox="0 0 32 32" className={s.img}>
+                      <use href={filteredIcon.svg} />
+                    </svg>
+                    <div className={s.rectangle_icon}></div>
+                  </div>
+                  <span>{expenseListTitles[index]}</span>
+                </li>
+              );
+            })}
     </ul>
   );
 };
