@@ -37,7 +37,6 @@
   display: flex;
   align-items: center;
   padding: 14px 0;
-  // justify-content: space-between;
 
   &::after {
     content: "";
@@ -61,25 +60,42 @@
 
   &__date {
     width: 84px;
+    @media screen and (min-width: 1280px) {
+      width: 84px;
+    }
   }
 
   &__descrip {
-    width: 169px;
-    margin-left: 75px;
+    width: 145px;
+    margin-left: 55px;
+    @media screen and (min-width: 1280px) {
+      width: 169px;
+      margin-left: 75px;
+    }
   }
 
   &__category {
     width: 116px;
     text-align: center;
-    margin-right: 45px;
+    margin-right: 23px;
+    @media screen and (min-width: 1280px) {
+      width: 116px;
+      text-align: center;
+      margin-right: 45px;
+    }
   }
 
   &__sum {
     width: 104px;
     text-align: right;
-    // margin-right: 20px;
     color: #e7192e;
     font-weight: 700;
+    @media screen and (min-width: 1280px) {
+      width: 104px;
+      text-align: right;
+      color: #e7192e;
+      font-weight: 700;
+    }
   }
 
   .btn {

@@ -1,4 +1,3 @@
-import PropTypes from "prop-types";
 import styles from "./Calendar.module.scss";
 import CalendarSvg from "./calendar.svg";
 import { useEffect, useState, useContext } from "react";
@@ -88,7 +87,5 @@ const CalendarNew = () => {
     </div>
   );
 };
-
-Calendar.propTypes = {};
 
 export default CalendarNew;
