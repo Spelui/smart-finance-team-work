@@ -32,8 +32,12 @@ const TransactionTable = () => {
 
   const onDelete = (id) => () => {
     isExpense
-      ? dispatch(deleteExpense(id)).then(() => dispatch(getExpense())).then(()=> dispatch(authOperations.getBalance()))
-      : dispatch(deleteIncom(id)).then(() => dispatch(getIncome())).then(()=> dispatch(authOperations.getBalance()));
+      ? dispatch(deleteExpense(id))
+          .then(() => dispatch(getExpense()))
+          .then(() => dispatch(authOperations.getBalance()))
+      : dispatch(deleteIncom(id))
+          .then(() => dispatch(getIncome()))
+          .then(() => dispatch(authOperations.getBalance()));
     closeModal();
   };
 
