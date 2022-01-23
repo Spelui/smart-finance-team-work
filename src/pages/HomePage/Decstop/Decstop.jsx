@@ -44,12 +44,15 @@ export const Decstop = () => {
           <TransactionTable />
 
           <div className={s.summary__dec}>
-            <h3 className={st.summary__title}>Сводка</h3>
+            <h3 className={`${st.summary__title} ${s.sumTtile}`}>Сводка</h3>
             <ul className={st.summary__list}>
               {Object.keys(userMonth)
                 .splice(0, monthNow)
                 .map((month) => (
-                  <li key={month} className={st.summary__item}>
+                  <li
+                    key={month}
+                    className={`${st.summary__item} ${s.sumItem}`}
+                  >
                     <p className={st.summary__text}>
                       {month}
                       <span>{userMonth[month]}</span>

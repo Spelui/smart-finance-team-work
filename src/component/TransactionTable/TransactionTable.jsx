@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useLocation } from "react-router";
 
 import {
@@ -9,6 +9,7 @@ import {
   deleteExpense,
 } from "../../redux/transactions/transactionsOperation";
 import Modal from "../Modal/Modal";
+import { ThemeContext, themes } from "../../context/themeContext";
 
 import s from "./TransactionTable.module.scss";
 import sprite from "../../images/sprite.svg";
@@ -22,6 +23,7 @@ const TransactionTable = () => {
   const location = useLocation();
   const dispatch = useDispatch();
   const isExpense = location.pathname === "/homepage/expense";
+  const { theme } = useContext(ThemeContext);
 
   useEffect(() => {
     isExpense ? dispatch(getExpense()) : dispatch(getIncome());
@@ -51,7 +53,11 @@ const TransactionTable = () => {
 
   return (
     <>
-      <div className={s.table}>
+      <div
+        className={`${s.table} ${
+          theme === themes.light ? "lightTheme" : s.darkTheme
+        }`}
+      >
         <div className={s.table_header}>
           <p className={s.text}>Дата</p>
           <p className={s.text}>Описание</p>
