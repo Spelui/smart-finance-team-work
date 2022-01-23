@@ -44,9 +44,12 @@ export const MobileForm = ({transaction}) => {
 
   const onChangeInput = (e) => {
     const { name, value } = e.currentTarget;
-    if (description.length !== 0 && category !== "") {
+    if (description.length !== 0 && category !== "" && amount > 0) {
       setDisabledBtn(false);
+    } else {
+      setDisabledBtn(true)
     }
+
     switch (name) {
       case "product":
         return setDescription(value);
