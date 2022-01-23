@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getCategories, getCategoriesExpense, getIncome, getExpense, addExpense, addIncome } from '../../../redux/transactions/transactionsOperation';
+import { authOperations } from '../../../redux/auth';
 
 import sprite from '../../../images/sprite.svg'
 import s from './MobileForm.module.scss'
@@ -76,9 +77,9 @@ export const MobileForm = ({transaction}) => {
     };
 
     if (isIncome) {
-      dispatch(addIncome(newOperation)).then(() => dispatch(getIncome()));  
+      dispatch(addIncome(newOperation)).then(() => dispatch(getIncome())).then(()=> dispatch(authOperations.getBalance()));  
     } else {
-      dispatch(addExpense(newOperation)).then(() => dispatch(getExpense()));
+      dispatch(addExpense(newOperation)).then(() => dispatch(getExpense())).then(()=> dispatch(authOperations.getBalance()));
     }
     resetInputs();
     setDisabledBtn(true);
