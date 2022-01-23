@@ -1,10 +1,12 @@
-import React, { useContext } from "react";
+import React, { useState, useContext } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
 import { authSelectors, authOperations } from "../../redux/auth";
 
+import Modal from "../Modal/Modal";
 import ThemeSwitcher from "../ThemeSwitcher/ThemeSwitcher";
 import { ThemeContext, themes } from "../../context/themeContext";
+
 
 import sprite from "../../images/svg/symbol-defs.svg";
 import s from "./Header.module.scss";
@@ -16,7 +18,22 @@ export const Header = () => {
   const avatarText = email.slice(0, 1).toUpperCase();
   const { theme } = useContext(ThemeContext);
 
+  const [isOpenedModal, setisOpenedModal] = useState(false);
+  
+  const closeModal = () => {
+    setisOpenedModal(false);
+  };
+
+  const openModal = (id) => {
+    setisOpenedModal(true);
+  };
+
+  const logOutHandler = () => {
+   return dispatch(authOperations.loginOut())
+  }
+
   return (
+    <>
     <header
       className={`${s.header} ${
         theme === themes.light ? s.lightTheme : s.darkTheme
@@ -37,11 +54,15 @@ export const Header = () => {
               </div>
               <p className={s.userName}>{email}</p>
               <button type="button" className={s.btn}>
-                <svg width="16px" height="16px" className={s.logoutIcon} onClick={() => dispatch(authOperations.loginOut())}>
+                  <svg width="16px" height="16px" className={s.logoutIcon}
+                  onClick={() => openModal()}
+                  // onClick={() => dispatch(authOperations.loginOut())}
+                  >
                   <use href={`${sprite}#logout`}></use>
                 </svg>
                 <p
-                  onClick={() => dispatch(authOperations.loginOut())}
+                    // onClick={() => dispatch(authOperations.loginOut())}
+                    onClick={() => openModal()}
                   className={s.logoutText}
                 >
                   Выйти
@@ -51,6 +72,14 @@ export const Header = () => {
           )}
         </div>
       </div>
-    </header>
+      </header>
+      {isOpenedModal && (
+        <Modal
+          title="Вы действительно хотите выйти?"
+          onClose={closeModal}
+          shouldLogOut={true}
+        />
+      )}
+    </>
   );
 };
