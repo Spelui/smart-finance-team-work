@@ -26,7 +26,9 @@ const Summary = () => {
             <li key={month} className={s.summary__item}>
               <p className={s.summary__text}>
                 {month}
-                <span>{userMonth[month]}</span>
+                <span>
+                  {userMonth[month] === "N/A" ? "00.00" : userMonth[month]}
+                </span>
               </p>
             </li>
           ))}

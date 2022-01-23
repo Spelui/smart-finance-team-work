@@ -1,7 +1,9 @@
 import React, { useState, useContext } from "react";
 
 import { useSelector } from "react-redux";
+// import { useDispatch, useSelector } from "react-redux";
 import { authSelectors } from "../../redux/auth";
+// import { authSelectors, authOperations } from "../../redux/auth";
 
 import Modal from "../Modal/Modal";
 import ThemeSwitcher from "../ThemeSwitcher/ThemeSwitcher";
@@ -28,14 +30,14 @@ export const Header = () => {
   };
 
   // const logOutHandler = () => {
-  //  return dispatch(authOperations.loginOut())
-  // }
+  //   return dispatch(authOperations.loginOut());
+  // };
 
   return (
     <>
       <header
         className={`${s.header} ${
-          theme === themes.light ? s.lightTheme : s.darkTheme
+          theme === themes.light ? "lightTheme" : s.darkTheme
         }`}
       >
         <div className="container">
