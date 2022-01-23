@@ -35,6 +35,9 @@ const TransactionForm = () => {
 
   const { theme } = useContext(ThemeContext);
 
+  const [disabledBtn, setDisabledBtn] = useState(true);
+  console.log("~ disabledBtn", disabledBtn);
+
   useEffect(() => {
     isExpense ? dispatch(getCategoriesExpense()) : dispatch(getCategories());
   }, [dispatch, isExpense]);
@@ -47,16 +50,21 @@ const TransactionForm = () => {
     setAmount("");
     setDescription("");
     setCategory("");
+    setDisabledBtn(true);
   };
 
   const handleInputChange = (e) => {
     const { name, value } = e.currentTarget;
-    // eslint-disable-next-line default-case
+    if (description.length !== 0 && category !== "") {
+      setDisabledBtn(false);
+    }
     switch (name) {
       case "product":
         return setDescription(value);
       case "price":
         return setAmount(value);
+      default:
+        return;
     }
   };
 
@@ -66,8 +74,6 @@ const TransactionForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (description === "" || amount === "" || category === "Категория товара")
-      return;
 
     const newOperation = {
       category,
@@ -80,6 +86,7 @@ const TransactionForm = () => {
       ? dispatch(addExpense(newOperation)).then(() => dispatch(getExpense()))
       : dispatch(addIncome(newOperation)).then(() => dispatch(getIncome()));
     handleBtnClear();
+    setDisabledBtn(true);
   };
 
   return (
@@ -112,7 +119,7 @@ const TransactionForm = () => {
           name="category"
           required
         >
-          <option value="hide">Категория дохода</option>
+          <option value="">Категория дохода</option>
           {(isExpense ? categoriesExpense : categories).map((categorie) => (
             <option key={categorie} value={categorie}>
               {categorie}
@@ -141,10 +148,15 @@ const TransactionForm = () => {
       </div>
 
       <div className={s.wrap}>
-        <Button text="ВВОД" type="submit" className={s.btn} />
+        <Button
+          text="ВВОД"
+          type="submit"
+          className={s.btn}
+          isDisabled={disabledBtn}
+        />
 
         <Button
-          text=" ОЧИCТИТЬ"
+          text="ОЧИCТИТЬ"
           className={s.btnClean}
           onClick={handleBtnClear}
         />
