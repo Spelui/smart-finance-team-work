@@ -70,7 +70,7 @@ const ReportPage = () => {
           <div className={s.report_head_wrap}>
             <CurrentPeriod
               monthsStat={dataMonths}
-              date={date === null ? currentDate : date}
+              // date={date === null ? currentDate : date}
             />
             <div className={s.reportBalance_wrap}>
               <span className={s.balanceText}>Баланс:</span>

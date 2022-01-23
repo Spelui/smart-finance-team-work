@@ -18,8 +18,15 @@
   height: 10px;
 }
 .current_period_btn {
+  border-radius: 4px;
+  padding: 3px;
   background-color: inherit;
   cursor: pointer;
+  transition: all ease-in-out 400ms;
+}
+.current_period_btn:hover {
+  background-color: rgb(148, 231, 3);
+  transition: all ease-in-out 400ms;
 }
 .cost_incomes {
   font-style: normal;

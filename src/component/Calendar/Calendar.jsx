@@ -8,12 +8,11 @@ import "react-calendar/dist/Calendar.css";
 import { ThemeContext, themes } from "../../context/themeContext";
 import { utils } from "../../utils";
 
-
 const CalendarNew = () => {
   const dispatch = useDispatch();
   const [date, onChange] = useState(new Date());
   const [show, setShow] = useState(false);
-  const newDate = new Date(date)
+  const newDate = new Date(date);
   const padNum = (num) => String(num).padStart(2, 0);
   const day = padNum(newDate.getDate());
   const month = padNum(newDate.getMonth() + 1);
@@ -70,19 +69,17 @@ const CalendarNew = () => {
       </p>
 
       {show && (
-        
         <>
-        <div onClick={toggleCalendar} className={styles.backdrop}></div>
-        <Calendar
-          onChange={onChange}
-          value={date}
-          maxDate={new Date()}
-          // minDate={new Date()}
-          // maxDate={new Date("2022-12-31")}
-          className="react-calendar-style"
+          <div onClick={toggleCalendar} className={styles.backdrop}></div>
+          <Calendar
+            onChange={onChange}
+            value={date}
+            maxDate={new Date()}
+            // minDate={new Date()}
+            // maxDate={new Date("2022-12-31")}
+            className="react-calendar-style"
           />
         </>
-        
       )}
     </div>
   );
