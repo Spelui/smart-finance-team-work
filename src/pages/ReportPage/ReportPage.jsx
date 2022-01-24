@@ -25,9 +25,7 @@ const ReportPage = () => {
   const [showGraph, setShowGraph] = useState(false);
   const balance = useSelector((state) => state.auth?.user?.balance);
   const date = useSelector((state) => state.transactions.date);
-  const months = useSelector((state) => state.transactions.month);
-  console.log("datesCP :>> ", date);
-  const dataMonths = months === {} ? null : months;
+
   const normalizedDate = date ? date.slice(0, 7) : null;
   const currentDate = utils.normalizeDate(new Date());
 
@@ -51,11 +49,11 @@ const ReportPage = () => {
     setShowGraph(false);
   };
 
-  useEffect(() => {
-    if (!normalizedDate) {
-      dispatch(getPeriodData(currentDate.slice(0, 7)));
-    } else dispatch(getPeriodData(normalizedDate));
-  }, [currentDate, dispatch, normalizedDate, date]);
+  // useEffect(() => {
+  //   if (!normalizedDate) {
+  //     dispatch(getPeriodData(currentDate.slice(0, 7)));
+  //   } else dispatch(getPeriodData(normalizedDate));
+  // }, [currentDate, dispatch, normalizedDate, date]);
   return (
     <>
       <section
@@ -65,11 +63,11 @@ const ReportPage = () => {
       >
         <div className={s.wrap}>
           <div className={s.report_head_wrap}>
-            <CurrentPeriod monthsStat={dataMonths} />
+            <CurrentPeriod />
             <div className={s.reportBalance_wrap}>
               <span className={s.balanceText}>Баланс:</span>
               <span className={s.balanceNumber}>
-                {`${balance}.00` || "0.00"} uah
+                {balance ? `${balance}.00` : "0.00"} uah
               </span>
             </div>
             <BackspaceBtn />

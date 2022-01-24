@@ -12,33 +12,53 @@ import { utils } from "../../redux/utils";
 
 // { date, monthsStat }
 const CurrentPeriod = () => {
-  const date = useSelector((state) => state.transactions.date);
   const dispatch = useDispatch();
+  const { theme } = useContext(ThemeContext);
   const incomes = useSelector((state) => state?.transactions?.items);
   const expenses = useSelector((state) => state?.transactions?.itemsExpense);
+  const date = useSelector((state) => state.transactions.date);
   const dates = utils.convertDate(incomes, expenses);
-  const { theme } = useContext(ThemeContext);
-  const beginDate = dates.length ? null : utils.transDate();
+
+  const dateSelected = dates.find((item, i) => {
+    return item === date.slice(0, 7);
+  });
+  // setCurrentDate(dateSelected);
+  // setI(dates.indexOf(dateSelected));
+  const inf = dates.indexOf(dateSelected);
+  console.log("inf :>> ", inf);
+  const [i, setI] = useState(inf);
   const [currentDate, setCurrentDate] = useState(date);
   const [disabledPrev, setDisabledPrev] = useState(false);
   const [disabledNext, setDisabledNext] = useState(false);
+  console.log("currentDate :>> ", currentDate);
+  // console.log("incomes :>> ", incomes);
+  // console.log("expenses :>> ", expenses);
+  const beginDate = dates.length ? null : utils.transDate();
+  console.log("dates :>> ", dates);
 
-  const [i, setI] = useState(0);
-
+  console.log("dateSelected :>> ", dateSelected);
   const convertMonths = utils.transformCurrentDate(
     dates.map((item) => item.slice(-2))
   );
   const getYears = dates.map((item) => item.slice(0, 4));
-  console.log("convertMonths :>> ", convertMonths);
-  console.log("getYears :>> ", getYears);
+
+  // useEffect(() => {
+  //   dispatch(getPeriodData(date.slice(0, 7)));
+  //   console.log("date :>> ", date);
+  //   setCurrentDate(date);
+  //   console.log("useeffect :>> ");
+  // }, [date, dispatch]);
+
   useEffect(() => {
-    // if (currentDate!==date) {
+    // setI(inf);
+    if (!currentDate) return;
+    setCurrentDate(dateSelected);
     // }
     // setCurrentDate(date.slice(0, 7));
     dispatch(getIncome());
     dispatch(getExpense());
-    dispatch(getPeriodData(currentDate.slice(0, 7)));
-  }, [currentDate, date, dispatch]);
+    dispatch(getPeriodData(currentDate));
+  }, [currentDate, dateSelected, dispatch]);
 
   const prev = () => {
     setI(i + 1);
@@ -85,10 +105,9 @@ const CurrentPeriod = () => {
           </svg>
         </button>
         <span className={s.cost_incomes}>
-          {dates.length
+          {dates.length && inf !== -1
             ? ` ${convertMonths[i]} ${getYears[i]}`
-            : //
-              beginDate}
+            : beginDate}
         </span>
         <button
           type="button"

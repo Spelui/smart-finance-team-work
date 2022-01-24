@@ -19,7 +19,8 @@ const getPeriodData = createAsyncThunk(
       // console.log("data :>> ", data);
       return data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error);
+      return error;
+      // return thunkAPI.rejectWithValue(error);
     }
   }
 );
