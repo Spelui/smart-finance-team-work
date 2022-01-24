@@ -80,3 +80,18 @@
 .btn:not(:last-child) {
   margin-right: 15px;
 }
+
+.darkTheme {
+  .modal {
+    transition: all ease-in-out 1200ms;
+    background-color: #252529;
+  }
+
+  .content {
+    color: #f0e7e7;
+  }
+
+  .btn {
+    color: #f0e7e7;
+  }
+}

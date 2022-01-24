@@ -21,11 +21,9 @@ const authSlice = createSlice({
       .addCase(authOperations.register.fulfilled, (state) => {
         state.isLoggedIn = true;
         state.isFirstLogin = true;
-
-        alert("Успешно зарегистрирован");
       })
       .addCase(authOperations.register.rejected, () => {
-        alert("Ошибка, возможно пользователь с таким email уже существует");
+        // alert();
       })
       .addCase(authOperations.loginIn.fulfilled, (state, action) => {
         state.user = action.payload.userData;

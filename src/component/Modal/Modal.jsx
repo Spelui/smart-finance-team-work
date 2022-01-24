@@ -1,11 +1,12 @@
-import { useEffect } from "react";
+import { useEffect, useContext } from "react";
 import { createPortal } from "react-dom";
 import { useLockBodyScroll } from "react-use";
 import PropTypes from "prop-types";
 import { useDispatch } from "react-redux";
 import { authOperations } from "../../redux/auth";
-import styles from "./Modal.module.css";
+import styles from "./Modal.module.scss";
 import Close from "./Close.svg";
+import { ThemeContext, themes } from "../../context/themeContext";
 
 const modalRootRef = document.querySelector("#modal-root");
 
@@ -18,6 +19,8 @@ const Modal = ({
 }) => {
   useLockBodyScroll(true);
   const dispatch = useDispatch();
+
+  const { theme } = useContext(ThemeContext);
 
   useEffect(() => {
     const onEscPress = (e) => {
@@ -43,7 +46,12 @@ const Modal = ({
   };
 
   return createPortal(
-    <div className={styles.backdrop} onClick={handleBackdropClick}>
+    <div
+      className={`${styles.backdrop} ${
+        theme === themes.light ? "lightTheme" : styles.darkTheme
+      }`}
+      onClick={handleBackdropClick}
+    >
       <div className={styles.modal}>
         <img
           src={Close}

@@ -130,3 +130,16 @@
     }
   }
 }
+
+.darkTheme {
+  transition: all ease-in-out 1200ms;
+  background-color: #252529;
+
+  .transactionadd__amount {
+    color: #f0e7e7;
+
+    &::placeholder {
+      color: #f0e7e7;
+    }
+  }
+}
