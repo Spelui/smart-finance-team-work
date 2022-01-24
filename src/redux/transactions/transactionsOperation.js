@@ -54,7 +54,7 @@ const getCategories = createAsyncThunk(
     const persistedToken = state.auth.token;
     token.set(persistedToken);
     try {
-      const data = await axios.get("/transaction/income-categories");
+      const { data } = await axios.get("/transaction/income-categories");
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -115,7 +115,8 @@ const getCategoriesExpense = createAsyncThunk(
     const persistedToken = state.auth.token;
     token.set(persistedToken);
     try {
-      const data = await axios.get("/transaction/expense-categories");
+      const { data } = await axios.get("/transaction/expense-categories");
+
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error);

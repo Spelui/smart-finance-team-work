@@ -74,14 +74,14 @@ const App = () => {
                     </PublickRoute>
                   }
                 />
-                <Route
+                {/* <Route
                   path="/homepage"
                   element={
                     <PrivateRoute>
                       <HomePage />
                     </PrivateRoute>
                   }
-                />
+                /> */}
                 <Route
                   path="/homepage/*"
                   element={
