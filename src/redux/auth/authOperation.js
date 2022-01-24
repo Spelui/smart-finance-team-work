@@ -105,6 +105,20 @@ const refreshTokens = createAsyncThunk(
   }
 );
 
+const refreshGoogleTokens = createAsyncThunk(
+  "auth/refreshTokens",
+  async ({ refreshToken, sid }, thunkAPI) => {
+    axios.defaults.headers.common.Authorization = `Bearer ${refreshToken}`;
+    try {
+      const { data } = await axios.post("/auth/refresh", { sid });
+      axios.defaults.headers.common.Authorization = `Bearer ${data.newAccessToken}`;
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
 const getBalance = createAsyncThunk("auth/getBalance", async (_, thunkAPI) => {
   const state = thunkAPI.getState();
   const persistedToken = state.auth.token;
@@ -129,6 +143,7 @@ const authOperations = {
   setBalance,
   refreshTokens,
   getBalance,
+  refreshGoogleTokens,
 };
 
 export default authOperations;
