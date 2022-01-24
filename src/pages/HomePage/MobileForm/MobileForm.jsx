@@ -121,7 +121,7 @@ export const MobileForm = ({ transaction }) => {
               value={description}
               name="product"
               onChange={onChangeInput}
-              placeholder="Описание товара"
+              placeholder="Описание"
               maxLength="20"
               minLength="3"
               size="20"
@@ -134,7 +134,7 @@ export const MobileForm = ({ transaction }) => {
               label="Category"
               onChange={handleChange}
             >
-              <option value="hide">Категория товара</option>
+              <option value="hide">{isIncome ? 'Категория' : 'Категория товара'}</option>
               {(isIncome ? incomeCategories : expenseCategories).map(
                 (categorie) => (
                   <option key={categorie} value={categorie}>
