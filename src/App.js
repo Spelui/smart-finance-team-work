@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Routes, Route } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 
 import { authOperations, authSelectors } from "./redux/auth";
 import { ThemeContext, themes } from "./context/themeContext";
@@ -12,8 +12,7 @@ import { PrivateRoute } from "./component/PrivateRoute";
 import { Header } from "./component/Header/Header.jsx";
 import { AuthPage } from "./pages/AuthPage/AuthPage.jsx";
 import ReportPage from "./pages/ReportPage/ReportPage";
-//import OnLoader from "./component/OnLoader";
-import TransactionPage from "./pages/TransactionPage/TransactionPage";
+
 import { HomePage } from "./pages/HomePage/HomePage";
 import { MobileForm } from "./pages/HomePage/MobileForm/MobileForm";
 import "react-toastify/dist/ReactToastify.css";
@@ -75,14 +74,14 @@ const App = () => {
                     </PublickRoute>
                   }
                 />
-                <Route
+                {/* <Route
                   path="/homepage"
                   element={
                     <PrivateRoute>
                       <HomePage />
                     </PrivateRoute>
                   }
-                />
+                /> */}
                 <Route
                   path="/homepage/*"
                   element={
