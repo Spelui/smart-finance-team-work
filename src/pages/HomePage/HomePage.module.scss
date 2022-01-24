@@ -7,15 +7,22 @@
   &::after {
     content: "";
     position: absolute;
-    width: 90%;
+    width: 1235px;
     height: 179px;
     bottom: 0;
-    left: 5%;
 
     background-image: url("../../images/homebg.svg");
     background-repeat: no-repeat;
 
     z-index: -1;
+
+    @media screen and (min-width: 768px) {
+      left: 0;
+    }
+
+    @media screen and (min-width: 1280px) {
+      left: 5%;
+    }
   }
 }
 
