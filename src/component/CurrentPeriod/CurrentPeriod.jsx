@@ -60,13 +60,17 @@ const CurrentPeriod = () => {
   useEffect(() => {
     // setI(inf);
     if (!currentDate) return;
-    setCurrentDate(dateSelected);
+    // setCurrentDate(dateSelected);
     // }
     // setCurrentDate(date.slice(0, 7));
-    dispatch(getIncome());
-    dispatch(getExpense());
+    // dispatch(getIncome());
+    // dispatch(getExpense());
     dispatch(getPeriodData(currentDate));
-  }, [currentDate, dateSelected, dispatch]);
+  }, [
+    currentDate,
+    // dateSelected,
+    dispatch,
+  ]);
 
   const prev = () => {
     setI(i + 1);
@@ -92,7 +96,7 @@ const CurrentPeriod = () => {
       setCurrentDate(dates[0]);
       setDisabledNext(!disabledNext);
     }
-    setCurrentDate(dates[i + 1] ? dates[i + 1] : dates[0]);
+    setCurrentDate(dates[i - 1] ? dates[i - 1] : dates[0]);
   };
   return (
     <div
