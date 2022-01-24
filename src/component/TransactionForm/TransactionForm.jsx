@@ -52,7 +52,7 @@ const TransactionForm = () => {
 
   const handleInputChange = (e) => {
     const { name, value } = e.currentTarget;
-    if (description.length > 2 && category !== "" && amount > 0) {
+    if (description.length > 2 && category !== "" ) {
       setDisabledBtn(false);
     } else {
       setDisabledBtn(true);
@@ -112,7 +112,7 @@ const TransactionForm = () => {
           required
           onChange={handleInputChange}
           value={description}
-          pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+          pattern="^[a-zA-Zа-яА-ЯЁёІіЇїЄє]+(([' -][a-zA-Zа-яА-ЯЁёІіЇїЄє ])?[a-zA-Zа-яА-ЯЁёІіЇїЄє]*)*$"
         />
 
         <select
