@@ -1,4 +1,5 @@
 .current_period {
+  transition: all ease-in-out 1200ms;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -40,6 +41,7 @@
 }
 
 .darkTheme {
+  transition: all ease-in-out 1200ms;
   .text {
     color: #f0e7e7;
   }

@@ -9,6 +9,7 @@ import {
 } from "../../redux/transactions/transactionsOperation";
 import { ThemeContext, themes } from "../../context/themeContext";
 import { utils } from "../../utils";
+
 // { date, monthsStat }
 const CurrentPeriod = () => {
   const date = useSelector((state) => state.transactions.date);
@@ -29,10 +30,12 @@ const CurrentPeriod = () => {
   const beginDate = dates.length ? "" : utils.transDate();
 
   useEffect(() => {
+    // if (currentDate!==date) {
+    // }
     dispatch(getIncome());
     dispatch(getExpense());
     dispatch(getPeriodData(currentDate));
-  }, [currentDate, dispatch]);
+  }, [currentDate, date, dispatch]);
 
   const prev = () => {
     setI(i - 1);

@@ -1,9 +1,11 @@
 .home {
+  transition: all ease-in-out 1200ms;
   padding-top: 40px;
   padding-bottom: 83px;
 }
 
 .homepage {
+  transition: all ease-in-out 1200ms;
   &__header {
     padding-top: 30px;
     display: flex;
@@ -39,5 +41,6 @@
 }
 
 .darkTheme {
+  transition: all ease-in-out 1200ms;
   background-color: #1f2022;
 }

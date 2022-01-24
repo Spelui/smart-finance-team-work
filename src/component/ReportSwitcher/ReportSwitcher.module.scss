@@ -2,17 +2,24 @@
   margin: 0 auto;
   display: flex;
   max-width: 134px;
+  justify-content: center;
+  align-items: center;
   @media screen and (min-width: 768px) {
     margin-top: 20px;
   }
-  // @media screen and (min-width: 1280px) {
-  //   // margin-right: 21px;
-  // }
   .btn {
     background-color: inherit;
+    padding: 5px;
+    border-radius: 5px;
     cursor: pointer;
+    transition: all ease-in-out 400ms;
+  }
+  .btn:hover {
+    background-color: rgb(148, 231, 3);
+    transition: all ease-in-out 400ms;
   }
 }
+
 .cost_incomes {
   font-style: normal;
   font-weight: bold;
@@ -25,7 +32,7 @@
   margin: 0 10px;
 }
 .arrows {
-  // width: 4px;
+  // width: 8px;
   height: 10px;
 }
 
