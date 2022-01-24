@@ -235,3 +235,28 @@ h6 {
     left: 30px;
   }
 }
+
+.error {
+  position: relative;
+}
+
+.error::before {
+  content: "*";
+
+  position: absolute;
+  top: 0;
+  left: -7px;
+
+  color: #eb5757;
+}
+
+.error::after {
+  content: "это обязательное поле";
+  width: 150px;
+
+  position: absolute;
+  bottom: -81px;
+  left: -6px;
+
+  color: #eb5757;
+}
