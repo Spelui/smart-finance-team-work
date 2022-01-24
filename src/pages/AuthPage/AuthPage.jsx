@@ -1,16 +1,29 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { authOperations } from "../../redux/auth";
 import { ThemeContext, themes } from "../../context/themeContext";
+import { useLocation } from "react-router-dom";
 
 import s from "./AuthPage.module.scss";
 import sprite from "../../images/sprite.svg";
+import GoogleAuthorization from "../../component/AuthGoogle/GoogleAuth";
 
 export const AuthPage = () => {
   const dispatch = useDispatch();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { theme } = useContext(ThemeContext);
+
+  const location = useLocation();
+  const refreshToken = new URLSearchParams(location.search).get("refreshToken");
+  const sid = new URLSearchParams(location.search).get("sid");
+
+  useEffect(() => {
+    if (!refreshToken) return;
+    dispatch(authOperations.refreshGoogleTokens({ refreshToken, sid })).then(
+      () => dispatch(authOperations.fetchCurrentUser())
+    );
+  }, [dispatch, refreshToken, sid]);
 
   const handleChange = ({ target: { name, value } }) => {
     switch (name) {
@@ -57,12 +70,7 @@ export const AuthPage = () => {
             <p className={s.googleAuthText}>
               Вы можете авторизоваться с помощью Google Account:
             </p>
-            <button type="button" className={s.googleBtn}>
-              <svg width="18px" height="18px" className={s.googleIcon}>
-                <use href={`${sprite}#google-logo`}></use>
-              </svg>
-              <p className={s.googleText}>Google</p>
-            </button>
+            <GoogleAuthorization />
             <p className={s.authText}>
               Или зайти с помощью e-mail и пароля, предварительно
               зарегистрировавшись:
