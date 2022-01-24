@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { authOperations } from "../../redux/auth";
 import { authSelectors } from "../../redux/auth";
 import { ThemeContext, themes } from "../../context/themeContext";
+import ModalBalance from "../ModalBalance/ModalBalance";
 
 import s from "./Balance.module.scss";
 
@@ -31,6 +32,8 @@ const Balance = () => {
       }`}
     >
       <p className={s.balance__title}>Баланс:</p>
+              <ModalBalance/>
+
       <form className={s.balance__form}>
         {mustBeShown ? (
           <input
