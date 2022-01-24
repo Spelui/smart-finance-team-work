@@ -136,9 +136,9 @@ const GraphicComponent = ({ obj, categoryName, show }) => {
           // display: width < 635 ? false : true,
           // display: false,
         },
-        // display: width < 635 ? true : false,
+        display: width < 635 ? true : false,
         // display: true ,
-        display: false,
+        // display: false,
       },
     },
     // elements: {
