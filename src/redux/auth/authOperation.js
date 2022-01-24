@@ -32,7 +32,6 @@ const loginIn = createAsyncThunk(
   async (credentials, { rejectWithValue }) => {
     try {
       const { data } = await axios.post("/auth/login", credentials);
-      toast.success("Успешно авторизирован");
       token.set(data.accessToken);
       return data;
     } catch (error) {
