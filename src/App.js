@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Routes, Route } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
 
 import { authOperations, authSelectors } from "./redux/auth";
 import { ThemeContext, themes } from "./context/themeContext";
@@ -15,6 +16,7 @@ import ReportPage from "./pages/ReportPage/ReportPage";
 import TransactionPage from "./pages/TransactionPage/TransactionPage";
 import { HomePage } from "./pages/HomePage/HomePage";
 import { MobileForm } from "./pages/HomePage/MobileForm/MobileForm";
+import "react-toastify/dist/ReactToastify.css";
 
 const App = () => {
   const [theme, setTheme] = useState(
@@ -119,6 +121,7 @@ const App = () => {
           </>
         )}
       </div>
+      <ToastContainer />
     </ThemeContext.Provider>
   );
 };
