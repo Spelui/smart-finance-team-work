@@ -32,10 +32,10 @@ export const Decstop = () => {
         </Link>
       </div>
 
-      <Routes>
+      {/* <Routes>
         <Route path="income" />
         <Route path="expense" />
-      </Routes>
+      </Routes> */}
 
       <div className={s.chart}>
         <HeaderTransaction />

@@ -42,7 +42,7 @@ const transactionSlice = createSlice({
 
       .addCase(getCategories.fulfilled, (state, action) => ({
         ...state,
-        categories: [...action.payload.data],
+        categories: [...action.payload],
       }))
       .addCase(deleteIncom.fulfilled, (state, { payload }) => {
         const idx = state.items.findIndex((contact) => contact._id === payload);
@@ -61,7 +61,7 @@ const transactionSlice = createSlice({
 
       .addCase(getCategoriesExpense.fulfilled, (state, action) => ({
         ...state,
-        categoriesExpense: [...action.payload.data],
+        categoriesExpense: [...action.payload],
       }))
       .addCase(deleteExpense.fulfilled, (state, { payload }) => {
         const idx = state.itemsExpense.findIndex(
