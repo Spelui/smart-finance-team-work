@@ -82,11 +82,14 @@ const TransactionForm = () => {
     };
 
     isExpense
-      ? dispatch(addExpense(newOperation)).then(() => dispatch(getExpense())).then(()=> dispatch(authOperations.getBalance()))
-      : dispatch(addIncome(newOperation)).then(() => dispatch(getIncome())).then(()=> dispatch(authOperations.getBalance()));
+      ? dispatch(addExpense(newOperation))
+          .then(() => dispatch(getExpense()))
+          .then(() => dispatch(authOperations.getBalance()))
+      : dispatch(addIncome(newOperation))
+          .then(() => dispatch(getIncome()))
+          .then(() => dispatch(authOperations.getBalance()));
     handleBtnClear();
     setDisabledBtn(true);
-    
   };
 
   return (
@@ -102,7 +105,7 @@ const TransactionForm = () => {
           className={`${s.input} ${s.left_input}`}
           type="text"
           name="product"
-          placeholder="Описание товара"
+          placeholder="Описание"
           maxLength="20"
           minLength="3"
           size="20"
@@ -119,7 +122,9 @@ const TransactionForm = () => {
           name="category"
           required
         >
-          <option value="">Категория дохода</option>
+          <option value="">
+            {isExpense ? "Категория расходов" : "Категория доходов"}
+          </option>
           {(isExpense ? categoriesExpense : categories).map((categorie) => (
             <option key={categorie} value={categorie}>
               {categorie}
