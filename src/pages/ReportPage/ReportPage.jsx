@@ -35,10 +35,11 @@ const ReportPage = () => {
     setShowGraph(true);
     setReportGraphObj(obj);
     setCategoryName(name);
-    window.scrollTo({
-      top: document.documentElement.scrollHeight,
-      behavior: "smooth",
-    });
+    console.log("ClickGR :>> ");
+    // window.scrollTo({
+    //   top: document.documentElement.scrollHeight,
+    //   behavior: "smooth",
+    // });
     // window.scrollBy({
     //   top: cardHeight * 2,
     //   behavior: "smooth",
@@ -54,7 +55,7 @@ const ReportPage = () => {
     if (!normalizedDate) {
       dispatch(getPeriodData(currentDate.slice(0, 7)));
     } else dispatch(getPeriodData(normalizedDate));
-  }, [currentDate, dispatch, normalizedDate]);
+  }, [currentDate, dispatch, normalizedDate, date]);
   return (
     <>
       <section
@@ -81,6 +82,7 @@ const ReportPage = () => {
               <CategoryList
                 reportTitle={reportTitle}
                 setGraphObj={getGraphObj}
+                avtive={showGraph}
               />
             </div>
           </div>

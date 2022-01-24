@@ -1,14 +1,19 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { useSelector } from "react-redux";
 import s from "./CategoryList.module.scss";
 import { categories, incomes } from "./categoriesIcons";
 import amount from "../../redux/user/user-selectors";
 import { ThemeContext, themes } from "../../context/themeContext";
 
-const CategoryList = ({ reportTitle, setGraphObj }) => {
+const CategoryList = ({ reportTitle, setGraphObj, active }) => {
   const incomesObj = useSelector(amount.payment);
   const expenseObj = useSelector(amount.expenses);
   const { theme } = useContext(ThemeContext);
+  // const [active, setActive] = useState(false);
+  // const activeCategoryToggle = () => {
+  //   console.log("Click :>> ");
+  //   setActive(!active);
+  // };
 
   const incomesListValues =
     incomesObj === undefined ? [] : Object.values(incomesObj);
@@ -37,8 +42,10 @@ const CategoryList = ({ reportTitle, setGraphObj }) => {
               return (
                 <li
                   key={index}
-                  className={s.item}
+                  className={`${s.item} ${active ? s.active : ""}`}
                   onClick={() => {
+                    console.log("Click2 :>> ");
+                    // activeCategoryToggle();
                     setGraphObj(item, incomesListTitles[index]);
                   }}
                 >

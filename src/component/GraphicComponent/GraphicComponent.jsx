@@ -41,6 +41,12 @@ const random = (accentColor) =>
 const GraphicComponent = ({ obj, categoryName, show }) => {
   const { theme } = useContext(ThemeContext);
   const dataObj = Object.entries(obj).map(([name, value]) => ({ name, value }));
+  if (show) {
+    window.scrollTo({
+      top: document.documentElement.scrollHeight,
+      behavior: "smooth",
+    });
+  }
 
   const dataGraph = dataObj.filter(({ name }) => name !== "total");
   const randomObjColor = dataGraph.map((item) => random(accentColor));

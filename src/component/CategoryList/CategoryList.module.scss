@@ -48,6 +48,17 @@
   // }
 }
 .item {
+  // .active {
+  //   .img {
+  //     transform: scale(1.02);
+  //     fill: #ff751d;
+  //     transition: fill ease-in-out 400ms;
+  //     .rectangle_icon {
+  //       background-color: #ffdac0;
+  //       transition: background-color ease-in-out 400ms;
+  //     }
+  //   }
+  // }
   position: relative;
   display: flex;
   cursor: pointer;
@@ -69,6 +80,7 @@
     transition: background-color ease-in-out 400ms;
   }
 }
+
 .link {
   position: relative;
   cursor: pointer;
