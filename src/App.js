@@ -25,17 +25,20 @@ const App = () => {
   const isFetchingCurrentUser = useSelector(authSelectors.getIsFetchingCurrent);
   const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
   const isRefreshing = useSelector(authSelectors.getIsRefreshing);
+  const isFirstTime = useSelector(authSelectors.isFirstLogin);
 
   useEffect(() => {
     dispatch(authOperations.fetchCurrentUser());
 
     let secondTimerId = null;
-    if (isLoggedIn) {
-      dispatch(authOperations.refreshTokens());
-
-      secondTimerId = setInterval(() => {
+    if (!isFirstTime) {
+      if (isLoggedIn) {
         dispatch(authOperations.refreshTokens());
-      }, 600000);
+
+        secondTimerId = setInterval(() => {
+          dispatch(authOperations.refreshTokens());
+        }, 600000);
+      }
     }
 
     return () => {
