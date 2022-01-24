@@ -25,6 +25,10 @@ const Balance = () => {
     await dispatch(authOperations.setBalance({ newBalance }));
   };
 
+  const shuldBeVisible = balance === 0 && mustBeShown;
+    
+  
+
   return (
     <div
       className={`${s.balance} ${
@@ -32,7 +36,7 @@ const Balance = () => {
       }`}
     >
       <p className={s.balance__title}>Баланс:</p>
-              <ModalBalance/>
+      
 
       <form className={s.balance__form}>
         {mustBeShown ? (
@@ -69,6 +73,8 @@ const Balance = () => {
           </button>
         )}
       </form>
+      
+      {shuldBeVisible && <ModalBalance/>}
     </div>
   );
 };
