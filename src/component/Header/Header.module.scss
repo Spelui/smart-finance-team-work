@@ -91,10 +91,12 @@
 }
 
 .lightTheme {
+  transition: all ease-in-out 1200ms;
   background-color: white;
 }
 
 .darkTheme {
+  transition: all ease-in-out 1200ms;
   background-color: #252529;
 
   .logo {

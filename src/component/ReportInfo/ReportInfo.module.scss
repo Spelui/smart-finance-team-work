@@ -67,6 +67,7 @@
 }
 
 .darkTheme {
+  transition: all ease-in-out 1200ms;
   .costIncomes_report {
     background-color: #757781;
   }

@@ -49,10 +49,6 @@ const ReportPage = () => {
     setReportTitle(reportTitle === "расходы" ? "доходы" : "расходы");
     setShowGraph(false);
   };
-  // useEffect(() => {
-  //   if (!dataMonts) {
-  //   }
-  // }, [dataMonts, dispatch]);
 
   useEffect(() => {
     if (!normalizedDate) {
@@ -68,10 +64,7 @@ const ReportPage = () => {
       >
         <div className={s.wrap}>
           <div className={s.report_head_wrap}>
-            <CurrentPeriod
-              monthsStat={dataMonths}
-              // date={date === null ? currentDate : date}
-            />
+            <CurrentPeriod monthsStat={dataMonths} />
             <div className={s.reportBalance_wrap}>
               <span className={s.balanceText}>Баланс:</span>
               <span className={s.balanceNumber}>{`${balance}.00`} uah</span>

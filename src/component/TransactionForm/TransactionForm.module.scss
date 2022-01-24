@@ -120,6 +120,7 @@
 }
 
 .darkTheme {
+  transition: all ease-in-out 1200ms;
   .input,
   .select,
   .number {
