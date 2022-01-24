@@ -11,6 +11,7 @@ import { getPeriodData } from "../../redux/user/user-operations";
 import { utils } from "../../redux/utils";
 import { ThemeContext, themes } from "../../context/themeContext";
 import s from "./ReportPage.module.scss";
+import authOperations from "../../redux/auth/authOperation";
 
 // import { getExpense } from "../../redux/transactions/transactionsOperation";
 
@@ -49,11 +50,11 @@ const ReportPage = () => {
     setShowGraph(false);
   };
 
-  // useEffect(() => {
-  //   if (!normalizedDate) {
-  //     dispatch(getPeriodData(currentDate.slice(0, 7)));
-  //   } else dispatch(getPeriodData(normalizedDate));
-  // }, [currentDate, dispatch, normalizedDate, date]);
+  useEffect(() => {
+    // if (!normalizedDate) {
+    dispatch(authOperations.getBalance());
+    // } else dispatch(getPeriodData(normalizedDate));
+  }, [dispatch]);
   return (
     <>
       <section

@@ -18,23 +18,31 @@ const CurrentPeriod = () => {
   const expenses = useSelector((state) => state?.transactions?.itemsExpense);
   const date = useSelector((state) => state.transactions.date);
   const dates = utils.convertDate(incomes, expenses);
+  const startDate = utils.transDate(date);
+  console.log("startDate :>> ", startDate);
+  console.log("incomes :>> ", incomes);
+  console.log("expenses :>> ", expenses);
+  console.log("date :>> ", date);
 
-  const dateSelected = dates.find((item, i) => {
-    return item === date.slice(0, 7);
-  });
+  const dateSelected =
+    dates.length > 0
+      ? dates.find((item, i) => {
+          return item === date.slice(0, 7);
+        })
+      : null;
   // setCurrentDate(dateSelected);
   // setI(dates.indexOf(dateSelected));
-  const inf = dates.indexOf(dateSelected);
-  console.log("inf :>> ", inf);
+  const inf = dates.length > 0 ? dates.indexOf(dateSelected) : 0;
+  // console.log("inf :>> ", inf);
   const [i, setI] = useState(inf);
-  const [currentDate, setCurrentDate] = useState(date);
+  const [currentDate, setCurrentDate] = useState(dateSelected);
   const [disabledPrev, setDisabledPrev] = useState(false);
   const [disabledNext, setDisabledNext] = useState(false);
-  console.log("currentDate :>> ", currentDate);
+  // console.log("currentDate :>> ", currentDate);
   // console.log("incomes :>> ", incomes);
   // console.log("expenses :>> ", expenses);
-  const beginDate = dates.length ? null : utils.transDate();
-  console.log("dates :>> ", dates);
+  // const beginDate = dates.length ? null : utils.transDate();
+  // console.log("dates :>> ", dates);
 
   console.log("dateSelected :>> ", dateSelected);
   const convertMonths = utils.transformCurrentDate(
@@ -107,7 +115,7 @@ const CurrentPeriod = () => {
         <span className={s.cost_incomes}>
           {dates.length && inf !== -1
             ? ` ${convertMonths[i]} ${getYears[i]}`
-            : beginDate}
+            : startDate}
         </span>
         <button
           type="button"
