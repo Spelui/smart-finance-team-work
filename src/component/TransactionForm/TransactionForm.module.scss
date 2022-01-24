@@ -21,7 +21,7 @@
 .select,
 .number {
   border: 2px solid #f5f6fb;
-  color: #c7ccdc;
+  color: #52555f;
   text-align: center;
   height: 44px;
 }
@@ -40,6 +40,7 @@
 
 .select {
   width: 171px;
+  color: #c7ccdc;
 
   @media screen and (min-width: 1280px) {
     width: 181px;
