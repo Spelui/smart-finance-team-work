@@ -20,6 +20,8 @@ const CurrentPeriod = () => {
   const { theme } = useContext(ThemeContext);
   const beginDate = dates.length ? null : utils.transDate();
   const [currentDate, setCurrentDate] = useState(date);
+  const [disabledPrev, setDisabledPrev] = useState(false);
+  const [disabledNext, setDisabledNext] = useState(false);
 
   const [i, setI] = useState(0);
 
@@ -27,7 +29,8 @@ const CurrentPeriod = () => {
     dates.map((item) => item.slice(-2))
   );
   const getYears = dates.map((item) => item.slice(0, 4));
-
+  console.log("convertMonths :>> ", convertMonths);
+  console.log("getYears :>> ", getYears);
   useEffect(() => {
     // if (currentDate!==date) {
     // }
@@ -37,21 +40,29 @@ const CurrentPeriod = () => {
     dispatch(getPeriodData(currentDate.slice(0, 7)));
   }, [currentDate, date, dispatch]);
 
-  // const prev = () => {
-  //   setI(i - 1);
-
-  //   if (i === 0) {
-  //     setI(dates.length - 1);
-  //     setCurrentDate(dates[0]);
-  //   }
-  //   setCurrentDate(dates[i - 1] ? dates[i - 1] : dates[0]);
-  // };
-  const next = () => {
+  const prev = () => {
     setI(i + 1);
+    setCurrentDate(dates[i + 1] ? dates[i + 1] : dates[i]);
+    if (i - 1 !== 0) {
+      setDisabledNext(false);
+    }
 
     if (i === dates.length - 1) {
+      setI(dates.length - 1);
+      setDisabledPrev(!disabledPrev);
+      setCurrentDate(dates[dates.length - 1]);
+    }
+  };
+  const next = () => {
+    setI(i - 1);
+    if (i !== dates.length - 1) {
+      setDisabledPrev(false);
+    }
+
+    if (i === 0) {
       setI(0);
       setCurrentDate(dates[0]);
+      setDisabledNext(!disabledNext);
     }
     setCurrentDate(dates[i + 1] ? dates[i + 1] : dates[0]);
   };
@@ -65,9 +76,9 @@ const CurrentPeriod = () => {
       <div className={s.current_period_wrap}>
         <button
           type="button"
-          onClick={() => next(i)}
+          onClick={() => prev(i)}
           className={s.current_period_btn}
-          disabled={dates.length ? false : true}
+          disabled={dates.length ? disabledPrev : true}
         >
           <svg viewBox="0 0 28.3 28.3" className={s.current_period_arrow}>
             <use href={`${sprite}#arrow_left`} />
@@ -83,7 +94,7 @@ const CurrentPeriod = () => {
           type="button"
           onClick={() => next(i)}
           className={s.current_period_btn}
-          disabled={dates.length ? false : true}
+          disabled={dates.length ? disabledNext : true}
         >
           <svg viewBox="0 0 28.3 28.3" className={s.current_period_arrow}>
             <use href={`${sprite}#arrow_rigth`} />

@@ -36,10 +36,10 @@ const ReportPage = () => {
     setReportGraphObj(obj);
     setCategoryName(name);
     console.log("ClickGR :>> ");
-    // window.scrollTo({
-    //   top: document.documentElement.scrollHeight,
-    //   behavior: "smooth",
-    // });
+    window.scrollTo({
+      top: document.documentElement.scrollHeight,
+      behavior: "smooth",
+    });
     // window.scrollBy({
     //   top: cardHeight * 2,
     //   behavior: "smooth",
@@ -68,7 +68,9 @@ const ReportPage = () => {
             <CurrentPeriod monthsStat={dataMonths} />
             <div className={s.reportBalance_wrap}>
               <span className={s.balanceText}>Баланс:</span>
-              <span className={s.balanceNumber}>{`${balance}.00`} uah</span>
+              <span className={s.balanceNumber}>
+                {`${balance}.00` || "0.00"} uah
+              </span>
             </div>
             <BackspaceBtn />
           </div>
