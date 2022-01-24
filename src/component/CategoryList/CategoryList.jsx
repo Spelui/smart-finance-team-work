@@ -1,11 +1,14 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { useSelector } from "react-redux";
 import s from "./CategoryList.module.scss";
 import { categories, incomes } from "./categoriesIcons";
 import amount from "../../redux/user/user-selectors";
 import { ThemeContext, themes } from "../../context/themeContext";
+import { useDispatch } from "react-redux";
+import { getPeriodData } from "../../redux/user/user-operations";
 
-const CategoryList = ({ reportTitle, setGraphObj }) => {
+const CategoryList = ({ reportTitle, setGraphObj, date }) => {
+  const dispatch = useDispatch();
   const incomesObj = useSelector(amount.payment);
   const expenseObj = useSelector(amount.expenses);
   const { theme } = useContext(ThemeContext);
@@ -19,6 +22,13 @@ const CategoryList = ({ reportTitle, setGraphObj }) => {
     expenseObj === undefined ? [] : Object.values(expenseObj);
   const expenseListTitles =
     expenseObj === undefined ? [] : Object.keys(expenseObj);
+  useEffect(() => {
+    dispatch(getPeriodData(date));
+    // first;
+    // return () => {
+    //   second;
+    // };
+  }, [date, dispatch]);
 
   return (
     <ul
