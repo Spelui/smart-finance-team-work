@@ -1,0 +1,159 @@
+.balance {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  z-index: 2;
+}
+
+@media screen and (min-width: 768px) {
+  .balance {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+  }
+}
+
+.balance__title, .balance__input, .balance__btn {
+  line-height: calc(14 / 12);
+  font-size: 12px;
+}
+
+.balance__title {
+  padding-bottom: 6px;
+  color: rgba(82, 85, 95, 0.7);
+  letter-spacing: 0.02em;
+}
+
+@media screen and (min-width: 768px) {
+  .balance__title {
+    margin-right: 21px;
+  }
+}
+
+.balance__form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.balance__input {
+  width: 125px;
+  padding: 15px 17px 15px 23px;
+  border: 2px solid #ffffff;
+  border-right: none;
+  background-color: transparent;
+  border-radius: 22px 0px 0px 22px;
+  font-weight: 700;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.balance__input::-webkit-input-placeholder {
+  color: #000000;
+}
+
+.balance__input:-ms-input-placeholder {
+  color: #000000;
+}
+
+.balance__input::-ms-input-placeholder {
+  color: #000000;
+}
+
+.balance__input::placeholder {
+  color: #000000;
+}
+
+@media screen and (min-width: 768px) {
+  .balance__input {
+    width: 125px;
+    margin-right: 15px;
+    padding: 12px 20px;
+    border-right: 2px solid #ffffff;
+    border-radius: 16px;
+  }
+}
+
+.balance__activebtn {
+  padding-left: 0;
+  padding-right: 0;
+  width: 125px;
+  color: rgba(82, 85, 95, 0.7);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  padding: 12px 14px;
+  border: 2px solid #ffffff;
+  border-radius: 0px 22px 22px 0px;
+  background: transparent;
+  text-align: center;
+}
+
+.balance__activebtn:hover, .balance__activebtn:focus {
+  background-color: #ff751d;
+  color: #ffffff;
+}
+
+@media screen and (min-width: 768px) {
+  .balance__activebtn {
+    border-radius: 16px;
+  }
+}
+
+.balance__disabledbtn {
+  padding-left: 0;
+  padding-right: 0;
+  width: 125px;
+  color: rgba(82, 85, 95, 0.7);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  padding: 12px 17px;
+  border: 2px solid #ffffff;
+  border-radius: 0px 22px 22px 0px;
+  background: transparent;
+  cursor: default;
+  text-align: center;
+}
+
+@media screen and (min-width: 768px) {
+  .balance__disabledbtn {
+    padding: 12px 14px;
+    border-radius: 16px;
+  }
+}
+
+.darkTheme .balance__title {
+  color: #f0e7e7;
+}
+
+.darkTheme .balance__input {
+  color: #f0e7e7;
+}
+
+.darkTheme .balance__input::-webkit-input-placeholder {
+  color: #f0e7e7;
+}
+
+.darkTheme .balance__input:-ms-input-placeholder {
+  color: #f0e7e7;
+}
+
+.darkTheme .balance__input::-ms-input-placeholder {
+  color: #f0e7e7;
+}
+
+.darkTheme .balance__input::placeholder {
+  color: #f0e7e7;
+}
+
+.darkTheme .balance__activebtn {
+  color: #f0e7e7;
+}
+/*# sourceMappingURL=Balance.module.css.map */

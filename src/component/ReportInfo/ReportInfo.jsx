@@ -19,13 +19,13 @@ const ReportInfo = () => {
         <div className={s.report_item + " " + s.line}>
           <p className={s.text}>Расходы:</p>
           <span className={s.numberCosts}>
-            - {`${expenseTotal}.00` || "0.00"} грн.
+            - {expenseTotal ? `${expenseTotal}.00` : "0.00"} грн.
           </span>
         </div>
         <div className={s.report_item}>
           <p className={s.text}>Доходы:</p>
           <span className={s.numberIncomes}>
-            + {`${incomeTotal}.00` || "0.00"} грн.
+            + {incomeTotal ? `${incomeTotal}.00` : "0.00"} грн.
           </span>
         </div>
       </div>

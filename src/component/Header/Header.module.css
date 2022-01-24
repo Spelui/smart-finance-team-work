@@ -1,0 +1,144 @@
+.header {
+  padding: 12px 0;
+  background-color: white;
+}
+
+.headerWrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.logo {
+  fill: #000000;
+}
+
+.userMenu {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.userAvatar {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin-right: 15px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #f5f6fa;
+}
+
+@media screen and (min-width: 768px) {
+  .userAvatar {
+    margin-right: 10px;
+  }
+}
+
+.avatarText {
+  font-weight: 700;
+  font-size: 12px;
+  line-height: calc(14 / 12);
+  letter-spacing: 0.04em;
+  color: #52555f;
+}
+
+.userName {
+  font-size: 12px;
+  line-height: calc(14 / 12);
+  letter-spacing: 0.04em;
+  color: #52555f;
+}
+
+@media screen and (min-width: 320px) {
+  .userName {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .userName {
+    display: block;
+  }
+}
+
+.userName::after {
+  content: "";
+  margin-left: 20px;
+  margin-right: 20px;
+  height: 36px;
+  border-right: 1px solid #e0e5eb;
+}
+
+@media screen and (min-width: 768px) {
+  .logoutIcon {
+    display: none;
+  }
+}
+
+.logoutText {
+  -webkit-text-decoration-line: underline;
+          text-decoration-line: underline;
+}
+
+@media screen and (min-width: 320px) {
+  .logoutText {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .logoutText {
+    display: block;
+  }
+}
+
+.btn {
+  height: 16px;
+  background: white;
+}
+
+.lightTheme {
+  -webkit-transition: all ease-in-out 1200ms;
+  transition: all ease-in-out 1200ms;
+  background-color: white;
+}
+
+.darkTheme {
+  -webkit-transition: all ease-in-out 1200ms;
+  transition: all ease-in-out 1200ms;
+  background-color: #252529;
+}
+
+.darkTheme .logo {
+  fill: #757781;
+}
+
+.darkTheme .btn {
+  background: #252529;
+}
+
+.darkTheme .logoutText {
+  color: #f0e7e7;
+}
+
+.darkTheme .userName {
+  color: #f0e7e7;
+}
+/*# sourceMappingURL=Header.module.css.map */

@@ -1,0 +1,105 @@
+.img {
+  width: 56px;
+  height: 56px;
+  margin: 5px 0;
+}
+
+.rectangle_icon {
+  position: absolute;
+  bottom: 12%;
+  left: 50%;
+  width: 59px;
+  height: 46px;
+  background-color: #f5f6fb;
+  border-radius: 20px;
+  z-index: -1;
+  -webkit-transform: translate(-52%);
+          transform: translate(-52%);
+}
+
+.list {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  grid-gap: 40px 15px;
+  margin: 0 auto;
+  padding-bottom: 23px;
+  max-width: 282px;
+  margin-top: 20px;
+  margin-bottom: 54px;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 1.17;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  background-image: repeating-linear-gradient(to top, #e0e5eb 0px 1px, transparent 1px 147px);
+}
+
+@media screen and (min-width: 768px) {
+  .list {
+    background-image: none;
+    margin: 20px 21px 30px 31px;
+    max-width: 613px;
+  }
+}
+
+.item {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  cursor: pointer;
+  -ms-flex-preferred-size: calc(100% / 3 - 15px);
+      flex-basis: calc(100% / 3 - 15px);
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-transition: all ease-in-out 400ms;
+  transition: all ease-in-out 400ms;
+}
+
+@media screen and (min-width: 768px) {
+  .item {
+    -ms-flex-preferred-size: calc(100% / 6 - 15px);
+        flex-basis: calc(100% / 6 - 15px);
+  }
+}
+
+.item:hover,
+.item:focus .img {
+  -webkit-transform: scale(1.02);
+          transform: scale(1.02);
+  fill: #ff751d;
+  -webkit-transition: fill ease-in-out 400ms;
+  transition: fill ease-in-out 400ms;
+}
+
+.item:hover .rectangle_icon,
+.item:focus .img .rectangle_icon {
+  background-color: #ffdac0;
+  -webkit-transition: background-color ease-in-out 400ms;
+  transition: background-color ease-in-out 400ms;
+}
+
+.link {
+  position: relative;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.darkTheme .item {
+  color: #f0e7e7;
+}
+/*# sourceMappingURL=CategoryList.module.css.map */

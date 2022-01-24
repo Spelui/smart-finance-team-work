@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AA0BA,AAAA,SAAS,CAAC;EACR,SAAS,EAAE,KAAK;EAEhB,MAAM,EAAE,MAAM;CAOf;;AANC,MAAM,CAAC,MAAM,MAAM,SAAS,EAAE,KAAK;EAJrC,AAAA,SAAS,CAAC;IAKN,SAAS,EAAE,KAAK;GAKnB;;;AAHC,MAAM,CAAC,MAAM,MAAM,SAAS,EAAE,MAAM;EAPtC,AAAA,SAAS,CAAC;IAQN,SAAS,EAAE,KAAK;GAEnB",
+    "sources": [
+        "GraphicComponent.module.scss"
+    ],
+    "names": [],
+    "file": "GraphicComponent.module.css"
+}
