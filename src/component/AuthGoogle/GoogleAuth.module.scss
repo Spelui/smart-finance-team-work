@@ -22,4 +22,5 @@
 .ButtonGoogleAuth:hover,
 .ButtonGoogleAuth:focus {
   background-color: #ff751d;
+  transition: background 250ms linear, box-shadow 250ms linear;
 }

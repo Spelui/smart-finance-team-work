@@ -183,43 +183,6 @@
   }
 }
 
-.googleBtn {
-  transition: all ease-in-out 1200ms;
-  margin: 0 auto 30px auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  width: 122px;
-  height: 40px;
-
-  background: #f6f7fb;
-  border-radius: 26px;
-
-  transition: background 250ms linear, box-shadow 250ms linear;
-
-  &:hover,
-  &:focus {
-    background: #fcfdff;
-    box-shadow: 1px 1px 5px rgba(170, 178, 197, 0.4);
-    transition: background 250ms linear, box-shadow 250ms linear;
-  }
-}
-
-.googleIcon {
-  margin-right: 9px;
-}
-
-.googleText {
-  transition: all ease-in-out 1200ms;
-  font-weight: 500;
-  font-size: 14px;
-  line-height: calc(16 / 14);
-  letter-spacing: 0.02em;
-
-  color: #000000;
-}
-
 .authText {
   transition: all ease-in-out 1200ms;
   width: 220px;
