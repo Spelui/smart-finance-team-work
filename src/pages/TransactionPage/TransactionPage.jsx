@@ -6,6 +6,8 @@ import CostIncomeBtm from "../../component/CostIncome/CostIncomeBtm/CostIncomeBt
 import styles from "./TransactionPage.module.scss";
 import Summary from "../../component/Summary/Summary";
 import Balance from "../../component/Balance";
+import ModalBalance from "../../component/ModalBalance/ModalBalance";
+
 
 const TransactionPage = () => {
   return (
