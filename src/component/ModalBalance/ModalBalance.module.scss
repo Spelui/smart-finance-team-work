@@ -4,7 +4,7 @@
   font-weight: normal;
   color: #ffffff;
   position: absolute;
-  top: 40%;
+  top: 315px;
   left: 50%;
   transform: translate(-50%, -50%);
   max-width: 282px;
@@ -12,11 +12,11 @@
   z-index: 3;
   @media screen and (min-width: 768px) {
     max-width: 292px;
-    top: 220px;
+    top: 225px;
     left: 40%;
   }
   @media screen and (min-width: 1280px) {
-    top: 23%;
+    top: 225px;
     left: 54%;
   }
   &::before {
@@ -48,4 +48,11 @@
       line-height: 1.33;
     }
   }
+}
+
+.backdrop {
+  position: absolute;
+  top: 56px;
+  width: 100vw;
+  height: 100vh;
 }
