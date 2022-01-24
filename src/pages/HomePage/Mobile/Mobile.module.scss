@@ -150,3 +150,18 @@
     letter-spacing: 0.04em;
   }
 }
+
+.darkTheme {
+  transition: all ease-in-out 1200ms;
+  .homepage__report {
+    color: #f0e7e7;
+  }
+
+  .transactions__item {
+    color: #f0e7e7;
+  }
+
+  .transactions__leftpart {
+    color: #f0e7e7;
+  }
+}
