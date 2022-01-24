@@ -1,19 +1,14 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { useSelector } from "react-redux";
 import s from "./CategoryList.module.scss";
 import { categories, incomes } from "./categoriesIcons";
 import amount from "../../redux/user/user-selectors";
 import { ThemeContext, themes } from "../../context/themeContext";
 
-const CategoryList = ({ reportTitle, setGraphObj, active }) => {
+const CategoryList = ({ reportTitle, setGraphObj }) => {
   const incomesObj = useSelector(amount.payment);
   const expenseObj = useSelector(amount.expenses);
   const { theme } = useContext(ThemeContext);
-  // const [active, setActive] = useState(false);
-  // const activeCategoryToggle = () => {
-  //   console.log("Click :>> ");
-  //   setActive(!active);
-  // };
 
   const incomesListValues =
     incomesObj === undefined ? [] : Object.values(incomesObj);
@@ -33,8 +28,9 @@ const CategoryList = ({ reportTitle, setGraphObj, active }) => {
     >
       {reportTitle === "доходы"
         ? incomesListValues
-            // .sort((a, b) => b.total - a.total)
+            .sort((a, b) => b.total - a.total)
             .map((item, index) => {
+              // треба поставити ту іконку назва якої з шпаргалки співпадає з прийдешньою назвою категоріїї
               const filteredIcon = incomes.find(
                 ({ name }) =>
                   incomesListTitles[index].toString() === name.toString()
@@ -42,10 +38,8 @@ const CategoryList = ({ reportTitle, setGraphObj, active }) => {
               return (
                 <li
                   key={index}
-                  className={`${s.item} ${active ? s.active : ""}`}
+                  className={s.item}
                   onClick={() => {
-                    console.log("Click2 :>> ");
-                    // activeCategoryToggle();
                     setGraphObj(item, incomesListTitles[index]);
                   }}
                 >
@@ -61,7 +55,7 @@ const CategoryList = ({ reportTitle, setGraphObj, active }) => {
               );
             })
         : expenseListValues
-            // .sort((a, b) => b.total - a.total)
+            .sort((a, b) => b.total - a.total)
             .map((item, index) => {
               const filteredIcon = categories.find(
                 ({ name }) =>
