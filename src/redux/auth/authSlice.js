@@ -66,6 +66,9 @@ const authSlice = createSlice({
         state.refreshToken = action.payload.newRefreshToken;
         state.sid = action.payload.newSid;
         state.isRefreshing = false;
+      })
+      .addCase(authOperations.getBalance.fulfilled, (state, action) => {
+        state.user.balance = action.payload;
       });
   },
 });

@@ -10,6 +10,7 @@ import {
 } from "../../redux/transactions/transactionsOperation";
 import Modal from "../Modal/Modal";
 import { ThemeContext, themes } from "../../context/themeContext";
+import { authOperations } from "../../redux/auth";
 
 import s from "./TransactionTable.module.scss";
 import sprite from "../../images/sprite.svg";
@@ -31,8 +32,12 @@ const TransactionTable = () => {
 
   const onDelete = (id) => () => {
     isExpense
-      ? dispatch(deleteExpense(id)).then(() => dispatch(getExpense()))
-      : dispatch(deleteIncom(id)).then(() => dispatch(getIncome()));
+      ? dispatch(deleteExpense(id))
+          .then(() => dispatch(getExpense()))
+          .then(() => dispatch(authOperations.getBalance()))
+      : dispatch(deleteIncom(id))
+          .then(() => dispatch(getIncome()))
+          .then(() => dispatch(authOperations.getBalance()));
     closeModal();
   };
 

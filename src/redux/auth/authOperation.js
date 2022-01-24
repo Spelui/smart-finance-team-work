@@ -60,7 +60,6 @@ const fetchCurrentUser = createAsyncThunk(
       return thunkAPI.rejectWithValue();
     }
     token.set(persistedToken);
-    console.log("persistedToken :>> ", persistedToken);
     try {
       const { data } = await axios.get("/user");
       return data;
@@ -96,6 +95,20 @@ const refreshTokens = createAsyncThunk(
   }
 );
 
+const getBalance = createAsyncThunk("auth/getBalance", async (_, thunkAPI) => {
+  const state = thunkAPI.getState();
+  const persistedToken = state.auth.token;
+
+  if (persistedToken === null) {
+    return thunkAPI.rejectWithValue();
+  }
+  token.set(persistedToken);
+  try {
+    const { data } = await axios.get("/user");
+    return data.balance;
+  } catch (error) {}
+});
+
 const authOperations = {
   register,
   loginIn,
@@ -103,6 +116,7 @@ const authOperations = {
   fetchCurrentUser,
   setBalance,
   refreshTokens,
+  getBalance,
 };
 
 export default authOperations;

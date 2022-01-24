@@ -3,6 +3,7 @@ import { Routes, Route, Navigate, NavLink, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { getPeriodData } from "../../../redux/user/user-operations";
+import { authOperations } from '../../../redux/auth';
 
 import {
   getExpense,
@@ -49,8 +50,8 @@ export const Mobile = () => {
     const filteredDate = filterDate();
 
     const onDelete = (id) => () => {
-        dispatch(deleteExpense(id)).then(() => dispatch(getExpense()))
-        dispatch(deleteIncom(id)).then(() => dispatch(getIncome()));
+        dispatch(deleteExpense(id)).then(() => dispatch(getExpense())).then(()=> dispatch(authOperations.getBalance()))
+        dispatch(deleteIncom(id)).then(() => dispatch(getIncome())).then(()=> dispatch(authOperations.getBalance()));
         closeModal();   
      };
 
