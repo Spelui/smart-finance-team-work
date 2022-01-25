@@ -3,6 +3,7 @@
   transition: all ease-in-out 1200ms;
   padding-top: 40px;
   padding-bottom: 83px;
+  overflow: hidden;
 
   &::after {
     content: "";
