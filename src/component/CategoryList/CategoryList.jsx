@@ -15,9 +15,9 @@ const CategoryList = ({
   onChageReportTitle,
 }) => {
   const activeHandler = (i) => {
-    // console.log('"click" :>> ', "click");
+    console.log('"click" :>> ', "click");
 
-    setActiveId(true);
+    // setActiveId(true);
   };
 
   const dispatch = useDispatch();
@@ -120,10 +120,12 @@ const CategoryList = ({
               return (
                 <li
                   key={index}
-                  id={index}
-                  className={`${s.item} ${activeId === index ? s.active : ""}`}
+                  id={index + 1}
+                  className={`${s.item} ${
+                    activeId === index + 1 ? s.active : ""
+                  }`}
                   onClick={(e) => {
-                    handleClick(e);
+                    handleClick(e, index + 1);
                     activeHandler(e);
                     setGraphObj(item, expenseListTitles[index]);
                   }}

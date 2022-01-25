@@ -27,7 +27,7 @@
 .select,
 .number {
   border: 2px solid #f5f6fb;
-  color: #c7ccdc;
+  color: #52555f;
   text-align: center;
   height: 44px;
 }
@@ -48,6 +48,7 @@
 
 .select {
   width: 171px;
+  color: #c7ccdc;
 }
 
 @media screen and (min-width: 1280px) {
@@ -191,5 +192,54 @@
 .darkTheme .input::placeholder,
 .darkTheme .number::placeholder {
   color: #f0e7e7;
+}
+
+.animation {
+  -webkit-animation-name: actives;
+          animation-name: actives;
+  -webkit-animation-duration: 1000ms;
+          animation-duration: 1000ms;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+  -webkit-animation-timing-function: linear;
+          animation-timing-function: linear;
+  -webkit-animation-direction: alternate;
+          animation-direction: alternate;
+}
+
+@-webkit-keyframes actives {
+  0% {
+    background-color: ffff;
+    -webkit-transform: scale(0.95);
+            transform: scale(0.95);
+  }
+  50% {
+    background-color: #ff751d;
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  100% {
+    background-color: deepskyblue;
+    -webkit-transform: scale(1.03);
+            transform: scale(1.03);
+  }
+}
+
+@keyframes actives {
+  0% {
+    background-color: ffff;
+    -webkit-transform: scale(0.95);
+            transform: scale(0.95);
+  }
+  50% {
+    background-color: #ff751d;
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  100% {
+    background-color: deepskyblue;
+    -webkit-transform: scale(1.03);
+            transform: scale(1.03);
+  }
 }
 /*# sourceMappingURL=TransactionForm.module.css.map */

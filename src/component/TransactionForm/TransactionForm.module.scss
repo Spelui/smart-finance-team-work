@@ -136,3 +136,27 @@
     }
   }
 }
+.animation {
+  animation-name: actives;
+  animation-duration: 1000ms;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  animation-direction: alternate;
+
+  @keyframes actives {
+    0% {
+      background-color: ffff;
+      transform: scale(0.95);
+    }
+
+    50% {
+      background-color: #ff751d;
+      transform: scale(1);
+    }
+
+    100% {
+      background-color: deepskyblue;
+      transform: scale(1.03);
+    }
+  }
+}

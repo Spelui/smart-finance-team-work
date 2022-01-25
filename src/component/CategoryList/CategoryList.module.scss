@@ -86,6 +86,29 @@
     transform: scale(1.02);
     fill: #ff751d;
     transition: fill ease-in-out 400ms;
+
+    animation-name: actives;
+    animation-duration: 1000ms;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    animation-direction: alternate;
+
+    @keyframes actives {
+      0% {
+        // background-color: teal;
+        transform: rotate(-15deg);
+      }
+
+      50% {
+        // background-color: orange;
+        transform: rotate(0deg);
+      }
+
+      100% {
+        // background-color: deepskyblue;
+        transform: rotate(15deg);
+      }
+    }
   }
   .rectangle_icon {
     background-color: #ffdac0;

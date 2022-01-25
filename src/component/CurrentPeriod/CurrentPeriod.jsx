@@ -98,7 +98,9 @@ const CurrentPeriod = () => {
           </svg>
         </button>
         <span className={s.cost_incomes}>
-          {dateSelected ? ` ${convertMonths[i]} ${getYears[i]}` : startDate}
+          {dates.length || dateSelected
+            ? ` ${convertMonths[i]} ${getYears[i]}`
+            : startDate}
         </span>
         <button
           type="button"

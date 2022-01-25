@@ -156,7 +156,7 @@ const TransactionForm = () => {
         <Button
           text="ВВОД"
           type="submit"
-          className={s.btn}
+          className={`${s.btn} ${disabledBtn?"":s.animation}`}
           isDisabled={disabledBtn}
         />
 
