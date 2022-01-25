@@ -38,22 +38,22 @@ const CurrentPeriod = () => {
   }, [currentDate, date, dispatch]);
 
   const prev = () => {
-    setI(i - 1);
-
-    if (i === 0) {
-      setI(dates.length - 1);
-      setCurrentDate(dates[0]);
-    }
-    setCurrentDate(dates[i - 1] ? dates[i - 1] : dates[0]);
-  };
-  const next = () => {
     setI(i + 1);
 
     if (i === dates.length - 1) {
+      setI(dates.length - 1);
+      setCurrentDate(dates[dates.length - 1]);
+    }
+    setCurrentDate(dates[i + 1] ? dates[i + 1] : dates[dates.length - 1]);
+  };
+  const next = () => {
+    setI(i - 1);
+
+    if (i === 0) {
       setI(0);
       setCurrentDate(dates[0]);
     }
-    setCurrentDate(dates[i + 1] ? dates[i + 1] : dates[0]);
+    setCurrentDate(dates[i - 1] ? dates[i - 1] : dates[0]);
   };
   return (
     <div
