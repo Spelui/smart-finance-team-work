@@ -46,7 +46,6 @@ const CurrentPeriod = () => {
   }, [currentDate, dates, dispatch]);
 
   const prev = () => {
-<<<<<<< HEAD
     if (i === -1) {
       setI(0);
     }
@@ -72,18 +71,6 @@ const CurrentPeriod = () => {
     if (i !== dates.length - 1) {
       setDisabledPrev(false);
     }
-=======
-    setI(i + 1);
-
-    if (i === dates.length - 1) {
-      setI(dates.length - 1);
-      setCurrentDate(dates[dates.length - 1]);
-    }
-    setCurrentDate(dates[i + 1] ? dates[i + 1] : dates[dates.length - 1]);
-  };
-  const next = () => {
-    setI(i - 1);
->>>>>>> dev
 
     if (i === 0) {
       setI(0);
