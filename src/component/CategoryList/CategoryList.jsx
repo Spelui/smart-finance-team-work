@@ -1,24 +1,76 @@
-import React, { useContext } from "react";
+// import PropTypes from 'prop-types';
+import React, { useContext, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import s from "./CategoryList.module.scss";
 import { categories, incomes } from "./categoriesIcons";
 import amount from "../../redux/user/user-selectors";
 import { ThemeContext, themes } from "../../context/themeContext";
+import { useDispatch } from "react-redux";
+import { getPeriodData } from "../../redux/user/user-operations";
 
-const CategoryList = ({ reportTitle, setGraphObj }) => {
+const CategoryList = ({
+  reportTitle,
+  setGraphObj,
+  date,
+  onChageReportTitle,
+}) => {
+  const activeHandler = (i) => {
+    console.log('"click" :>> ', "click");
+
+    // setActiveId(true);
+  };
+
+  const dispatch = useDispatch();
   const incomesObj = useSelector(amount.payment);
   const expenseObj = useSelector(amount.expenses);
   const { theme } = useContext(ThemeContext);
+  const [activeId, setActiveId] = useState(false);
+  // console.log("incomesObj :>> ", incomesObj);
+  // console.log("expenseObj :>> ", expenseObj);
 
-  const incomesListValues =
-    incomesObj === undefined ? [] : Object.values(incomesObj);
+  // incomesObj === undefined ? [] : Object.values(incomesObj);
   const incomesListTitles =
     incomesObj === undefined ? [] : Object.keys(incomesObj);
+  // const incomesFunc = (incomesObj) => {
+  //   if (incomesObj === undefined) {
+  //     onChageReportTitle();
+  //     return [];
+  //   }
+  //   return Object.values(incomesObj);
+  // };
+  const incomesListValues =
+    incomesObj === undefined ? [] : Object.values(incomesObj);
 
-  const expenseListValues =
-    expenseObj === undefined ? [] : Object.values(expenseObj);
   const expenseListTitles =
     expenseObj === undefined ? [] : Object.keys(expenseObj);
+  const expenseListValues =
+    expenseObj === undefined ? [] : Object.values(expenseObj);
+  // expenseObj === undefined ? [] : Object.values(expenseObj);
+  // const expensesFunc = (expenseObj) => {
+  //   if (expenseObj === undefined) {
+  //     onChageReportTitle();
+  //     return [];
+  //   }
+  //   return Object.values(expenseObj);
+  // };
+
+  // console.log("expenseListValues :>> ", expenseListValues);
+
+  useEffect(() => {
+    dispatch(getPeriodData(date));
+  }, [date, dispatch]);
+
+  const handleClick = (e, id) => {
+    setActiveId(id);
+    // setActiveId(e.target.closest("LI").dataset.id);
+    // if (e.currentTarget.class === "active") {
+    //   e.currentTarget.className = "item";
+    //   console.log("remove");
+    // } else {
+    //   e.currentTarget.className = "active";
+    //   console.log("add class");
+    // }
+  };
 
   return (
     <ul
@@ -27,8 +79,10 @@ const CategoryList = ({ reportTitle, setGraphObj }) => {
       }`}
     >
       {reportTitle === "доходы"
-        ? incomesListValues
-            // .sort((a, b) => b.total - a.total)
+        ? // || incomesListTitles.length !== 0
+          // incomesObj
+          incomesListValues
+            .sort((a, b) => b.total - a.total)
             .map((item, index) => {
               const filteredIcon = incomes.find(
                 ({ name }) =>
@@ -37,8 +91,11 @@ const CategoryList = ({ reportTitle, setGraphObj }) => {
               return (
                 <li
                   key={index}
-                  className={s.item}
-                  onClick={() => {
+                  id={index}
+                  className={`${s.item} ${activeId === index ? s.active : ""}`}
+                  onClick={(e) => {
+                    handleClick(e, index);
+                    activeHandler(e);
                     setGraphObj(item, incomesListTitles[index]);
                   }}
                 >
@@ -54,7 +111,7 @@ const CategoryList = ({ reportTitle, setGraphObj }) => {
               );
             })
         : expenseListValues
-            // .sort((a, b) => b.total - a.total)
+            .sort((a, b) => b.total - a.total)
             .map((item, index) => {
               const filteredIcon = categories.find(
                 ({ name }) =>
@@ -63,8 +120,15 @@ const CategoryList = ({ reportTitle, setGraphObj }) => {
               return (
                 <li
                   key={index}
-                  className={s.item}
-                  onClick={() => setGraphObj(item, expenseListTitles[index])}
+                  id={index + 1}
+                  className={`${s.item} ${
+                    activeId === index + 1 ? s.active : ""
+                  }`}
+                  onClick={(e) => {
+                    handleClick(e, index + 1);
+                    activeHandler(e);
+                    setGraphObj(item, expenseListTitles[index]);
+                  }}
                 >
                   <span>{`${item.total}.00`}</span>
                   <div className={s.link}>

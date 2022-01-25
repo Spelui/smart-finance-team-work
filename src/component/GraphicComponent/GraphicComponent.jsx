@@ -41,6 +41,12 @@ const random = (accentColor) =>
 const GraphicComponent = ({ obj, categoryName, show }) => {
   const { theme } = useContext(ThemeContext);
   const dataObj = Object.entries(obj).map(([name, value]) => ({ name, value }));
+  // if (show) {
+  //   window.scrollTo({
+  //     top: document.documentElement.scrollHeight,
+  //     behavior: "smooth",
+  //   });
+  // }
 
   const dataGraph = dataObj.filter(({ name }) => name !== "total");
   const randomObjColor = dataGraph.map((item) => random(accentColor));
@@ -130,9 +136,9 @@ const GraphicComponent = ({ obj, categoryName, show }) => {
           // display: width < 635 ? false : true,
           // display: false,
         },
-        // display: width < 635 ? true : false,
+        display: width < 635 ? true : false,
         // display: true ,
-        display: false,
+        // display: false,
       },
     },
     // elements: {

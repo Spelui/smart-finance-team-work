@@ -22,12 +22,16 @@ const months = [
   "Ноябрь",
   "Декабрь",
 ];
-const transDate = (dates = null) => {
-  const currentYear = new Date().getFullYear().toString();
-  const newDateMonth = new Date().getMonth();
+const transDate = (date = null) => {
+  // const currentYear = new Date().getFullYear().toString();
+  // const newDateMonth = new Date().getMonth();
+  const currentYear = new Date(date).getFullYear().toString();
+  const newDateMonth = new Date(date).getMonth();
+
   const transMonts = months.find((item, i) => {
     return i === newDateMonth;
   });
+
   return `${transMonts} ${currentYear}`;
 };
 const transformCurrentDate = (dates = null) => {
