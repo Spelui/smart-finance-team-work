@@ -17,7 +17,7 @@ import { ThemeContext, themes } from "../../../context/themeContext";
 import sprite from "../../../images/sprite.svg";
 import s from "./MobileForm.module.scss";
 
-export const MobileForm = ({ transaction }) => {
+const MobileForm = ({ transaction }) => {
   const isIncome = transaction === "income";
 
   const [description, setDescription] = useState("");
@@ -134,7 +134,9 @@ export const MobileForm = ({ transaction }) => {
               label="Category"
               onChange={handleChange}
             >
-              <option value="hide">{isIncome ? 'Категория' : 'Категория товара'}</option>
+              <option value="hide">
+                {isIncome ? "Категория" : "Категория товара"}
+              </option>
               {(isIncome ? incomeCategories : expenseCategories).map(
                 (categorie) => (
                   <option key={categorie} value={categorie}>
@@ -187,3 +189,5 @@ export const MobileForm = ({ transaction }) => {
     </section>
   );
 };
+
+export default MobileForm;

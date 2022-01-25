@@ -9,7 +9,7 @@ import s from "./AuthPage.module.scss";
 import sprite from "../../images/sprite.svg";
 import GoogleAuthorization from "../../component/AuthGoogle/GoogleAuth";
 
-export const AuthPage = () => {
+const AuthPage = () => {
   const dispatch = useDispatch();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -36,16 +36,15 @@ export const AuthPage = () => {
   // }
 
   const validation = () => {
-  const isEmailError = email.trim().length === 0;
-  const isPasswordError = password.trim().length === 0;
+    const isEmailError = email.trim().length === 0;
+    const isPasswordError = password.trim().length === 0;
 
-  setIsEmailValid(!isEmailError);
-  setIsPasswordValid(!isPasswordError);
+    setIsEmailValid(!isEmailError);
+    setIsPasswordValid(!isPasswordError);
 
-  return isEmailError || isPasswordError;
-};
- 
-   
+    return isEmailError || isPasswordError;
+  };
+
   useEffect(() => {
     if (!refreshToken) return;
     dispatch(authOperations.refreshGoogleTokens({ refreshToken, sid })).then(
@@ -74,7 +73,7 @@ export const AuthPage = () => {
   };
 
   const alphanumericPassword = () => {
-    const regex = '^[A-Za-z0-9]*$';
+    const regex = "^[A-Za-z0-9]*$";
     if (password.match(regex)) {
       return;
     } else {
@@ -84,44 +83,59 @@ export const AuthPage = () => {
 
   const handleRegister = async (e) => {
     e.preventDefault();
-    console.log('validation', validation());
+    console.log("validation", validation());
     if (validation()) {
-      return
-    };
+      return;
+    }
 
     if (alphanumericPassword() === false) {
-      return toast.warning('Ваш пароль может включать в себя только буквы и цифры')
+      return toast.warning(
+        "Ваш пароль может включать в себя только буквы и цифры"
+      );
     }
 
     if (alphanumericEmail() === false) {
-      return toast.warning('Ваш email может включать в себя только латиницу, цифры, знаки `-`')
+      return toast.warning(
+        "Ваш email может включать в себя только латиницу, цифры, знаки `-`"
+      );
     }
 
     if (email.trim().length < 10) {
-      return toast.warning('Ваш email должен содержать минимум 10 символов включая @ ...etc')
+      return toast.warning(
+        "Ваш email должен содержать минимум 10 символов включая @ ...etc"
+      );
     }
 
     if (email.trim().length > 63) {
-      return toast.warning('Длина вашего email`а не может превышать 63 символа')
+      return toast.warning(
+        "Длина вашего email`а не может превышать 63 символа"
+      );
     }
 
-    if (!email.trim().includes('@') && !email.includes('.')) {
-      return toast.warning('Ваш email обязательно должен содержать знак `@` и точку `.`')
+    if (!email.trim().includes("@") && !email.includes(".")) {
+      return toast.warning(
+        "Ваш email обязательно должен содержать знак `@` и точку `.`"
+      );
     }
 
-    if (email.trim().indexOf('@') < 2) {
-      return toast.warning('Перед символом `@` должно стоять минимум 2 символа')
+    if (email.trim().indexOf("@") < 2) {
+      return toast.warning(
+        "Перед символом `@` должно стоять минимум 2 символа"
+      );
     }
 
-    if (email.trim().indexOf('-') === 0) {
-      return toast.warning('Дефис не может находиться вначале или в конце (перед знаком `@`) вашего email')
+    if (email.trim().indexOf("-") === 0) {
+      return toast.warning(
+        "Дефис не может находиться вначале или в конце (перед знаком `@`) вашего email"
+      );
     }
 
-    if (email.trim().indexOf('-') === email.indexOf('@') - 1) {
-      return toast.warning('Дефис не может находиться вначале или в конце (перед знаком `@`) вашего email')
+    if (email.trim().indexOf("-") === email.indexOf("@") - 1) {
+      return toast.warning(
+        "Дефис не может находиться вначале или в конце (перед знаком `@`) вашего email"
+      );
     }
 
-    
     await dispatch(authOperations.register({ email, password }));
     dispatch(authOperations.loginIn({ email, password }));
     // setEmail("");
@@ -130,11 +144,11 @@ export const AuthPage = () => {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    console.log('validation', validation());
+    console.log("validation", validation());
     if (validation()) {
-      return
-    };
-    
+      return;
+    }
+
     dispatch(authOperations.loginIn({ email, password }));
     // setEmail("");
     // setPassword("");
@@ -170,7 +184,9 @@ export const AuthPage = () => {
               className={s.authForm}
             >
               <label htmlFor="user-email" className={s.authLabel}>
-                <span className={`${!isEmailValid && 'error'}`}>Электронная почта:</span>
+                <span className={`${!isEmailValid && "error"}`}>
+                  Электронная почта:
+                </span>
               </label>
               <input
                 id="user-email"
@@ -182,7 +198,9 @@ export const AuthPage = () => {
                 onChange={handleChange}
               />
               <label htmlFor="user-password" className={s.authLabel}>
-                <span className={`${!isPasswordValid && 'error'}`}>Пароль:</span>
+                <span className={`${!isPasswordValid && "error"}`}>
+                  Пароль:
+                </span>
               </label>
               <input
                 id="user-password"
@@ -208,3 +226,5 @@ export const AuthPage = () => {
     </section>
   );
 };
+
+export default AuthPage;

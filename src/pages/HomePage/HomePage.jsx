@@ -9,7 +9,7 @@ import s from "./HomePage.module.scss";
 import { useDispatch } from "react-redux";
 import { authOperations } from "../../redux/auth";
 
-export const HomePage = () => {
+const HomePage = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(authOperations.getBalance());
@@ -28,3 +28,5 @@ export const HomePage = () => {
     </section>
   );
 };
+
+export default HomePage;
