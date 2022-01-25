@@ -6,7 +6,7 @@ import { setDate } from "../../redux/transactions/transactionsSlice";
 import { useDispatch } from "react-redux";
 import "react-calendar/dist/Calendar.css";
 import { ThemeContext, themes } from "../../context/themeContext";
-import { utils } from "../../utils";
+import { utils } from "../../redux/utils";
 
 const CalendarNew = () => {
   const dispatch = useDispatch();
