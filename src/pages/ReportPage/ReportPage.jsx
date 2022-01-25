@@ -7,11 +7,13 @@ import ReportSwitcher from "../../component/ReportSwitcher/ReportSwitcher";
 import ReportInfo from "../../component/ReportInfo/ReportInfo";
 import CurrentPeriod from "../../component/CurrentPeriod/CurrentPeriod";
 import GraphicComponent from "../../component/GraphicComponent";
-import { getPeriodData } from "../../redux/user/user-operations";
-import { utils } from "../../redux/utils";
+// import Loader from "../../component/Loader";
+// import { getPeriodData } from "../../redux/user/user-operations";
+// import { utils } from "../../redux/utils";
 import { ThemeContext, themes } from "../../context/themeContext";
 import s from "./ReportPage.module.scss";
 import authOperations from "../../redux/auth/authOperation";
+// import { isLoad } from "../../redux/user/user-selectors";
 
 // import { getExpense } from "../../redux/transactions/transactionsOperation";
 
@@ -24,17 +26,20 @@ const ReportPage = () => {
   const [reportGraphObj, setReportGraphObj] = useState({});
   const [categoryName, setCategoryName] = useState("");
   const [showGraph, setShowGraph] = useState(false);
+  // const [objToRender, setObjTorender]
+  // const [activeCategory, setActiveCategory]= useState(false)
+  // const loading = useSelector(isLoad);
   const balance = useSelector((state) => state.auth?.user?.balance);
   const date = useSelector((state) => state.transactions.date);
 
   const normalizedDate = date ? date.slice(0, 7) : null;
-  const currentDate = utils.normalizeDate(new Date());
+  // const currentDate = utils.normalizeDate(new Date());
 
   const getGraphObj = (obj, name) => {
     setShowGraph(true);
     setReportGraphObj(obj);
     setCategoryName(name);
-    console.log("ClickGR :>> ");
+
     window.scrollTo({
       top: document.documentElement.scrollHeight,
       behavior: "smooth",
@@ -55,6 +60,7 @@ const ReportPage = () => {
     dispatch(authOperations.getBalance());
     // } else dispatch(getPeriodData(normalizedDate));
   }, [dispatch]);
+
   return (
     <>
       <section
@@ -83,7 +89,9 @@ const ReportPage = () => {
               <CategoryList
                 reportTitle={reportTitle}
                 setGraphObj={getGraphObj}
-                avtive={showGraph}
+                onChageReportTitle={reportTitleChange}
+                // activeHandler={activeHandler}
+                // active={showGraph}
                 date={normalizedDate}
               />
             </div>

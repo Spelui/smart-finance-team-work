@@ -102,4 +102,18 @@
 .darkTheme .item {
   color: #f0e7e7;
 }
+
+.active .img {
+  -webkit-transform: scale(1.02);
+          transform: scale(1.02);
+  fill: #ff751d;
+  -webkit-transition: fill ease-in-out 400ms;
+  transition: fill ease-in-out 400ms;
+}
+
+.active .rectangle_icon {
+  background-color: #ffdac0;
+  -webkit-transition: background-color ease-in-out 400ms;
+  transition: background-color ease-in-out 400ms;
+}
 /*# sourceMappingURL=CategoryList.module.css.map */

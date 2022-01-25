@@ -3,14 +3,9 @@ import { useDispatch, useSelector } from "react-redux";
 import sprite from "../../images/sprite.svg";
 import s from "./CurrentPeriod.module.scss";
 import { getPeriodData } from "../../redux/user/user-operations";
-import {
-  getExpense,
-  getIncome,
-} from "../../redux/transactions/transactionsOperation";
 import { ThemeContext, themes } from "../../context/themeContext";
 import { utils } from "../../redux/utils";
 
-// { date, monthsStat }
 const CurrentPeriod = () => {
   const dispatch = useDispatch();
   const { theme } = useContext(ThemeContext);
@@ -19,61 +14,43 @@ const CurrentPeriod = () => {
   const date = useSelector((state) => state.transactions.date);
   const dates = utils.convertDate(incomes, expenses);
   const startDate = utils.transDate(date);
-  console.log("startDate :>> ", startDate);
-  console.log("incomes :>> ", incomes);
-  console.log("expenses :>> ", expenses);
   console.log("date :>> ", date);
+  console.log("startDate :>> ", startDate);
+  console.log("dates :>> ", dates);
 
   const dateSelected =
-    dates.length > 0
-      ? dates.find((item, i) => {
-          return item === date.slice(0, 7);
-        })
-      : null;
-  // setCurrentDate(dateSelected);
-  // setI(dates.indexOf(dateSelected));
-  const inf = dates.length > 0 ? dates.indexOf(dateSelected) : 0;
-  // console.log("inf :>> ", inf);
-  const [i, setI] = useState(inf);
-  const [currentDate, setCurrentDate] = useState(dateSelected);
-  const [disabledPrev, setDisabledPrev] = useState(false);
-  const [disabledNext, setDisabledNext] = useState(false);
-  // console.log("currentDate :>> ", currentDate);
-  // console.log("incomes :>> ", incomes);
-  // console.log("expenses :>> ", expenses);
-  // const beginDate = dates.length ? null : utils.transDate();
-  // console.log("dates :>> ", dates);
+    dates.length > 0 ? dates.find((item) => item === date.slice(0, 7)) : null;
+  const inf = dateSelected ? dates.indexOf(dateSelected) : 0;
 
   console.log("dateSelected :>> ", dateSelected);
+  // console.log("inf :>> ", inf);
+  const [i, setI] = useState(inf);
+
+  const [currentDate, setCurrentDate] = useState(dateSelected);
+  console.log("currentDate :>> ", currentDate);
+  const [disabledPrev, setDisabledPrev] = useState(false);
+  const [disabledNext, setDisabledNext] = useState(false);
+
   const convertMonths = utils.transformCurrentDate(
     dates.map((item) => item.slice(-2))
   );
   const getYears = dates.map((item) => item.slice(0, 4));
 
-  // useEffect(() => {
-  //   dispatch(getPeriodData(date.slice(0, 7)));
-  //   console.log("date :>> ", date);
-  //   setCurrentDate(date);
-  //   console.log("useeffect :>> ");
-  // }, [date, dispatch]);
-
   useEffect(() => {
-    // setI(inf);
-    if (!currentDate) return;
-    // setCurrentDate(dateSelected);
-    // }
-    // setCurrentDate(date.slice(0, 7));
-    // dispatch(getIncome());
-    // dispatch(getExpense());
+    if (!currentDate) {
+      setCurrentDate(dates[0]);
+      // return;
+    }
+    console.log("useEffect :>> ");
     dispatch(getPeriodData(currentDate));
-  }, [
-    currentDate,
-    // dateSelected,
-    dispatch,
-  ]);
+  }, [currentDate, dates, dispatch]);
 
   const prev = () => {
+    if (i === -1) {
+      setI(0);
+    }
     setI(i + 1);
+    console.log("i prev:>> ", i);
     setCurrentDate(dates[i + 1] ? dates[i + 1] : dates[i]);
     if (i - 1 !== 0) {
       setDisabledNext(false);
@@ -86,7 +63,11 @@ const CurrentPeriod = () => {
     }
   };
   const next = () => {
+    if (i === -1) {
+      setI(dates.length - 1);
+    }
     setI(i - 1);
+    console.log("i next:>> ", i);
     if (i !== dates.length - 1) {
       setDisabledPrev(false);
     }
@@ -110,22 +91,20 @@ const CurrentPeriod = () => {
           type="button"
           onClick={() => prev(i)}
           className={s.current_period_btn}
-          disabled={dates.length ? disabledPrev : true}
+          disabled={i < dates.length - 1 ? disabledPrev : true}
         >
           <svg viewBox="0 0 28.3 28.3" className={s.current_period_arrow}>
             <use href={`${sprite}#arrow_left`} />
           </svg>
         </button>
         <span className={s.cost_incomes}>
-          {dates.length && inf !== -1
-            ? ` ${convertMonths[i]} ${getYears[i]}`
-            : startDate}
+          {dateSelected ? ` ${convertMonths[i]} ${getYears[i]}` : startDate}
         </span>
         <button
           type="button"
           onClick={() => next(i)}
           className={s.current_period_btn}
-          disabled={dates.length ? disabledNext : true}
+          disabled={i > 0 ? disabledNext : true}
         >
           <svg viewBox="0 0 28.3 28.3" className={s.current_period_arrow}>
             <use href={`${sprite}#arrow_rigth`} />
