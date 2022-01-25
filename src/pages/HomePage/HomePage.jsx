@@ -7,7 +7,7 @@ import { ThemeContext, themes } from "../../context/themeContext";
 
 import s from "./HomePage.module.scss";
 
-export const HomePage = () => {
+const HomePage = () => {
   const isMobile = useMediaQuery({ minWidth: 320, maxWidth: 767 });
   const { theme } = useContext(ThemeContext);
 
@@ -21,3 +21,5 @@ export const HomePage = () => {
     </section>
   );
 };
+
+export default HomePage;

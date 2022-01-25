@@ -12,7 +12,7 @@ import { ThemeContext, themes } from "../../context/themeContext";
 import sprite from "../../images/svg/symbol-defs.svg";
 import s from "./Header.module.scss";
 
-export const Header = () => {
+const Header = () => {
   // const dispatch = useDispatch();
   const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
   const email = useSelector(authSelectors.getUserEmail);
@@ -87,3 +87,5 @@ export const Header = () => {
     </>
   );
 };
+
+export default Header;
