@@ -7,17 +7,10 @@ import ReportSwitcher from "../../component/ReportSwitcher/ReportSwitcher";
 import ReportInfo from "../../component/ReportInfo/ReportInfo";
 import CurrentPeriod from "../../component/CurrentPeriod/CurrentPeriod";
 import GraphicComponent from "../../component/GraphicComponent";
-// import Loader from "../../component/Loader";
-// import { getPeriodData } from "../../redux/user/user-operations";
-// import { utils } from "../../redux/utils";
+
 import { ThemeContext, themes } from "../../context/themeContext";
 import s from "./ReportPage.module.scss";
 import authOperations from "../../redux/auth/authOperation";
-// import { isLoad } from "../../redux/user/user-selectors";
-
-// import { getExpense } from "../../redux/transactions/transactionsOperation";
-
-//
 
 const ReportPage = () => {
   const dispatch = useDispatch();
@@ -26,9 +19,7 @@ const ReportPage = () => {
   const [reportGraphObj, setReportGraphObj] = useState({});
   const [categoryName, setCategoryName] = useState("");
   const [showGraph, setShowGraph] = useState(false);
-  // const [objToRender, setObjTorender]
-  // const [activeCategory, setActiveCategory]= useState(false)
-  // const loading = useSelector(isLoad);
+
   const balance = useSelector((state) => state.auth?.user?.balance);
   const date = useSelector((state) => state.transactions.date);
 
