@@ -22,16 +22,18 @@ const Summary = () => {
       <ul className={s.summary__list}>
         {Object.keys(userMonth)
           .splice(0, monthNow)
-          .map((month) => (
-            <li key={month} className={s.summary__item}>
-              <p className={s.summary__text}>
-                {month}
-                <span>
-                  {userMonth[month] === "N/A" ? "00.00" : userMonth[month]}
-                </span>
-              </p>
-            </li>
-          ))}
+          .map((month) => {
+            return (
+              <li key={month} className={s.summary__item}>
+                <p className={s.summary__text}>
+                  {month}
+                  <span>
+                    {userMonth[month] === "N/A" ? "00.00" : userMonth[month]}
+                  </span>
+                </p>
+              </li>
+            );
+          })}
       </ul>
     </div>
   );
