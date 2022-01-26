@@ -55,7 +55,11 @@ export const Decstop = () => {
                   >
                     <p className={st.summary__text}>
                       {month}
-                      <span>{userMonth[month]}</span>
+                      <span>
+                        {userMonth[month] === "N/A"
+                          ? "00.00"
+                          : userMonth[month]}
+                      </span>
                     </p>
                   </li>
                 ))}
