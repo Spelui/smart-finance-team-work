@@ -7,12 +7,12 @@ import { ThemeContext, themes } from "./context/themeContext";
 
 import { PublickRoute } from "./component/PublickRoutes";
 import { PrivateRoute } from "./component/PrivateRoute";
+import OnLoader from "./component/OnLoader/OnLoader";
 
 import { Header } from "./component/Header/Header.jsx";
 import { AuthPage } from "./pages/AuthPage/AuthPage.jsx";
 import ReportPage from "./pages/ReportPage/ReportPage";
-//import OnLoader from "./component/OnLoader";
-import TransactionPage from "./pages/TransactionPage/TransactionPage";
+
 import { HomePage } from "./pages/HomePage/HomePage";
 import { MobileForm } from "./pages/HomePage/MobileForm/MobileForm";
 
@@ -58,7 +58,7 @@ const App = () => {
         <Header />
         {!isFetchingCurrentUser && (
           <>
-            {/*<OnLoader />*/}
+            <OnLoader />
             {!isRefreshing && (
               <Routes>
                 <Route
