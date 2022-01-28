@@ -5,6 +5,7 @@ import { useLocation } from "react-router";
 import Button from "../Button/Button";
 import Calendar from "../Calendar/Calendar";
 import { ThemeContext, themes } from "../../context/themeContext";
+import { authOperations } from "../../redux/auth";
 
 import {
   getExpense,
@@ -36,7 +37,6 @@ const TransactionForm = () => {
   const { theme } = useContext(ThemeContext);
 
   const [disabledBtn, setDisabledBtn] = useState(true);
-  console.log("~ disabledBtn", disabledBtn);
 
   useEffect(() => {
     isExpense ? dispatch(getCategoriesExpense()) : dispatch(getCategories());
@@ -52,7 +52,7 @@ const TransactionForm = () => {
 
   const handleInputChange = (e) => {
     const { name, value } = e.currentTarget;
-    if (description.length !== 0 && category !== "" && amount > 0) {
+    if (description.length > 2 && category !== "" ) {
       setDisabledBtn(false);
     } else {
       setDisabledBtn(true);
@@ -82,8 +82,12 @@ const TransactionForm = () => {
     };
 
     isExpense
-      ? dispatch(addExpense(newOperation)).then(() => dispatch(getExpense()))
-      : dispatch(addIncome(newOperation)).then(() => dispatch(getIncome()));
+      ? dispatch(addExpense(newOperation))
+          .then(() => dispatch(getExpense()))
+          .then(() => dispatch(authOperations.getBalance()))
+      : dispatch(addIncome(newOperation))
+          .then(() => dispatch(getIncome()))
+          .then(() => dispatch(authOperations.getBalance()));
     handleBtnClear();
     setDisabledBtn(true);
   };
@@ -101,14 +105,14 @@ const TransactionForm = () => {
           className={`${s.input} ${s.left_input}`}
           type="text"
           name="product"
-          placeholder="Описание товара"
+          placeholder="Описание"
           maxLength="20"
           minLength="3"
           size="20"
           required
           onChange={handleInputChange}
           value={description}
-          pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+          pattern="^[a-zA-Zа-яА-ЯЁёІіЇїЄє]+(([' -][a-zA-Zа-яА-ЯЁёІіЇїЄє ])?[a-zA-Zа-яА-ЯЁёІіЇїЄє]*)*$"
         />
 
         <select
@@ -118,7 +122,9 @@ const TransactionForm = () => {
           name="category"
           required
         >
-          <option value="">Категория дохода</option>
+          <option value="">
+            {isExpense ? "Категория расходов" : "Категория доходов"}
+          </option>
           {(isExpense ? categoriesExpense : categories).map((categorie) => (
             <option key={categorie} value={categorie}>
               {categorie}
@@ -150,7 +156,7 @@ const TransactionForm = () => {
         <Button
           text="ВВОД"
           type="submit"
-          className={s.btn}
+          className={`${s.btn} ${disabledBtn?"":s.animation}`}
           isDisabled={disabledBtn}
         />
 

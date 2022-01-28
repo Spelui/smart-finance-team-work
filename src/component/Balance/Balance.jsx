@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { authOperations } from "../../redux/auth";
 import { authSelectors } from "../../redux/auth";
 import { ThemeContext, themes } from "../../context/themeContext";
+import ModalBalance from "../ModalBalance/ModalBalance";
 
 import s from "./Balance.module.scss";
 
@@ -24,6 +25,10 @@ const Balance = () => {
     await dispatch(authOperations.setBalance({ newBalance }));
   };
 
+  const shuldBeVisible = balance === 0 && mustBeShown;
+    
+  
+
   return (
     <div
       className={`${s.balance} ${
@@ -31,6 +36,8 @@ const Balance = () => {
       }`}
     >
       <p className={s.balance__title}>Баланс:</p>
+      
+
       <form className={s.balance__form}>
         {mustBeShown ? (
           <input
@@ -66,6 +73,8 @@ const Balance = () => {
           </button>
         )}
       </form>
+      
+      {shuldBeVisible && <ModalBalance/>}
     </div>
   );
 };

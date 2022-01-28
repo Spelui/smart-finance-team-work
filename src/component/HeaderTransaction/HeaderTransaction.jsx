@@ -6,28 +6,31 @@ import { ThemeContext, themes } from "../../context/themeContext";
 const HeaderTransaction = () => {
   const { theme } = useContext(ThemeContext);
   return (
-    <div
-      className={`${s.header} ${
-        theme === themes.light ? "lightTheme" : s.darkTheme
-      }`}
-    >
-      <NavLink
-        to="expense"
-        className={({ isActive }) =>
-          isActive ? `${s.link} ${s.active}` : `${s.link}`
-        }
+    <>
+      <div
+        className={`${s.header} ${
+          theme === themes.light ? "lightTheme" : s.darkTheme
+        }`}
       >
-        РАСХОД
-      </NavLink>
-      <NavLink
-        to="income"
-        className={({ isActive }) =>
-          isActive ? `${s.link} ${s.active}` : `${s.link}`
-        }
-      >
-        ДОХОД
-      </NavLink>
-    </div>
+        <NavLink
+          to="expense"
+          className={({ isActive }) =>
+            isActive ? `${s.link} ${s.active}` : `${s.link}`
+          }
+        >
+          РАСХОД
+        </NavLink>
+        <NavLink
+          to="income"
+          className={({ isActive }) =>
+            isActive ? `${s.link} ${s.active}` : `${s.link}`
+          }
+        >
+          ДОХОД
+        </NavLink>
+      </div>
+      {/* <Outlet /> */}
+    </>
   );
 };
 

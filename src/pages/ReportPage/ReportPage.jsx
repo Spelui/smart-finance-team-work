@@ -7,14 +7,10 @@ import ReportSwitcher from "../../component/ReportSwitcher/ReportSwitcher";
 import ReportInfo from "../../component/ReportInfo/ReportInfo";
 import CurrentPeriod from "../../component/CurrentPeriod/CurrentPeriod";
 import GraphicComponent from "../../component/GraphicComponent";
-import { getPeriodData } from "../../redux/user/user-operations";
-import { utils } from "../../utils";
+
 import { ThemeContext, themes } from "../../context/themeContext";
 import s from "./ReportPage.module.scss";
-
-// import { getExpense } from "../../redux/transactions/transactionsOperation";
-
-//
+import authOperations from "../../redux/auth/authOperation";
 
 const ReportPage = () => {
   const dispatch = useDispatch();
@@ -23,18 +19,18 @@ const ReportPage = () => {
   const [reportGraphObj, setReportGraphObj] = useState({});
   const [categoryName, setCategoryName] = useState("");
   const [showGraph, setShowGraph] = useState(false);
+
   const balance = useSelector((state) => state.auth?.user?.balance);
   const date = useSelector((state) => state.transactions.date);
-  const months = useSelector((state) => state.transactions.month);
-  // console.log("datesCP :>> ", date);
-  const dataMonths = months === {} ? null : months;
+
   const normalizedDate = date ? date.slice(0, 7) : null;
-  const currentDate = utils.normalizeDate(new Date());
+  // const currentDate = utils.normalizeDate(new Date());
 
   const getGraphObj = (obj, name) => {
     setShowGraph(true);
     setReportGraphObj(obj);
     setCategoryName(name);
+
     window.scrollTo({
       top: document.documentElement.scrollHeight,
       behavior: "smooth",
@@ -49,16 +45,13 @@ const ReportPage = () => {
     setReportTitle(reportTitle === "расходы" ? "доходы" : "расходы");
     setShowGraph(false);
   };
-  // useEffect(() => {
-  //   if (!dataMonts) {
-  //   }
-  // }, [dataMonts, dispatch]);
 
   useEffect(() => {
-    if (!normalizedDate) {
-      dispatch(getPeriodData(currentDate.slice(0, 7)));
-    } else dispatch(getPeriodData(normalizedDate));
-  }, [currentDate, dispatch, normalizedDate]);
+    // if (!normalizedDate) {
+    dispatch(authOperations.getBalance());
+    // } else dispatch(getPeriodData(normalizedDate));
+  }, [dispatch]);
+
   return (
     <>
       <section
@@ -68,13 +61,12 @@ const ReportPage = () => {
       >
         <div className={s.wrap}>
           <div className={s.report_head_wrap}>
-            <CurrentPeriod
-              monthsStat={dataMonths}
-              date={date === null ? currentDate : date}
-            />
+            <CurrentPeriod />
             <div className={s.reportBalance_wrap}>
               <span className={s.balanceText}>Баланс:</span>
-              <span className={s.balanceNumber}>{`${balance}.00`} uah</span>
+              <span className={s.balanceNumber}>
+                {balance ? `${balance}.00` : "0.00"} uah
+              </span>
             </div>
             <BackspaceBtn />
           </div>
@@ -88,6 +80,10 @@ const ReportPage = () => {
               <CategoryList
                 reportTitle={reportTitle}
                 setGraphObj={getGraphObj}
+                onChageReportTitle={reportTitleChange}
+                // activeHandler={activeHandler}
+                // active={showGraph}
+                date={normalizedDate}
               />
             </div>
           </div>

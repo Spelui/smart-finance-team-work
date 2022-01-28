@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useContext, useRef } from "react";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -12,6 +12,7 @@ import {
 import ChartDataLabels from "chartjs-plugin-datalabels";
 import { Bar } from "react-chartjs-2";
 import useResizeObserver from "./helps";
+import { ThemeContext, themes } from "../../context/themeContext";
 import s from "./GraphicComponent.module.scss";
 
 ChartJS.register(
@@ -33,10 +34,19 @@ const random = (accentColor) =>
 //     return Math.round(data.length * Math.random());
 //   };
 //
-
+// #757781 bacground night
+//  #52555F text color labels and data
+//
+//
 const GraphicComponent = ({ obj, categoryName, show }) => {
-  // console.log("obj :>> ", obj);
+  const { theme } = useContext(ThemeContext);
   const dataObj = Object.entries(obj).map(([name, value]) => ({ name, value }));
+  // if (show) {
+  //   window.scrollTo({
+  //     top: document.documentElement.scrollHeight,
+  //     behavior: "smooth",
+  //   });
+  // }
 
   const dataGraph = dataObj.filter(({ name }) => name !== "total");
   const randomObjColor = dataGraph.map((item) => random(accentColor));
@@ -47,6 +57,7 @@ const GraphicComponent = ({ obj, categoryName, show }) => {
   const dimensions = useResizeObserver(wrapperRef);
   // console.log("dimensions :>> ", dimensions);
   const width = !dimensions ? 0 : dimensions.width;
+  const labels = dataGraph.map(({ name }) => name);
   // console.log("width :>> ", width);
 
   const options = {
@@ -66,11 +77,24 @@ const GraphicComponent = ({ obj, categoryName, show }) => {
     plugins: {
       datalabels: {
         display: true,
-        color: "black",
+        color: "#52555F",
+        // labels: {
+        // title: {
+        //   color: "green",
+        // },
+        // },
+        //  {
+        labels: {
+          value: labels,
+          title: {
+            color: "blue",
+          },
+        },
+
         // formatter: Math.round,
         anchor: "end",
-        offset: width < 635 ? 0 : -20,
-        align: width < 635 ? "end" : "start",
+        offset: width < 635 ? 10 : -20,
+        align: width < 635 ? "top" : "start",
       },
     },
     // legend: {
@@ -85,8 +109,8 @@ const GraphicComponent = ({ obj, categoryName, show }) => {
         //   color: "#52555F",
         // },
         grid: {
-          color: "#ffffff",
-          offset: false,
+          color: ` ${theme === themes.light ? "#ffffff" : "#757781"}`,
+          offset: true,
           // offset: true,
           // drawTicks: false,
           // display: width < 635 ? false : true,
@@ -103,7 +127,8 @@ const GraphicComponent = ({ obj, categoryName, show }) => {
         // showLabelBackdrop: true,
         // },
         grid: {
-          color: "#ffffff",
+          color: ` ${theme === themes.light ? "#ffffff" : "#757781"}`,
+          // "#ffffff",
           drawTicks: false,
           // offset: false,
           // offset: true,
@@ -121,8 +146,6 @@ const GraphicComponent = ({ obj, categoryName, show }) => {
     // },
   };
 
-  const labels = dataGraph.map(({ name }) => name);
-
   const data = {
     labels,
     datasets: [
@@ -136,6 +159,11 @@ const GraphicComponent = ({ obj, categoryName, show }) => {
         label: categoryName,
         data: dataGraph.map((item) => item.value),
         backgroundColor: randomObjColor,
+        datalabels: {
+          labels: {
+            value: labels,
+          },
+        },
         // {
         // yAxisID: "yAxis",
         // },

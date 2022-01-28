@@ -21,7 +21,7 @@
 .select,
 .number {
   border: 2px solid #f5f6fb;
-  color: #c7ccdc;
+  color: #52555f;
   text-align: center;
   height: 44px;
 }
@@ -40,6 +40,7 @@
 
 .select {
   width: 171px;
+  color: #c7ccdc;
 
   @media screen and (min-width: 1280px) {
     width: 181px;
@@ -120,6 +121,7 @@
 }
 
 .darkTheme {
+  transition: all ease-in-out 1200ms;
   .input,
   .select,
   .number {
@@ -131,6 +133,30 @@
   .number {
     &::placeholder {
       color: #f0e7e7;
+    }
+  }
+}
+.animation {
+  animation-name: actives;
+  animation-duration: 1000ms;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  animation-direction: alternate;
+
+  @keyframes actives {
+    0% {
+      background-color: ffff;
+      transform: scale(0.98);
+    }
+
+    50% {
+      background-color: #ff751d;
+      transform: scale(1);
+    }
+
+    100% {
+      background-color: deepskyblue;
+      transform: scale(1.01);
     }
   }
 }

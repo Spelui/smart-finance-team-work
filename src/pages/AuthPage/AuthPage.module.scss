@@ -96,6 +96,7 @@
 }
 
 .heroTitle {
+  transition: all ease-in-out 1200ms;
   font-size: 64px;
   font-weight: 700;
   line-height: calc(19 / 16);
@@ -116,6 +117,7 @@
 }
 
 .heroText {
+  transition: all ease-in-out 1200ms;
   margin-top: 4px;
   margin-left: 15px;
 
@@ -136,6 +138,7 @@
 }
 
 .authBox {
+  transition: all ease-in-out 1200ms;
   margin: 0 auto;
   padding: 40px 9px;
   width: 282px;
@@ -159,6 +162,7 @@
 }
 
 .googleAuthText {
+  transition: all ease-in-out 1200ms;
   margin: 0 auto 24px auto;
   width: 200px;
 
@@ -180,6 +184,7 @@
 }
 
 .googleBtn {
+  transition: all ease-in-out 1200ms;
   margin: 0 auto 30px auto;
   display: flex;
   align-items: center;
@@ -206,6 +211,7 @@
 }
 
 .googleText {
+  transition: all ease-in-out 1200ms;
   font-weight: 500;
   font-size: 14px;
   line-height: calc(16 / 14);
@@ -215,6 +221,7 @@
 }
 
 .authText {
+  transition: all ease-in-out 1200ms;
   width: 220px;
   margin-left: 13px;
   margin-bottom: 24px;
@@ -239,6 +246,7 @@
 }
 
 .authLabel {
+  transition: all ease-in-out 1200ms;
   display: block;
   margin-left: 13px;
   font-size: 10px;
@@ -255,6 +263,7 @@
 }
 
 .authInput {
+  transition: all ease-in-out 1200ms;
   margin-bottom: 30px;
   margin-top: 12px;
   padding: 17px 20px;
@@ -276,6 +285,7 @@
 }
 
 .btn {
+  transition: all ease-in-out 1200ms;
   margin-top: 10px;
   display: inline-block;
   width: 125px;
@@ -312,6 +322,7 @@
 }
 
 .darkTheme {
+  transition: all ease-in-out 1200ms;
   background-color: #1f2022;
   color: #eee;
 
@@ -327,24 +338,12 @@
     background: #252529;
   }
 
-  .googleAuthText {
-    color: #f0e7e7;
-  }
-
   .authText {
     color: #f0e7e7;
   }
 
   .authLabel {
     color: #f0e7e7;
-  }
-
-  .googleBtn {
-    background-color: #757781;
-
-    .googleText {
-      color: #f0e7e7;
-    }
   }
 
   .authInput {

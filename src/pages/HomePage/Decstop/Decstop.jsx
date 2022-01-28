@@ -32,10 +32,10 @@ export const Decstop = () => {
         </Link>
       </div>
 
-      <Routes>
+      {/* <Routes>
         <Route path="income" />
         <Route path="expense" />
-      </Routes>
+      </Routes> */}
 
       <div className={s.chart}>
         <HeaderTransaction />
@@ -55,7 +55,11 @@ export const Decstop = () => {
                   >
                     <p className={st.summary__text}>
                       {month}
-                      <span>{userMonth[month]}</span>
+                      <span>
+                        {userMonth[month] === "N/A"
+                          ? "00.00"
+                          : userMonth[month]}
+                      </span>
                     </p>
                   </li>
                 ))}

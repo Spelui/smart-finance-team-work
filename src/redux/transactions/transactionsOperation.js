@@ -1,7 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import { token } from "../auth/authOperation";
-// import { toast } from "react-toastify";
+import { toast } from "react-toastify";
 
 const getIncome = createAsyncThunk(
   "transaction/getTransactionStatus",
@@ -15,31 +15,34 @@ const getIncome = createAsyncThunk(
       const { data } = await axios.get("/transaction/income");
       return data;
     } catch (error) {
-      // toast.error(`${"Error, please repeat the request"}`);
+      return thunkAPI.rejectWithValue(error);
     }
   }
 );
 
 const addIncome = createAsyncThunk(
   "transaction/addTransactionStatus",
-  async (transaction) => {
+  async (transaction, thunkAPI) => {
     try {
       const { data } = await axios.post("/transaction/income", transaction);
+      toast.success("Успешно добавлен доход");
       return data;
     } catch (error) {
-      // toast.error(`${"Error, please repeat the request"}`);
+      return thunkAPI.rejectWithValue(error);
     }
   }
 );
 
 const deleteIncom = createAsyncThunk(
   "transaction/deleteIncomStatus",
-  async (id) => {
+  async (id, thunkAPI) => {
     try {
       await axios.delete(`/transaction/${id}`);
+      toast.success("Успешно удален доход");
       return id; // + newBalance
     } catch (error) {
-      // toast.error(`${"Error, please repeat the request"}`);
+      toast.error("Упсс.... Что то пошло не так!");
+      return thunkAPI.rejectWithValue(error);
     }
   }
 );
@@ -51,11 +54,10 @@ const getCategories = createAsyncThunk(
     const persistedToken = state.auth.token;
     token.set(persistedToken);
     try {
-      const data = await axios.get("/transaction/income-categories");
+      const { data } = await axios.get("/transaction/income-categories");
       return data;
     } catch (error) {
-      console.log("error", error);
-      // toast.error(`${"Error, please repeat the request"}`);
+      return thunkAPI.rejectWithValue(error);
     }
   }
 );
@@ -73,31 +75,35 @@ const getExpense = createAsyncThunk(
       const { data } = await axios.get("/transaction/expense");
       return data;
     } catch (error) {
-      // toast.error(`${"Error, please repeat the request"}`);
+      return thunkAPI.rejectWithValue(error);
     }
   }
 );
 
 const addExpense = createAsyncThunk(
   "transaction/addExpenseStatus",
-  async (transaction) => {
+  async (transaction, thunkAPI) => {
     try {
       const { data } = await axios.post("/transaction/expense", transaction);
+      toast.success("Успешно добавлен расход");
       return data;
     } catch (error) {
-      // toast.error(`${"Error, please repeat the request"}`);
+      toast.error("Упсс.... Что то пошло не так!");
+      return thunkAPI.rejectWithValue(error);
     }
   }
 );
 
 const deleteExpense = createAsyncThunk(
   "transaction/deleteExpenseStatus",
-  async (id) => {
+  async (id, thunkAPI) => {
     try {
       await axios.delete(`/transaction/${id}`);
+      toast.success("Успешно удален расход");
       return id;
     } catch (error) {
-      // toast.error(`${"Error, please repeat the request"}`);
+      toast.error("Упсс.... Что то пошло не так!");
+      return thunkAPI.rejectWithValue(error);
     }
   }
 );
@@ -109,11 +115,11 @@ const getCategoriesExpense = createAsyncThunk(
     const persistedToken = state.auth.token;
     token.set(persistedToken);
     try {
-      const data = await axios.get("/transaction/expense-categories");
+      const { data } = await axios.get("/transaction/expense-categories");
+
       return data;
     } catch (error) {
-      console.log("error", error);
-      // toast.error(`${"Error, please repeat the request"}`);
+      return thunkAPI.rejectWithValue(error);
     }
   }
 );
