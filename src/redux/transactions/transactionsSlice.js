@@ -18,6 +18,7 @@ const initialState = {
   categoriesExpense: [],
   month: {},
   date: null,
+  onload: false,
 
   // filter: "",
 };
@@ -35,10 +36,17 @@ const transactionSlice = createSlice({
         state.month = { ...payload.monthsStats };
         state.items = payload.incomes;
       })
+      .addCase(addIncome.pending, (state, action) => {
+        state.onload = true;
+      })
       .addCase(addIncome.fulfilled, (state, action) => ({
         ...state,
         items: [...state.items, action.payload.transaction],
+        onload: true,
       }))
+      .addCase(addIncome.rejected, (state, action) => {
+        state.onload = false;
+      })
 
       .addCase(getCategories.fulfilled, (state, action) => ({
         ...state,

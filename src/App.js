@@ -8,6 +8,7 @@ import { ThemeContext, themes } from "./context/themeContext";
 
 import { PublickRoute } from "./component/PublickRoutes";
 import { PrivateRoute } from "./component/PrivateRoute";
+import OnLoader from "./component/OnLoader/OnLoader";
 import "react-toastify/dist/ReactToastify.css";
 
 // import { Header } from "./component/Header/Header.jsx";
@@ -80,13 +81,13 @@ const App = () => {
     );
 
   return (
-    <Suspense fallback={<div>Завантаження...</div>}>
+    <Suspense fallback={<OnLoader />}>
       <ThemeContext.Provider value={{ theme, toggleTheme }}>
         <div>
+          {/* <OnLoader /> */}
           <Header />
           {!isFetchingCurrentUser && (
             <>
-              {/*<OnLoader />*/}
               {!isRefreshing && (
                 <Routes>
                   <Route
