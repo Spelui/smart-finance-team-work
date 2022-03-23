@@ -69,6 +69,7 @@ const App = () => {
     return () => {
       clearInterval(secondTimerId);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch, isLoggedIn]);
 
   useEffect(() => {
