@@ -81,13 +81,13 @@ const App = () => {
     );
 
   return (
-    <Suspense fallback={<div>Завантаження...</div>}>
+    <Suspense fallback={<OnLoader />}>
       <ThemeContext.Provider value={{ theme, toggleTheme }}>
         <div>
+          {/* <OnLoader /> */}
           <Header />
           {!isFetchingCurrentUser && (
             <>
-              {/*<OnLoader />*/}
               {!isRefreshing && (
                 <Routes>
                   <Route
